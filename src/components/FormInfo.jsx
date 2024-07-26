@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 
 import PersonalDetails from "./Forms/PersonalDetails";
 import Education from "./Forms/Education";
+import Employment from "./Forms/Employment";
 
 export default function FormInfo() {
   return (
@@ -43,12 +44,12 @@ export default function FormInfo() {
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel3-content"
             id="panel3-header"
+            className="text-xl font-bold"
           >
-            Accordion Actions
+            Employment
           </AccordionSummary>
           <AccordionDetails>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
+            <Employment />
           </AccordionDetails>
           <AccordionActions>
             <Button>Cancel</Button>
