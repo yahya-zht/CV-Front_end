@@ -4,10 +4,10 @@ import Template from "@/components/Template";
 
 export default function Create() {
   return (
-    <div className="h-svh">
+    <div className="h-svh flex flex-col">
       <NavbarCreate />
-      <div className="flex flex-row ">
-        <div className="w-1/2 bg-white scroll-m-1 h-fit">
+      <div className="flex flex-row min-h-full">
+        <div className="w-1/2 bg-white scroll-m-1 min-h-full ">
           <FormInfo />
         </div>
         <div className="w-1/2">
