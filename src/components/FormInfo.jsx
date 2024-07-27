@@ -14,7 +14,7 @@ import Hobbies from "./Forms/Hobbies";
 
 export default function FormInfo() {
   return (
-    <div className="p-6 min-h-full">
+    <div className="p-6 h-full">
       <div>
         <Accordion defaultExpanded>
           <AccordionSummary
