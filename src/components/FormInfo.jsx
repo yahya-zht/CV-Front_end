@@ -9,6 +9,7 @@ import PersonalDetails from "./Forms/PersonalDetails";
 import Education from "./Forms/Education";
 import Employment from "./Forms/Employment";
 import Skills from "./Forms/Skills";
+import Languages from "./Forms/Languages";
 
 export default function FormInfo() {
   return (
@@ -64,6 +65,19 @@ export default function FormInfo() {
           </AccordionSummary>
           <AccordionDetails>
             <Skills />
+          </AccordionDetails>
+        </Accordion>
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel3-content"
+            id="panel3-header"
+            className="text-xl font-bold"
+          >
+            Languages
+          </AccordionSummary>
+          <AccordionDetails>
+            <Languages />
           </AccordionDetails>
         </Accordion>
       </div>

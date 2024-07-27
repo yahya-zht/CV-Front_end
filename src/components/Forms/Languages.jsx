@@ -47,13 +47,13 @@ function valueLabelFormat(value) {
 function calculateValue(value) {
   return value;
 }
-export default function Skills() {
-  const [idSkill, setIdSkill] = useState("");
-  const [listSkills, setListSkills] = useState([]);
-  const [skill, setSkill] = useState("");
+export default function Languages() {
+  const [idLanguage, setIdLanguage] = useState("");
+  const [listLanguage, setlistLanguage] = useState([]);
+  const [language, setlanguage] = useState("");
   const [value, setValue] = React.useState(0);
-  const [errorSkills, setErrorSkills] = useState("");
-  const [formSkill, setFormSkill] = useState(true);
+  const [errorlanguages, setErrorlanguages] = useState("");
+  const [formlanguage, setFormlanguage] = useState(true);
 
   const handleChange = (event, newValue) => {
     if (typeof newValue === "number") {
@@ -61,64 +61,70 @@ export default function Skills() {
     }
   };
   const handleDelete = (Id) => {
-    setListSkills((prev) => prev.filter((e) => e.id !== Id));
-    listSkills.length == 1 && setFormSkill(true);
+    setlistLanguage((prev) => prev.filter((e) => e.id !== Id));
+    listLanguage.length == 1 && setFormlanguage(true);
   };
   const handleForm = () => {
-    setErrorSkills("");
-    setFormSkill(true);
+    setErrorlanguages("");
+    setFormlanguage(true);
   };
   const deleteForm = () => {
-    setSkill("");
+    setlanguage("");
     setValue(0);
   };
   const handleAdd = () => {
-    if (skill.trim() === "") {
-      setErrorSkills("Skill is required");
+    if (language.trim() === "") {
+      setErrorlanguages("language is required");
       return;
     }
-    if (listSkills.some((e) => e.skill.toLowerCase() === skill.toLowerCase())) {
-      setErrorSkills("Skill already exists");
+    if (
+      listLanguage.some(
+        (e) => e.language.toLowerCase() === language.toLowerCase()
+      )
+    ) {
+      setErrorlanguages("language already exists");
       return;
     }
     if (value === 0) {
-      setErrorSkills("Select a level");
+      setErrorlanguages("Select a level");
       return;
     }
-    setListSkills([
-      ...listSkills,
+    setlistLanguage([
+      ...listLanguage,
       {
         id:
-          listSkills.length == 0 ? 1 : listSkills[listSkills.length - 1].id + 1,
-        skill,
+          listLanguage.length == 0
+            ? 1
+            : listLanguage[listLanguage.length - 1].id + 1,
+        language,
         value,
       },
     ]);
-    setSkill("");
+    setlanguage("");
     setValue(0);
-    setErrorSkills("");
-    setFormSkill(false);
+    setErrorlanguages("");
+    setFormlanguage(false);
   };
   return (
     <div>
-      {formSkill && (
+      {formlanguage && (
         <div className="py-2 px-4 border-2 border-gray-300 rounded-lg">
           <div className="my-2">
-            <label htmlFor="Skill" className="ps-1 text-sm text-gray-500">
-              Skill
+            <label htmlFor="language" className="ps-1 text-sm text-gray-500">
+              language
             </label>
             <input
               type="text"
-              id="Skill"
-              placeholder="Skill"
+              id="language"
+              placeholder="language"
               className="rounded-md w-full p-2 mt-1"
               style={{ backgroundColor: COLORS.bg }}
-              value={skill}
-              onChange={(e) => setSkill(e.target.value)}
+              value={language}
+              onChange={(e) => setlanguage(e.target.value)}
             />
-            {errorSkills && (
+            {errorlanguages && (
               <div>
-                <div className="text-red-500 text-sm">{errorSkills}</div>
+                <div className="text-red-500 text-sm">{errorlanguages}</div>
               </div>
             )}
           </div>
@@ -158,15 +164,15 @@ export default function Skills() {
           </div>
         </div>
       )}
-      {listSkills.length > 0 && (
+      {listLanguage.length > 0 && (
         <div className="">
-          {listSkills.map((item, i) => (
+          {listLanguage.map((item, i) => (
             <div
               key={i}
               className="p-2 border-2 border-gray-500 rounded-lg my-1 flex flex-row justify-between items-center"
             >
               <div>
-                <p>{item.skill}</p>
+                <p>{item.language}</p>
                 <p className="flex flex-row text-gray-500">
                   <span>{units[item.value]}</span>
                 </p>
@@ -186,7 +192,7 @@ export default function Skills() {
               className="p-1 mt-2 text-blue-950 bg-white border-blue-950 bottom-2 border-2 rounded-lg hover:bg-blue-950 hover:text-white"
               onClick={handleForm}
             >
-              <AddIcon /> Add Skill
+              <AddIcon /> Add Language
             </button>
           </div>
         </div>
