@@ -8,12 +8,13 @@ import Button from "@mui/material/Button";
 import PersonalDetails from "./Forms/PersonalDetails";
 import Education from "./Forms/Education";
 import Employment from "./Forms/Employment";
+import Skills from "./Forms/Skills";
 
 export default function FormInfo() {
   return (
     <div className="p-6">
       <div>
-        <Accordion>
+        <Accordion defaultExpanded>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1-content"
@@ -39,7 +40,7 @@ export default function FormInfo() {
             <Education />
           </AccordionDetails>
         </Accordion>
-        <Accordion defaultExpanded>
+        <Accordion>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel3-content"
@@ -51,10 +52,19 @@ export default function FormInfo() {
           <AccordionDetails>
             <Employment />
           </AccordionDetails>
-          <AccordionActions>
-            <Button>Cancel</Button>
-            <Button>Agree</Button>
-          </AccordionActions>
+        </Accordion>
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel3-content"
+            id="panel3-header"
+            className="text-xl font-bold"
+          >
+            Skills
+          </AccordionSummary>
+          <AccordionDetails>
+            <Skills />
+          </AccordionDetails>
         </Accordion>
       </div>
     </div>
