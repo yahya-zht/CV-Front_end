@@ -18,11 +18,16 @@ import { toggleFormCourse } from "../store/courseSlice";
 import { Button } from "@mui/material";
 import Internships from "./Forms/Internships";
 import { toggleFormInternships } from "@/store/InternshipsSlice";
+import { toggleformCertificates } from "@/store/CertificatesSlice";
+import Certificates from "./Forms/Certificates";
 
 export default function FormInfo() {
   const formCourse = useSelector((state) => state.course.formCourse);
   const formInternships = useSelector(
     (state) => state.Internships.formInternships
+  );
+  const formCertificates = useSelector(
+    (state) => state.Certificates.formCertificates
   );
 
   const dispatch = useDispatch();
@@ -31,6 +36,9 @@ export default function FormInfo() {
   };
   const handleAddInternshipsForm = () => {
     dispatch(toggleFormInternships());
+  };
+  const handleAddCertificatesForm = () => {
+    dispatch(toggleformCertificates());
   };
 
   return (
@@ -156,6 +164,31 @@ export default function FormInfo() {
               <Button
                 startIcon={<DeleteIcon />}
                 onClick={handleAddInternshipsForm}
+                color="error"
+                variant="contained"
+              >
+                Delete
+              </Button>
+            </AccordionActions>
+          </Accordion>
+        )}
+        {formCertificates && (
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel3-content"
+              id="panel3-header"
+              className="text-xl font-bold"
+            >
+              <span> Certificates </span>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Certificates />
+            </AccordionDetails>
+            <AccordionActions>
+              <Button
+                startIcon={<DeleteIcon />}
+                onClick={handleAddCertificatesForm}
                 color="error"
                 variant="contained"
               >
