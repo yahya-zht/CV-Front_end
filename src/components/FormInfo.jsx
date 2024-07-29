@@ -24,6 +24,8 @@ import { toggleFormQualities } from "@/store/QualitiesSlice";
 import Qualities from "./Forms/Qualities";
 import { toggleFormExtracurricularActivities } from "@/store/ExtracurricularActivitiesSlice";
 import ExtracurricularActivities from "./Forms/ExtracurricularActivities";
+import { toggleFormReferences } from "@/store/ReferencesSlice";
+import References from "./Forms/References";
 
 export default function FormInfo() {
   const formCourse = useSelector((state) => state.course.formCourse);
@@ -36,6 +38,9 @@ export default function FormInfo() {
   const formQualities = useSelector((state) => state.Qualities.formQualities);
   const formExtracurricularActivities = useSelector(
     (state) => state.ExtracurricularActivities.formExtracurricularActivities
+  );
+  const formReferences = useSelector(
+    (state) => state.References.formReferences
   );
 
   const dispatch = useDispatch();
@@ -53,6 +58,9 @@ export default function FormInfo() {
   };
   const handleAddExtracurricularActivitiesForm = () => {
     dispatch(toggleFormExtracurricularActivities());
+  };
+  const handleAddReferencesForm = () => {
+    dispatch(toggleFormReferences());
   };
   return (
     <div className="p-6 pt-20">
@@ -252,6 +260,31 @@ export default function FormInfo() {
               <Button
                 startIcon={<DeleteIcon />}
                 onClick={handleAddExtracurricularActivitiesForm}
+                color="error"
+                variant="contained"
+              >
+                Delete
+              </Button>
+            </AccordionActions>
+          </Accordion>
+        )}
+        {formReferences && (
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel3-content"
+              id="panel3-header"
+              className="text-xl font-bold"
+            >
+              <span> References </span>
+            </AccordionSummary>
+            <AccordionDetails>
+              <References />
+            </AccordionDetails>
+            <AccordionActions>
+              <Button
+                startIcon={<DeleteIcon />}
+                onClick={handleAddReferencesForm}
                 color="error"
                 variant="contained"
               >

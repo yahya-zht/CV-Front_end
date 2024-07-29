@@ -6,6 +6,7 @@ import { toggleFormInternships } from "@/store/InternshipsSlice";
 import { toggleformCertificates } from "@/store/CertificatesSlice";
 import { toggleFormQualities } from "@/store/QualitiesSlice";
 import { toggleFormExtracurricularActivities } from "@/store/ExtracurricularActivitiesSlice";
+import { toggleFormReferences } from "@/store/ReferencesSlice";
 
 export default function AddForms() {
   const formCourse = useSelector((state) => state.course.formCourse);
@@ -19,6 +20,9 @@ export default function AddForms() {
 
   const formExtracurricularActivities = useSelector(
     (state) => state.ExtracurricularActivities.formExtracurricularActivities
+  );
+  const formReferences = useSelector(
+    (state) => state.References.formReferences
   );
 
   const dispatch = useDispatch();
@@ -37,6 +41,9 @@ export default function AddForms() {
   };
   const handleAddExtracurricularActivitiesForm = () => {
     dispatch(toggleFormExtracurricularActivities());
+  };
+  const handleAddReferencesForm = () => {
+    dispatch(toggleFormReferences());
   };
   return (
     <div className="mt-4  ">
@@ -79,6 +86,15 @@ export default function AddForms() {
         >
           <AddIcon />
           Extracurricular Activities
+        </button>
+      )}
+      {!formReferences && (
+        <button
+          className="py-1 px-2 border-2 border-gray-300 rounded-lg hover:bg-blue-100 ms-2 my-1"
+          onClick={handleAddReferencesForm}
+        >
+          <AddIcon />
+          References
         </button>
       )}
     </div>
