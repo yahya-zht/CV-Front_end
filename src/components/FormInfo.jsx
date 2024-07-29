@@ -20,6 +20,8 @@ import Internships from "./Forms/Internships";
 import { toggleFormInternships } from "@/store/InternshipsSlice";
 import { toggleformCertificates } from "@/store/CertificatesSlice";
 import Certificates from "./Forms/Certificates";
+import { toggleFormQualities } from "@/store/QualitiesSlice";
+import Qualities from "./Forms/Qualities";
 
 export default function FormInfo() {
   const formCourse = useSelector((state) => state.course.formCourse);
@@ -29,6 +31,7 @@ export default function FormInfo() {
   const formCertificates = useSelector(
     (state) => state.Certificates.formCertificates
   );
+  const formQualities = useSelector((state) => state.Qualities.formQualities);
 
   const dispatch = useDispatch();
   const handleAddCourseForm = () => {
@@ -39,6 +42,9 @@ export default function FormInfo() {
   };
   const handleAddCertificatesForm = () => {
     dispatch(toggleformCertificates());
+  };
+  const handleAddQualitiesForm = () => {
+    dispatch(toggleFormQualities());
   };
 
   return (
@@ -189,6 +195,31 @@ export default function FormInfo() {
               <Button
                 startIcon={<DeleteIcon />}
                 onClick={handleAddCertificatesForm}
+                color="error"
+                variant="contained"
+              >
+                Delete
+              </Button>
+            </AccordionActions>
+          </Accordion>
+        )}
+        {formQualities && (
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel3-content"
+              id="panel3-header"
+              className="text-xl font-bold"
+            >
+              <span> Qualities </span>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Qualities />
+            </AccordionDetails>
+            <AccordionActions>
+              <Button
+                startIcon={<DeleteIcon />}
+                onClick={handleAddQualitiesForm}
                 color="error"
                 variant="contained"
               >
