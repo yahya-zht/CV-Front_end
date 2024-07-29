@@ -22,6 +22,8 @@ import { toggleformCertificates } from "@/store/CertificatesSlice";
 import Certificates from "./Forms/Certificates";
 import { toggleFormQualities } from "@/store/QualitiesSlice";
 import Qualities from "./Forms/Qualities";
+import { toggleFormExtracurricularActivities } from "@/store/ExtracurricularActivitiesSlice";
+import ExtracurricularActivities from "./Forms/ExtracurricularActivities";
 
 export default function FormInfo() {
   const formCourse = useSelector((state) => state.course.formCourse);
@@ -32,6 +34,9 @@ export default function FormInfo() {
     (state) => state.Certificates.formCertificates
   );
   const formQualities = useSelector((state) => state.Qualities.formQualities);
+  const formExtracurricularActivities = useSelector(
+    (state) => state.ExtracurricularActivities.formExtracurricularActivities
+  );
 
   const dispatch = useDispatch();
   const handleAddCourseForm = () => {
@@ -46,7 +51,9 @@ export default function FormInfo() {
   const handleAddQualitiesForm = () => {
     dispatch(toggleFormQualities());
   };
-
+  const handleAddExtracurricularActivitiesForm = () => {
+    dispatch(toggleFormExtracurricularActivities());
+  };
   return (
     <div className="p-6 pt-20">
       <div>
@@ -220,6 +227,31 @@ export default function FormInfo() {
               <Button
                 startIcon={<DeleteIcon />}
                 onClick={handleAddQualitiesForm}
+                color="error"
+                variant="contained"
+              >
+                Delete
+              </Button>
+            </AccordionActions>
+          </Accordion>
+        )}
+        {formExtracurricularActivities && (
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel3-content"
+              id="panel3-header"
+              className="text-xl font-bold"
+            >
+              <span> Extracurricular Activities </span>
+            </AccordionSummary>
+            <AccordionDetails>
+              <ExtracurricularActivities />
+            </AccordionDetails>
+            <AccordionActions>
+              <Button
+                startIcon={<DeleteIcon />}
+                onClick={handleAddExtracurricularActivitiesForm}
                 color="error"
                 variant="contained"
               >

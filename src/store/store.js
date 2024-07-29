@@ -3,6 +3,7 @@ import courseReducer from "./courseSlice";
 import InternshipsReducer from "./InternshipsSlice";
 import CertificatesReducer from "./CertificatesSlice";
 import QualitiesReducer from "./QualitiesSlice";
+import ExtracurricularActivitiesReducer from "./ExtracurricularActivitiesSlice";
 
 export const store = configureStore({
   reducer: {
@@ -10,5 +11,6 @@ export const store = configureStore({
     Internships: InternshipsReducer,
     Certificates: CertificatesReducer,
     Qualities: QualitiesReducer,
+    ExtracurricularActivities: ExtracurricularActivitiesReducer,
   },
 });
