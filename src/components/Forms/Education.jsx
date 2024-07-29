@@ -91,7 +91,7 @@ export default function Education() {
   return (
     <div className="">
       {form && (
-        <div>
+        <div className="p-2 border-2 border-gray-300 rounded-lg">
           <div className="my-2">
             <label htmlFor="education" className="ps-1 text-sm text-gray-500">
               Education / Formation

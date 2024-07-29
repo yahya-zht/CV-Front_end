@@ -4,32 +4,32 @@ import React, { useState } from "react";
 import DoneIcon from "@mui/icons-material/Done";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
-export default function Employment() {
+export default function Internships() {
   const [id, setIdEmployment] = useState();
-  const [listEmployment, setListEmployment] = useState([]);
+  const [listInternships, setListInternships] = useState([]);
   const [position, setPosition] = useState("");
   const [employer, setEmployer] = useState("");
-  const [cityEmployment, setCityEmployment] = useState("");
+  const [cityInternships, setCityInternships] = useState("");
   const [startMonthEmployment, setStartMonthEmployment] = useState("");
   const [startYearEmployment, setStartYearEmployment] = useState("");
   const [endMonthEmployment, setEndMonthEmployment] = useState("");
   const [endYearEmployment, setEndYearEmployment] = useState("");
   const [descriptionEmployment, setDescriptionEmployment] = useState("");
-  const [formEmployment, setFormEmployment] = useState(true);
-  const [errorEmployment, setErrorEmployment] = useState("");
+  const [formInternships, setFormInternships] = useState(true);
+  const [errorInternships, setErrorInternships] = useState("");
   const handleForm = () => {
-    setErrorEmployment("");
-    setFormEmployment(true);
+    setErrorInternships("");
+    setFormInternships(true);
   };
   const handleDelete = (Id) => {
-    setListEmployment((prev) => prev.filter((e) => e.id !== Id));
-    listEmployment.length == 1 && setFormEmployment(true);
+    setListInternships((prev) => prev.filter((e) => e.id !== Id));
+    listInternships.length == 1 && setFormInternships(true);
   };
   const deleteForm = () => {
     setIdEmployment("");
     setPosition("");
     setEmployer("");
-    setCityEmployment("");
+    setCityInternships("");
     setStartMonthEmployment("");
     setStartYearEmployment("");
     setEndMonthEmployment("");
@@ -38,19 +38,19 @@ export default function Employment() {
   };
   const handleAdd = () => {
     if (!position) {
-      setErrorEmployment("Position is required.");
+      setErrorInternships("Position is required.");
       return;
     }
-    setListEmployment([
-      ...listEmployment,
+    setListInternships([
+      ...listInternships,
       {
         id:
-          listEmployment.length == 0
+          listInternships.length == 0
             ? 1
-            : listEmployment[listEmployment.length - 1].id + 1,
+            : listInternships[listInternships.length - 1].id + 1,
         position,
         employer,
-        cityEmployment,
+        cityInternships,
         startMonthEmployment,
         startYearEmployment,
         endMonthEmployment,
@@ -59,21 +59,21 @@ export default function Employment() {
       },
     ]);
     console.log(
-      "listEmployment.length ",
-      listEmployment.length == 0
+      "listInternships.length ",
+      listInternships.length == 0
         ? 1
-        : listEmployment[listEmployment.length - 1].id
+        : listInternships[listInternships.length - 1].id
     );
     setIdEmployment("");
     setPosition("");
     setEmployer("");
-    setCityEmployment("");
+    setCityInternships("");
     setStartMonthEmployment("");
     setStartYearEmployment("");
     setEndMonthEmployment("");
     setEndYearEmployment("");
     setDescriptionEmployment("");
-    setFormEmployment(false);
+    setFormInternships(false);
   };
 
   const months = [
@@ -95,7 +95,7 @@ export default function Employment() {
 
   return (
     <div className="">
-      {formEmployment && (
+      {formInternships && (
         <div className="p-2 border-2 border-gray-300 rounded-lg">
           <div className="my-2">
             <label htmlFor="position" className="ps-1 text-sm text-gray-500">
@@ -110,9 +110,9 @@ export default function Employment() {
               value={position}
               onChange={(e) => setPosition(e.target.value)}
             />
-            {errorEmployment && (
+            {errorInternships && (
               <div>
-                <div className="text-red-500 text-sm">{errorEmployment}</div>
+                <div className="text-red-500 text-sm">{errorInternships}</div>
               </div>
             )}
           </div>
@@ -133,19 +133,19 @@ export default function Employment() {
             </div>
             <div className="">
               <label
-                htmlFor="cityEmployment"
+                htmlFor="cityInternships"
                 className="ps-1 text-sm text-gray-500"
               >
                 City
               </label>
               <input
                 type="text"
-                id="cityEmployment"
+                id="cityInternships"
                 placeholder="City"
                 className="rounded-md w-full p-2 mt-1"
                 style={{ backgroundColor: COLORS.bg }}
-                value={cityEmployment}
-                onChange={(e) => setCityEmployment(e.target.value)}
+                value={cityInternships}
+                onChange={(e) => setCityInternships(e.target.value)}
               />
             </div>
           </div>
@@ -269,9 +269,9 @@ export default function Employment() {
         </div>
       )}
 
-      {listEmployment.length > 0 && (
+      {listInternships.length > 0 && (
         <div className="">
-          {listEmployment.map((item, i) => (
+          {listInternships.map((item, i) => (
             <div
               key={i}
               className="p-2 border-2 border-gray-500 rounded-lg my-1 flex flex-row justify-between items-center"
@@ -280,7 +280,7 @@ export default function Employment() {
                 <p>{item.position}</p>
                 <p className="flex flex-row text-gray-500">
                   <span>{item.employer}</span>,{" "}
-                  <span>{item.cityEmployment}</span>
+                  <span>{item.cityInternships}</span>
                 </p>
               </div>
               <div>

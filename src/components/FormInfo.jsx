@@ -16,12 +16,21 @@ import Courses from "./Forms/Courses";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleFormCourse } from "../store/courseSlice";
 import { Button } from "@mui/material";
+import Internships from "./Forms/Internships";
+import { toggleFormInternships } from "@/store/InternshipsSlice";
 
 export default function FormInfo() {
   const formCourse = useSelector((state) => state.course.formCourse);
+  const formInternships = useSelector(
+    (state) => state.Internships.formInternships
+  );
+
   const dispatch = useDispatch();
   const handleAddCourseForm = () => {
     dispatch(toggleFormCourse());
+  };
+  const handleAddInternshipsForm = () => {
+    dispatch(toggleFormInternships());
   };
 
   return (
@@ -122,6 +131,31 @@ export default function FormInfo() {
               <Button
                 startIcon={<DeleteIcon />}
                 onClick={handleAddCourseForm}
+                color="error"
+                variant="contained"
+              >
+                Delete
+              </Button>
+            </AccordionActions>
+          </Accordion>
+        )}
+        {formInternships && (
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel3-content"
+              id="panel3-header"
+              className="text-xl font-bold"
+            >
+              <span> Internships </span>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Internships />
+            </AccordionDetails>
+            <AccordionActions>
+              <Button
+                startIcon={<DeleteIcon />}
+                onClick={handleAddInternshipsForm}
                 color="error"
                 variant="contained"
               >
