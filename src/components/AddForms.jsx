@@ -9,6 +9,7 @@ import { toggleFormExtracurricularActivities } from "@/store/ExtracurricularActi
 import { toggleFormReferences } from "@/store/ReferencesSlice";
 import { toggleFormFooter } from "@/store/FooterSlice";
 import { toggleFormProfile } from "@/store/ProfileSlice";
+import { toggleFormAchievements } from "@/store/AchievementsSlice";
 
 export default function AddForms() {
   const formCourse = useSelector((state) => state.course.formCourse);
@@ -28,6 +29,9 @@ export default function AddForms() {
   );
   const formFooter = useSelector((state) => state.Footer.formFooter);
   const formProfile = useSelector((state) => state.Profile.formProfile);
+  const formAchievements = useSelector(
+    (state) => state.Achievements.formAchievements
+  );
 
   const dispatch = useDispatch();
 
@@ -54,6 +58,9 @@ export default function AddForms() {
   };
   const handleAddProfileForm = () => {
     dispatch(toggleFormProfile());
+  };
+  const handleAddAchievementsForm = () => {
+    dispatch(toggleFormAchievements());
   };
   return (
     <div className="mt-4  ">
@@ -123,6 +130,15 @@ export default function AddForms() {
         >
           <AddIcon />
           Profile
+        </button>
+      )}
+      {!formAchievements && (
+        <button
+          className="py-1 px-2 border-2 border-gray-300 rounded-lg hover:bg-blue-100 ms-2 my-1"
+          onClick={handleAddAchievementsForm}
+        >
+          <AddIcon />
+          Achievements
         </button>
       )}
     </div>

@@ -30,6 +30,8 @@ import Footer from "./Forms/Footer";
 import { toggleFormFooter } from "@/store/FooterSlice";
 import Profile from "./Forms/Profile";
 import { toggleFormProfile } from "@/store/ProfileSlice";
+import Achievements from "./Forms/Achievements";
+import { toggleFormAchievements } from "@/store/AchievementsSlice";
 
 export default function FormInfo() {
   const formCourse = useSelector((state) => state.course.formCourse);
@@ -48,6 +50,9 @@ export default function FormInfo() {
   );
   const formFooter = useSelector((state) => state.Footer.formFooter);
   const formProfile = useSelector((state) => state.Profile.formProfile);
+  const formAchievements = useSelector(
+    (state) => state.Achievements.formAchievements
+  );
 
   const dispatch = useDispatch();
   const handleAddCourseForm = () => {
@@ -73,6 +78,9 @@ export default function FormInfo() {
   };
   const handleAddProfileForm = () => {
     dispatch(toggleFormProfile());
+  };
+  const handleAddAchievementsForm = () => {
+    dispatch(toggleFormAchievements());
   };
   return (
     <div className="p-6 pt-20">
@@ -322,6 +330,31 @@ export default function FormInfo() {
               <Button
                 startIcon={<DeleteIcon />}
                 onClick={handleAddReferencesForm}
+                color="error"
+                variant="contained"
+              >
+                Delete
+              </Button>
+            </AccordionActions>
+          </Accordion>
+        )}
+        {formAchievements && (
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel3-content"
+              id="panel3-header"
+              className="text-xl font-bold"
+            >
+              <span> Achievements </span>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Achievements />
+            </AccordionDetails>
+            <AccordionActions>
+              <Button
+                startIcon={<DeleteIcon />}
+                onClick={handleAddAchievementsForm}
                 color="error"
                 variant="contained"
               >
