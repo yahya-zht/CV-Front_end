@@ -28,6 +28,8 @@ import { toggleFormReferences } from "@/store/ReferencesSlice";
 import References from "./Forms/References";
 import Footer from "./Forms/Footer";
 import { toggleFormFooter } from "@/store/FooterSlice";
+import Profile from "./Forms/Profile";
+import { toggleFormProfile } from "@/store/ProfileSlice";
 
 export default function FormInfo() {
   const formCourse = useSelector((state) => state.course.formCourse);
@@ -45,6 +47,7 @@ export default function FormInfo() {
     (state) => state.References.formReferences
   );
   const formFooter = useSelector((state) => state.Footer.formFooter);
+  const formProfile = useSelector((state) => state.Profile.formProfile);
 
   const dispatch = useDispatch();
   const handleAddCourseForm = () => {
@@ -68,6 +71,9 @@ export default function FormInfo() {
   const handleAddFooterForm = () => {
     dispatch(toggleFormFooter());
   };
+  const handleAddProfileForm = () => {
+    dispatch(toggleFormProfile());
+  };
   return (
     <div className="p-6 pt-20">
       <div>
@@ -84,6 +90,31 @@ export default function FormInfo() {
             <PersonalDetails />
           </AccordionDetails>
         </Accordion>
+        {formProfile && (
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel3-content"
+              id="panel3-header"
+              className="text-xl font-bold"
+            >
+              <span> Profile </span>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Profile />
+            </AccordionDetails>
+            <AccordionActions>
+              <Button
+                startIcon={<DeleteIcon />}
+                onClick={handleAddProfileForm}
+                color="error"
+                variant="contained"
+              >
+                Delete
+              </Button>
+            </AccordionActions>
+          </Accordion>
+        )}
         <Accordion>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
