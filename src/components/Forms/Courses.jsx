@@ -152,7 +152,6 @@ export default function Courses() {
               value={descriptionCourse}
               onChange={(e) => setDescriptionCourse(e.target.value)}
             ></textarea>
-            <div className="flex flex-row"></div>
           </div>
           <div className="flex flex-row justify-end">
             <button

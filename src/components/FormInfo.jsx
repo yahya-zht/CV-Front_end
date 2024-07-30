@@ -26,6 +26,8 @@ import { toggleFormExtracurricularActivities } from "@/store/ExtracurricularActi
 import ExtracurricularActivities from "./Forms/ExtracurricularActivities";
 import { toggleFormReferences } from "@/store/ReferencesSlice";
 import References from "./Forms/References";
+import Footer from "./Forms/Footer";
+import { toggleFormFooter } from "@/store/FooterSlice";
 
 export default function FormInfo() {
   const formCourse = useSelector((state) => state.course.formCourse);
@@ -42,6 +44,7 @@ export default function FormInfo() {
   const formReferences = useSelector(
     (state) => state.References.formReferences
   );
+  const formFooter = useSelector((state) => state.Footer.formFooter);
 
   const dispatch = useDispatch();
   const handleAddCourseForm = () => {
@@ -61,6 +64,9 @@ export default function FormInfo() {
   };
   const handleAddReferencesForm = () => {
     dispatch(toggleFormReferences());
+  };
+  const handleAddFooterForm = () => {
+    dispatch(toggleFormFooter());
   };
   return (
     <div className="p-6 pt-20">
@@ -285,6 +291,31 @@ export default function FormInfo() {
               <Button
                 startIcon={<DeleteIcon />}
                 onClick={handleAddReferencesForm}
+                color="error"
+                variant="contained"
+              >
+                Delete
+              </Button>
+            </AccordionActions>
+          </Accordion>
+        )}
+        {formFooter && (
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel3-content"
+              id="panel3-header"
+              className="text-xl font-bold"
+            >
+              <span> Footer </span>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Footer />
+            </AccordionDetails>
+            <AccordionActions>
+              <Button
+                startIcon={<DeleteIcon />}
+                onClick={handleAddFooterForm}
                 color="error"
                 variant="contained"
               >

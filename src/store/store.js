@@ -5,6 +5,7 @@ import CertificatesReducer from "./CertificatesSlice";
 import QualitiesReducer from "./QualitiesSlice";
 import ExtracurricularActivitiesReducer from "./ExtracurricularActivitiesSlice";
 import ReferencesReducer from "./ReferencesSlice";
+import FooterReducer from "./FooterSlice";
 
 export const store = configureStore({
   reducer: {
@@ -14,5 +15,6 @@ export const store = configureStore({
     Qualities: QualitiesReducer,
     ExtracurricularActivities: ExtracurricularActivitiesReducer,
     References: ReferencesReducer,
+    Footer: FooterReducer,
   },
 });

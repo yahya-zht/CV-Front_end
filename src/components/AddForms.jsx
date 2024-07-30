@@ -7,6 +7,7 @@ import { toggleformCertificates } from "@/store/CertificatesSlice";
 import { toggleFormQualities } from "@/store/QualitiesSlice";
 import { toggleFormExtracurricularActivities } from "@/store/ExtracurricularActivitiesSlice";
 import { toggleFormReferences } from "@/store/ReferencesSlice";
+import { toggleFormFooter } from "@/store/FooterSlice";
 
 export default function AddForms() {
   const formCourse = useSelector((state) => state.course.formCourse);
@@ -24,6 +25,7 @@ export default function AddForms() {
   const formReferences = useSelector(
     (state) => state.References.formReferences
   );
+  const formFooter = useSelector((state) => state.Footer.formFooter);
 
   const dispatch = useDispatch();
 
@@ -44,6 +46,9 @@ export default function AddForms() {
   };
   const handleAddReferencesForm = () => {
     dispatch(toggleFormReferences());
+  };
+  const handleAddFooterForm = () => {
+    dispatch(toggleFormFooter());
   };
   return (
     <div className="mt-4  ">
@@ -95,6 +100,15 @@ export default function AddForms() {
         >
           <AddIcon />
           References
+        </button>
+      )}
+      {!formFooter && (
+        <button
+          className="py-1 px-2 border-2 border-gray-300 rounded-lg hover:bg-blue-100 ms-2 my-1"
+          onClick={handleAddFooterForm}
+        >
+          <AddIcon />
+          Footer
         </button>
       )}
     </div>
