@@ -8,6 +8,7 @@ import ReferencesReducer from "./ReferencesSlice";
 import FooterReducer from "./FooterSlice";
 import ProfileReducer from "./ProfileSlice";
 import AchievementsReducer from "./AchievementsSlice";
+import PersonalDetailsReducer from "./PersonalDetailsSlice";
 
 export const store = configureStore({
   reducer: {
@@ -20,5 +21,6 @@ export const store = configureStore({
     Footer: FooterReducer,
     Profile: ProfileReducer,
     Achievements: AchievementsReducer,
+    PersonalDetailsStore: PersonalDetailsReducer,
   },
 });

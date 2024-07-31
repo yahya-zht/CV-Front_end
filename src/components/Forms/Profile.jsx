@@ -1,9 +1,13 @@
 "use client";
 import { COLORS } from "@/constants/theme";
+import { setDataProfile } from "@/store/ProfileSlice";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 
 export default function Profile() {
   const [descriptionProfile, setDescriptionProfile] = useState("");
+  const dispatch = useDispatch();
+  dispatch(setDataProfile({ descriptionProfile: descriptionProfile }));
   return (
     <div className="">
       <div>
