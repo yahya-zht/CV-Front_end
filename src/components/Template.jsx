@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import Resume1 from "./Templates/Resume1";
-import Resume from "./PdfDocument";
 
 export default function Template(props) {
   return (

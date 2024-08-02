@@ -9,6 +9,10 @@ import FooterReducer from "./FooterSlice";
 import ProfileReducer from "./ProfileSlice";
 import AchievementsReducer from "./AchievementsSlice";
 import PersonalDetailsReducer from "./PersonalDetailsSlice";
+import EducationReducer from "./EducationSlice";
+import SkillsReducer from "./SkillsSlice";
+import LanguagesReducer from "./LanguagesSlice";
+import HobbiesReducer from "./HobbiesSlice";
 
 export const store = configureStore({
   reducer: {
@@ -22,5 +26,9 @@ export const store = configureStore({
     Profile: ProfileReducer,
     Achievements: AchievementsReducer,
     PersonalDetailsStore: PersonalDetailsReducer,
+    Education: EducationReducer,
+    Skills: SkillsReducer,
+    Languages: LanguagesReducer,
+    Hobbies: HobbiesReducer,
   },
 });

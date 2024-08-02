@@ -4,6 +4,8 @@ import DoneIcon from "@mui/icons-material/Done";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setDataHobby, setDataListHobbies } from "@/store/HobbiesSlice";
 
 export default function Hobbies() {
   const [listhobbies, setListhobbies] = useState([]);
@@ -11,6 +13,13 @@ export default function Hobbies() {
   const [errorhobbies, setErrorhobbies] = useState("");
   const [formhobbies, setFormhobbies] = useState(true);
 
+  const dispatch = useDispatch();
+
+  dispatch(setDataListHobbies(listhobbies));
+  const DataHobby = {
+    hobby,
+  };
+  dispatch(setDataHobby(DataHobby));
   const handleDelete = (Id) => {
     setListhobbies((prev) => prev.filter((e) => e.id !== Id));
     listhobbies.length == 1 && setFormhobbies(true);

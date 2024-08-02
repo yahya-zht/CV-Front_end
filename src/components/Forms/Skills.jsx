@@ -7,6 +7,8 @@ import DoneIcon from "@mui/icons-material/Done";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setDataListSkills, setDataSkill } from "@/store/SkillsSlice";
 const units = [
   "Make a choice",
   "Beginner",
@@ -55,6 +57,14 @@ export default function Skills() {
   const [errorSkills, setErrorSkills] = useState("");
   const [formSkill, setFormSkill] = useState(true);
 
+  const dispatch = useDispatch();
+
+  dispatch(setDataListSkills(listSkills));
+  const DataSkill = {
+    skill,
+    value,
+  };
+  dispatch(setDataSkill(DataSkill));
   const handleChange = (event, newValue) => {
     if (typeof newValue === "number") {
       setValue(newValue);

@@ -7,6 +7,8 @@ import DoneIcon from "@mui/icons-material/Done";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setDataLanguage, setDataListLanguages } from "@/store/LanguagesSlice";
 const units = [
   "Make a choice",
   "Beginner",
@@ -48,13 +50,19 @@ function calculateValue(value) {
   return value;
 }
 export default function Languages() {
-  const [idLanguage, setIdLanguage] = useState("");
   const [listLanguage, setlistLanguage] = useState([]);
   const [language, setlanguage] = useState("");
   const [value, setValue] = React.useState(0);
   const [errorlanguages, setErrorlanguages] = useState("");
   const [formlanguage, setFormlanguage] = useState(true);
 
+  const dispatch = useDispatch();
+  dispatch(setDataListLanguages(listLanguage));
+  const DataLanguage = {
+    language,
+    value,
+  };
+  dispatch(setDataLanguage(DataLanguage));
   const handleChange = (event, newValue) => {
     if (typeof newValue === "number") {
       setValue(newValue);

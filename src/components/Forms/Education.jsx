@@ -4,6 +4,8 @@ import React, { useRef, useState } from "react";
 import DoneIcon from "@mui/icons-material/Done";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
+import { useDispatch } from "react-redux";
+import { setDataEducation, setDataListEducation } from "@/store/EducationSlice";
 export default function Education() {
   const [id, setId] = useState();
   const [list, setList] = useState([]);
@@ -17,6 +19,20 @@ export default function Education() {
   const [description, setDescription] = useState("");
   const [form, setForm] = useState(true);
   const [error, setError] = useState("");
+  const dispatch = useDispatch();
+  dispatch(setDataListEducation(list));
+
+  const DataEducation = {
+    education,
+    school,
+    city,
+    startMonth,
+    startYear,
+    endMonth,
+    endYear,
+    description,
+  };
+  dispatch(setDataEducation(DataEducation));
   const handleForm = () => {
     setError("");
     setForm(true);

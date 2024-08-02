@@ -7,9 +7,6 @@ export const PersonalDetailsSlice = createSlice({
     DataPersonalDetails: [],
   },
   reducers: {
-    toggleFormPersonalDetails: (state) => {
-      state.formPersonalDetails = !state.formPersonalDetails;
-    },
     setDataPersonalDetails: (state, action) => {
       state.DataPersonalDetails = action.payload;
     },
