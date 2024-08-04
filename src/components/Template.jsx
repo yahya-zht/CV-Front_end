@@ -1,11 +1,11 @@
 "use client";
-import React from "react";
-import Resume1 from "./Templates/Resume1";
+import React, { useRef } from "react";
+import Resume from "./Templates/Resume";
 
-export default function Template(props) {
+export default function Template() {
   return (
     <div className="pt-20">
-      <Resume1 zoom={props.zoom} setZoom={props.setZoom} />
+      <Resume />
     </div>
   );
 }

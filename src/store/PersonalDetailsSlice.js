@@ -4,7 +4,7 @@ export const PersonalDetailsSlice = createSlice({
   name: "PersonalDetails",
   initialState: {
     formPersonalDetails: false,
-    DataPersonalDetails: [],
+    DataPersonalDetails: {},
   },
   reducers: {
     setDataPersonalDetails: (state, action) => {

@@ -24,7 +24,10 @@ import { toggleFormQualities } from "@/store/QualitiesSlice";
 import Qualities from "./Forms/Qualities";
 import { toggleFormExtracurricularActivities } from "@/store/ExtracurricularActivitiesSlice";
 import ExtracurricularActivities from "./Forms/ExtracurricularActivities";
-import { toggleFormReferences } from "@/store/ReferencesSlice";
+import {
+  setDataListReferences,
+  toggleFormReferences,
+} from "@/store/ReferencesSlice";
 import References from "./Forms/References";
 import Footer from "./Forms/Footer";
 import { toggleFormFooter } from "@/store/FooterSlice";
@@ -72,6 +75,7 @@ export default function FormInfo() {
   };
   const handleAddReferencesForm = () => {
     dispatch(toggleFormReferences());
+    dispatch(setDataListReferences([]));
   };
   const handleAddFooterForm = () => {
     dispatch(toggleFormFooter());

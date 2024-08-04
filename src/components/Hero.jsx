@@ -2,7 +2,7 @@ import { COLORS } from "@/constants/theme";
 import { Button } from "@mui/material";
 import React from "react";
 import SlideImgHero from "./SlideImgHero";
-
+import Link from "next/link";
 export default function Hero() {
   return (
     <div className="flex flex-row mx-10 my-12">
@@ -23,7 +23,7 @@ export default function Hero() {
               backgroundColor: COLORS.primary,
             }}
           >
-            Create my CV
+            <Link href={"/create"}>Create my CV</Link>
           </Button>
         </div>
       </div>

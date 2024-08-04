@@ -4,6 +4,11 @@ import React, { useState } from "react";
 import DoneIcon from "@mui/icons-material/Done";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
+import { useDispatch } from "react-redux";
+import {
+  setDataListReferences,
+  setDataReferences,
+} from "@/store/ReferencesSlice";
 export default function References() {
   const [id, setIdReference] = useState();
   const [listReferences, setListReferences] = useState([]);
@@ -14,6 +19,17 @@ export default function References() {
   const [email, setEmail] = useState("");
   const [formReferences, setFormReferences] = useState(true);
   const [errorReferences, setErrorReferences] = useState("");
+
+  const dispatch = useDispatch();
+  dispatch(setDataListReferences(listReferences));
+  const DataReferences = {
+    name,
+    organization,
+    cityReferences,
+    phoneNumber,
+    email,
+  };
+  dispatch(setDataReferences(DataReferences));
   const handleForm = () => {
     setErrorReferences("");
     setFormReferences(true);

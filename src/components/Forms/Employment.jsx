@@ -4,6 +4,11 @@ import React, { useState } from "react";
 import DoneIcon from "@mui/icons-material/Done";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
+import { useDispatch } from "react-redux";
+import {
+  setDataEmployment,
+  setDataListEmployment,
+} from "@/store/EmploymentSlice";
 export default function Employment() {
   const [id, setIdEmployment] = useState();
   const [listEmployment, setListEmployment] = useState([]);
@@ -17,6 +22,22 @@ export default function Employment() {
   const [descriptionEmployment, setDescriptionEmployment] = useState("");
   const [formEmployment, setFormEmployment] = useState(true);
   const [errorEmployment, setErrorEmployment] = useState("");
+
+  const dispatch = useDispatch();
+  dispatch(setDataListEmployment(listEmployment));
+
+  const DataEmployment = {
+    position,
+    employer,
+    cityEmployment,
+    startMonthEmployment,
+    startYearEmployment,
+    endMonthEmployment,
+    endYearEmployment,
+    descriptionEmployment,
+  };
+  dispatch(setDataEmployment(DataEmployment));
+
   const handleForm = () => {
     setErrorEmployment("");
     setFormEmployment(true);

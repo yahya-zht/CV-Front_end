@@ -8,7 +8,7 @@ export default function Navbar() {
         <div className="relative flex h-16 items-center justify-between">
           <div className="flex items-center ">
             <p className="text-gray-300 hover:text-white cursor-pointer">
-              LOGO
+              <Link href="/">LOGO</Link>
             </p>
           </div>
           <div className="flex flex-1 items-center justify-center ">

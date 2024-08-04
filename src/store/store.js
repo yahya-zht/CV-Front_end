@@ -13,6 +13,8 @@ import EducationReducer from "./EducationSlice";
 import SkillsReducer from "./SkillsSlice";
 import LanguagesReducer from "./LanguagesSlice";
 import HobbiesReducer from "./HobbiesSlice";
+import EmploymentReducer from "./EmploymentSlice";
+import TemplatesReducer from "./TemplatesSlice";
 
 export const store = configureStore({
   reducer: {
@@ -30,5 +32,7 @@ export const store = configureStore({
     Skills: SkillsReducer,
     Languages: LanguagesReducer,
     Hobbies: HobbiesReducer,
+    Employment: EmploymentReducer,
+    Templates: TemplatesReducer,
   },
 });
