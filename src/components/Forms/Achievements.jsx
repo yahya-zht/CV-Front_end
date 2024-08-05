@@ -1,9 +1,16 @@
 "use client";
 import { COLORS } from "@/constants/theme";
+import { setAchievementsData } from "@/store/AchievementsSlice";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 
 export default function Achievements() {
   const [descriptionAchievements, setDescriptionAchievements] = useState("");
+  const dispatch = useDispatch();
+  const AchievementsData = {
+    descriptionAchievements,
+  };
+  dispatch(setAchievementsData(AchievementsData));
   return (
     <div className="">
       <div>

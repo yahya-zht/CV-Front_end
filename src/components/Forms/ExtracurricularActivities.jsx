@@ -4,6 +4,11 @@ import React, { useState } from "react";
 import DoneIcon from "@mui/icons-material/Done";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
+import { useDispatch } from "react-redux";
+import {
+  setExtracurricularActivitiesData,
+  setExtracurricularActivitiesList,
+} from "@/store/ExtracurricularActivitiesSlice";
 export default function ExtracurricularActivities() {
   const [id, setIdExtracurricularActivities] = useState();
   const [listExtracurricularActivities, setListExtracurricularActivities] =
@@ -36,6 +41,20 @@ export default function ExtracurricularActivities() {
     useState(true);
   const [errorExtracurricularActivities, setErrorExtracurricularActivities] =
     useState("");
+
+  const dispatch = useDispatch();
+  const ExtracurricularActivitiesData = {
+    position,
+    employer,
+    cityExtracurricularActivities,
+    startMonthExtracurricularActivities,
+    startYearExtracurricularActivities,
+    endMonthExtracurricularActivities,
+    endYearExtracurricularActivities,
+    descriptionExtracurricularActivities,
+  };
+  dispatch(setExtracurricularActivitiesData(ExtracurricularActivitiesData));
+  dispatch(setExtracurricularActivitiesList(listExtracurricularActivities));
   const handleForm = () => {
     setErrorExtracurricularActivities("");
     setFormExtracurricularActivities(true);
@@ -80,14 +99,6 @@ export default function ExtracurricularActivities() {
         descriptionExtracurricularActivities,
       },
     ]);
-    console.log(
-      "listExtracurricularActivities.length ",
-      listExtracurricularActivities.length == 0
-        ? 1
-        : listExtracurricularActivities[
-            listExtracurricularActivities.length - 1
-          ].id
-    );
     setIdExtracurricularActivities("");
     setPosition("");
     setEmployer("");

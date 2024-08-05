@@ -4,12 +4,21 @@ import DoneIcon from "@mui/icons-material/Done";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setQualitiesData, setQualitiesList } from "@/store/QualitiesSlice";
 
 export default function Qualities() {
   const [listQualities, setListQualities] = useState([]);
   const [quality, setQuality] = useState("");
   const [errorqualities, setErrorqualities] = useState("");
   const [formqualities, setFormqualities] = useState(true);
+
+  const dispatch = useDispatch();
+  const QualitiesData = {
+    quality,
+  };
+  dispatch(setQualitiesData(QualitiesData));
+  dispatch(setQualitiesList(listQualities));
 
   const handleDelete = (Id) => {
     setListQualities((prev) => prev.filter((e) => e.id !== Id));

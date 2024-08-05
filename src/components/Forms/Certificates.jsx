@@ -4,6 +4,11 @@ import React, { useState } from "react";
 import DoneIcon from "@mui/icons-material/Done";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
+import { useDispatch } from "react-redux";
+import {
+  setCertificateData,
+  setCertificatesList,
+} from "@/store/CertificatesSlice";
 export default function Certificates() {
   const [id, setIdCertificate] = useState();
   const [listCertificates, setListCertificates] = useState([]);
@@ -13,6 +18,16 @@ export default function Certificates() {
   const [descriptionCertificate, setDescriptionCertificate] = useState("");
   const [formCertificate, setFormCertificate] = useState(true);
   const [errorCertificate, setErrorCertificate] = useState("");
+  const dispatch = useDispatch();
+  const CertificatesData = {
+    Certificate,
+    monthCertificate,
+    yearCertificate,
+    descriptionCertificate,
+  };
+  dispatch(setCertificateData(CertificatesData));
+  dispatch(setCertificatesList(listCertificates));
+
   const handleForm = () => {
     setErrorCertificate("");
     setFormCertificate(true);
@@ -46,12 +61,6 @@ export default function Certificates() {
         descriptionCertificate,
       },
     ]);
-    console.log(
-      "listCertificates.length ",
-      listCertificates.length == 0
-        ? 1
-        : listCertificates[listCertificates.length - 1].id
-    );
     setIdCertificate("");
     setCertificate("");
     setMonthCertificate("");

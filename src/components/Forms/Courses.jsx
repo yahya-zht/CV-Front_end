@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import DoneIcon from "@mui/icons-material/Done";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
+import { useDispatch } from "react-redux";
+import { setCourseData, setCoursesList } from "@/store/courseSlice";
 export default function Courses() {
   const [id, setIdCourse] = useState();
   const [listCourses, setListCourses] = useState([]);
@@ -13,6 +15,15 @@ export default function Courses() {
   const [descriptionCourse, setDescriptionCourse] = useState("");
   const [formCourse, setFormCourse] = useState(true);
   const [errorCourse, setErrorCourse] = useState("");
+  const dispatch = useDispatch();
+  const DataCourse = {
+    course,
+    monthCourse,
+    yearCourse,
+    descriptionCourse,
+  };
+  dispatch(setCourseData(DataCourse));
+  dispatch(setCoursesList(listCourses));
   const handleForm = () => {
     setErrorCourse("");
     setFormCourse(true);

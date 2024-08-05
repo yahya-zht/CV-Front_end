@@ -4,6 +4,11 @@ import React, { useState } from "react";
 import DoneIcon from "@mui/icons-material/Done";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
+import { useDispatch } from "react-redux";
+import {
+  setInternshipsData,
+  setInternshipsList,
+} from "@/store/InternshipsSlice";
 export default function Internships() {
   const [id, setIdEmployment] = useState();
   const [listInternships, setListInternships] = useState([]);
@@ -17,6 +22,21 @@ export default function Internships() {
   const [descriptionEmployment, setDescriptionEmployment] = useState("");
   const [formInternships, setFormInternships] = useState(true);
   const [errorInternships, setErrorInternships] = useState("");
+  const dispatch = useDispatch();
+  const Internships = {
+    position,
+    employer,
+    cityInternships,
+    startMonthEmployment,
+    startYearEmployment,
+    endMonthEmployment,
+    endYearEmployment,
+    descriptionEmployment,
+  };
+
+  dispatch(setInternshipsData(Internships));
+  dispatch(setInternshipsList(listInternships));
+
   const handleForm = () => {
     setErrorInternships("");
     setFormInternships(true);

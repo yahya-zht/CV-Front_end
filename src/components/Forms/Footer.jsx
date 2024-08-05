@@ -1,9 +1,16 @@
 "use client";
 import { COLORS } from "@/constants/theme";
+import { setFooterData } from "@/store/FooterSlice";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 
 export default function Footer() {
   const [descriptionFooter, setDescriptionFooter] = useState("");
+  const dispatch = useDispatch();
+  const FooterData = {
+    descriptionFooter,
+  };
+  dispatch(setFooterData(FooterData));
   return (
     <div className="">
       <div>

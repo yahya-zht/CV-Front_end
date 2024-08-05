@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useEffect } from "react";
 import { useSelector } from "react-redux";
 import img from "../../assets/images/avatar03.jpeg";
 import Image from "next/image";
@@ -47,11 +47,63 @@ const Resume1PDF = forwardRef((props, ref) => {
   const DataReferences = useSelector(
     (state) => state.References.DataReferences
   );
+  const CoursesData = useSelector((state) => state.course.CourseData);
+  const CoursesList = useSelector((state) => state.course.CoursesList);
+
+  const AchievementsData = useSelector(
+    (state) => state.Achievements.AchievementsData
+  );
+
+  const CertificatesData = useSelector(
+    (state) => state.Certificates.CertificateData
+  );
+  const CertificatesList = useSelector(
+    (state) => state.Certificates.CertificatesList
+  );
+
+  const ExtracurricularActivitiesData = useSelector(
+    (state) => state.ExtracurricularActivities.ExtracurricularActivitiesData
+  );
+  const ExtracurricularActivitiesList = useSelector(
+    (state) => state.ExtracurricularActivities.ExtracurricularActivitiesList
+  );
+
+  const FooterData = useSelector((state) => state.Footer.FooterData);
+
+  const InternshipsData = useSelector(
+    (state) => state.Internships.InternshipsData
+  );
+  const InternshipsList = useSelector(
+    (state) => state.Internships.InternshipsList
+  );
+
+  const QualitiesData = useSelector((state) => state.Qualities.QualitiesData);
+  const QualitiesList = useSelector((state) => state.Qualities.QualitiesList);
+
+
 
   const formProfile = useSelector((state) => state.Profile.formProfile);
   const formReferences = useSelector(
     (state) => state.References.formReferences
   );
+
+  const formCourses = useSelector((state) => state.course.formCourse);
+  const formInternships = useSelector(
+    (state) => state.Internships.formInternships
+  );
+  const formCertificates = useSelector(
+    (state) => state.Certificates.formCertificates
+  );
+  const formQualities = useSelector((state) => state.Qualities.formQualities);
+  const formFooter = useSelector((state) => state.Footer.formFooter);
+  const formAchievements = useSelector(
+    (state) => state.Achievements.formAchievements
+  );
+  const formExtracurricularActivities = useSelector(
+    (state) => state.ExtracurricularActivities.formExtracurricularActivities
+  );
+
+
   return (
     <div className="grid grid-cols-3 h-full relative">
       <div className="bg-yellow-500 h-28 text-black py-6 pe-4 flex flex-row justify-start items-center absolute start-28 right-0 top-16 z-0">
