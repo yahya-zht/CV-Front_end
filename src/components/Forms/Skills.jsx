@@ -91,10 +91,6 @@ export default function Skills() {
       setErrorSkills("Skill already exists");
       return;
     }
-    if (value === 0) {
-      setErrorSkills("Select a level");
-      return;
-    }
     setListSkills([
       ...listSkills,
       {

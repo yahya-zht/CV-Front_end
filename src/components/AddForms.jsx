@@ -69,7 +69,7 @@ export default function AddForms() {
           className="py-1 px-2 border-2 border-gray-300 rounded-lg hover:bg-blue-100 ms-2 my-1"
           onClick={handleAddCourseForm}
         >
-          <AddIcon /> Course
+          <AddIcon /> Courses
         </button>
       )}
       {!formInternships && (

@@ -93,10 +93,6 @@ export default function Languages() {
       setErrorlanguages("language already exists");
       return;
     }
-    if (value === 0) {
-      setErrorlanguages("Select a level");
-      return;
-    }
     setlistLanguage([
       ...listLanguage,
       {

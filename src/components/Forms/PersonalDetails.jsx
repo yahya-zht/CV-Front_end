@@ -3,22 +3,39 @@ import React, { useState } from "react";
 import { COLORS } from "@/constants/theme";
 import { useDispatch } from "react-redux";
 import { setDataPersonalDetails } from "@/store/PersonalDetailsSlice";
+import { useDropzone } from "react-dropzone";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { Switch } from "@mui/material";
 
 export default function PersonalDetails() {
-  const [image, setImage] = useState("");
+  const [uploadedImage, setUploadedImage] = useState(null);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [headline, setHeadline] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
+  const [website, setWebsite] = useState("");
   const [postCode, setPostCode] = useState("");
   const [city, setCity] = useState("");
+  const [linkedIn, setLinkedIn] = useState("");
+  const [checkedWeb, setCheckedWeb] = useState(false);
+  const [checkedLinkedIn, setCheckedLinkedIn] = useState(false);
+
+  const handleChangeWeb = (event) => {
+    setCheckedLinkedIn(false);
+    setCheckedWeb(event.target.checked);
+  };
+  const handleChangeLinkedIn = (event) => {
+    setCheckedWeb(false);
+    setCheckedLinkedIn(event.target.checked);
+  };
 
   const dispatch = useDispatch();
 
   const DataPersonalDetails = {
-    image,
+    uploadedImage,
     firstName,
     lastName,
     email,
@@ -27,9 +44,30 @@ export default function PersonalDetails() {
     address,
     postCode,
     city,
+    website,
+    checkedWeb,
+    checkedLinkedIn,
+    linkedIn,
   };
 
   dispatch(setDataPersonalDetails(DataPersonalDetails));
+
+  const onDrop = (acceptedFiles) => {
+    const file = acceptedFiles[0];
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      setUploadedImage(event.target.result);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop,
+    accept: "image/*",
+  });
+  const DeletePhoto = () => {
+    setUploadedImage(null);
+  };
 
   return (
     <div>
@@ -37,18 +75,28 @@ export default function PersonalDetails() {
         <h3 className="font-normal">Personal Details</h3>
       </div>
       <div className="flex flex-row">
-        <div className="w-1/5 me-2">
+        <div className="w-1/5 me-2 flex flex-col">
           <label htmlFor="image" className="ps-1 text-sm text-gray-500">
-            Image
+            Photo
           </label>
-          <input
-            type="text"
-            id="image"
-            value={image}
-            onChange={(e) => setImage(e.target.value)}
-            className="rounded-md w-full p-2 mt-1"
-            style={{ backgroundColor: COLORS.bg }}
-          />
+          <div
+            {...getRootProps()}
+            className="border-2  border-black rounded-lg p-6 text-center cursor-pointer bg-gray-100 flex-1 flex justify-center items-center hover:bg-blue-100"
+          >
+            <input {...getInputProps()} />
+            <p className="">
+              <AccountBoxIcon />
+            </p>
+          </div>
+          {uploadedImage != null && (
+            <div className="text-center">
+              <DeleteIcon
+                color="error"
+                className="cursor-pointer hover:text-red-500"
+                onClick={() => DeletePhoto()}
+              />
+            </div>
+          )}
         </div>
         <div className="w-4/5 flex flex-col justify-between">
           <div className="grid grid-cols-2 gap-2 mb-2">
@@ -168,6 +216,62 @@ export default function PersonalDetails() {
             style={{ backgroundColor: COLORS.bg }}
           />
         </div>
+      </div>
+      <div className="my-2">
+        <div className="flex flex-row justify-between">
+          <label htmlFor="Website" className="ps-1 text-sm text-gray-500">
+            Website
+          </label>
+          <div>
+            <span className="ps-1 text-sm text-gray-500">QR</span>
+            <Switch
+              size="small"
+              checked={checkedWeb}
+              onChange={handleChangeWeb}
+              className="text-center"
+              inputProps={{ "aria-label": "controlled" }}
+            />
+          </div>
+        </div>
+        <input
+          type="text"
+          id="Website"
+          placeholder="www.example.com"
+          value={website}
+          onChange={(e) => setWebsite(e.target.value)}
+          className="rounded-md w-full p-2 mt-1"
+          style={{ backgroundColor: COLORS.bg }}
+        />
+      </div>
+      <div className="my-2">
+        <div className="flex flex-row justify-between">
+          <label htmlFor="Website" className="ps-1 text-sm text-gray-500">
+            {checkedLinkedIn ? "URL LinkedIn" : "Linkedin"}
+          </label>
+          <div>
+            <span className="ps-1 text-sm text-gray-500">QR</span>
+            <Switch
+              size="small"
+              checked={checkedLinkedIn}
+              onChange={handleChangeLinkedIn}
+              className="text-center"
+              inputProps={{ "aria-label": "controlled" }}
+            />
+          </div>
+        </div>
+        <input
+          type="text"
+          id="Website"
+          placeholder={
+            checkedLinkedIn
+              ? "https://www.linkedin.com/in/UserName"
+              : "Linkedin Name"
+          }
+          value={linkedIn}
+          onChange={(e) => setLinkedIn(e.target.value)}
+          className="rounded-md w-full p-2 mt-1"
+          style={{ backgroundColor: COLORS.bg }}
+        />
       </div>
     </div>
   );

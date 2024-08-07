@@ -10,9 +10,9 @@ const ResumePDF = forwardRef((props, ref) => {
   const Template = () => {
     switch (TemplateSelected) {
       case 1:
-        return <ResumePDF2 />;
-      case 2:
         return <Resume1PDF />;
+      case 2:
+        return <ResumePDF2 />;
       default:
         return <Resume1PDF />;
     }

@@ -13,25 +13,25 @@ export default function Internships() {
   const [id, setIdEmployment] = useState();
   const [listInternships, setListInternships] = useState([]);
   const [position, setPosition] = useState("");
-  const [employer, setEmployer] = useState("");
-  const [cityInternships, setCityInternships] = useState("");
-  const [startMonthEmployment, setStartMonthEmployment] = useState("");
-  const [startYearEmployment, setStartYearEmployment] = useState("");
-  const [endMonthEmployment, setEndMonthEmployment] = useState("");
-  const [endYearEmployment, setEndYearEmployment] = useState("");
-  const [descriptionEmployment, setDescriptionEmployment] = useState("");
+  const [Internship, setInternship] = useState("");
+  const [cityInternship, setCityInternships] = useState("");
+  const [startMonthInternship, setStartMonthInternship] = useState("");
+  const [startYearInternship, setStartYearInternship] = useState("");
+  const [endMonthInternship, setEndMonthInternship] = useState("");
+  const [endYearInternship, setEndYearInternship] = useState("");
+  const [descriptionInternship, setDescriptionInternship] = useState("");
   const [formInternships, setFormInternships] = useState(true);
   const [errorInternships, setErrorInternships] = useState("");
   const dispatch = useDispatch();
   const Internships = {
     position,
-    employer,
-    cityInternships,
-    startMonthEmployment,
-    startYearEmployment,
-    endMonthEmployment,
-    endYearEmployment,
-    descriptionEmployment,
+    Internship,
+    cityInternship,
+    startMonthInternship,
+    startYearInternship,
+    endMonthInternship,
+    endYearInternship,
+    descriptionInternship,
   };
 
   dispatch(setInternshipsData(Internships));
@@ -48,13 +48,13 @@ export default function Internships() {
   const deleteForm = () => {
     setIdEmployment("");
     setPosition("");
-    setEmployer("");
+    setInternship("");
     setCityInternships("");
-    setStartMonthEmployment("");
-    setStartYearEmployment("");
-    setEndMonthEmployment("");
-    setEndYearEmployment("");
-    setDescriptionEmployment("");
+    setStartMonthInternship("");
+    setStartYearInternship("");
+    setEndMonthInternship("");
+    setEndYearInternship("");
+    setDescriptionInternship("");
   };
   const handleAdd = () => {
     if (!position) {
@@ -69,13 +69,13 @@ export default function Internships() {
             ? 1
             : listInternships[listInternships.length - 1].id + 1,
         position,
-        employer,
-        cityInternships,
-        startMonthEmployment,
-        startYearEmployment,
-        endMonthEmployment,
-        endYearEmployment,
-        descriptionEmployment,
+        Internship,
+        cityInternship,
+        startMonthInternship,
+        startYearInternship,
+        endMonthInternship,
+        endYearInternship,
+        descriptionInternship,
       },
     ]);
     console.log(
@@ -86,13 +86,13 @@ export default function Internships() {
     );
     setIdEmployment("");
     setPosition("");
-    setEmployer("");
+    setInternship("");
     setCityInternships("");
-    setStartMonthEmployment("");
-    setStartYearEmployment("");
-    setEndMonthEmployment("");
-    setEndYearEmployment("");
-    setDescriptionEmployment("");
+    setStartMonthInternship("");
+    setStartYearInternship("");
+    setEndMonthInternship("");
+    setEndYearInternship("");
+    setDescriptionInternship("");
     setFormInternships(false);
   };
 
@@ -139,32 +139,32 @@ export default function Internships() {
           <div className="grid grid-cols-2 gap-2 mb-2">
             <div className="">
               <label htmlFor="school" className="ps-1 text-sm text-gray-500">
-                Employer
+                Internship
               </label>
               <input
                 type="text"
                 id="school"
-                placeholder="Employer"
+                placeholder="Internship"
                 className="rounded-md w-full p-2 mt-1"
                 style={{ backgroundColor: COLORS.bg }}
-                value={employer}
-                onChange={(e) => setEmployer(e.target.value)}
+                value={Internship}
+                onChange={(e) => setInternship(e.target.value)}
               />
             </div>
             <div className="">
               <label
-                htmlFor="cityInternships"
+                htmlFor="cityInternship"
                 className="ps-1 text-sm text-gray-500"
               >
                 City
               </label>
               <input
                 type="text"
-                id="cityInternships"
+                id="cityInternship"
                 placeholder="City"
                 className="rounded-md w-full p-2 mt-1"
                 style={{ backgroundColor: COLORS.bg }}
-                value={cityInternships}
+                value={cityInternship}
                 onChange={(e) => setCityInternships(e.target.value)}
               />
             </div>
@@ -172,18 +172,18 @@ export default function Internships() {
           <div className="grid grid-cols-2 gap-2 mb-2">
             <div className="">
               <label
-                htmlFor="startMonthEmployment"
+                htmlFor="startMonthInternship"
                 className="ps-1 text-sm text-gray-500"
               >
                 Start date
               </label>
               <div className="grid grid-cols-2 gap-2 mb-2">
                 <select
-                  id="startMonthEmployment"
+                  id="startMonthInternship"
                   className="rounded-md w-full p-2 mt-1"
                   style={{ backgroundColor: COLORS.bg }}
-                  value={startMonthEmployment}
-                  onChange={(e) => setStartMonthEmployment(e.target.value)}
+                  value={startMonthInternship}
+                  onChange={(e) => setStartMonthInternship(e.target.value)}
                 >
                   <option value="" disabled>
                     Month
@@ -195,11 +195,11 @@ export default function Internships() {
                   ))}
                 </select>
                 <select
-                  id="startYearEmployment"
+                  id="startYearInternship"
                   className="rounded-md w-full p-2 mt-1"
                   style={{ backgroundColor: COLORS.bg }}
-                  value={startYearEmployment}
-                  onChange={(e) => setStartYearEmployment(e.target.value)}
+                  value={startYearInternship}
+                  onChange={(e) => setStartYearInternship(e.target.value)}
                 >
                   <option value="" disabled>
                     Year
@@ -214,18 +214,18 @@ export default function Internships() {
             </div>
             <div className="">
               <label
-                htmlFor="endMonthEmployment"
+                htmlFor="endMonthInternship"
                 className="ps-1 text-sm text-gray-500"
               >
                 End date
               </label>
               <div className="grid grid-cols-2 gap-2 mb-2">
                 <select
-                  id="endMonthEmployment"
+                  id="endMonthInternship"
                   className="rounded-md w-full p-2 mt-1"
                   style={{ backgroundColor: COLORS.bg }}
-                  value={endMonthEmployment}
-                  onChange={(e) => setEndMonthEmployment(e.target.value)}
+                  value={endMonthInternship}
+                  onChange={(e) => setEndMonthInternship(e.target.value)}
                 >
                   <option value="" disabled>
                     Month
@@ -237,11 +237,11 @@ export default function Internships() {
                   ))}
                 </select>
                 <select
-                  id="endYearEmployment"
+                  id="endYearInternship"
                   className="rounded-md w-full p-2 mt-1"
                   style={{ backgroundColor: COLORS.bg }}
-                  value={endYearEmployment}
-                  onChange={(e) => setEndYearEmployment(e.target.value)}
+                  value={endYearInternship}
+                  onChange={(e) => setEndYearInternship(e.target.value)}
                 >
                   <option value="" disabled>
                     Year
@@ -257,18 +257,18 @@ export default function Internships() {
           </div>
           <div>
             <label
-              htmlFor="descriptionEmployment"
+              htmlFor="descriptionInternship"
               className="ps-1 text-sm text-gray-500"
             >
               Description
             </label>
             <textarea
-              id="descriptionEmployment"
+              id="descriptionInternship"
               placeholder="Description"
               className="rounded-md w-full p-2 mt-1"
               style={{ backgroundColor: COLORS.bg }}
-              value={descriptionEmployment}
-              onChange={(e) => setDescriptionEmployment(e.target.value)}
+              value={descriptionInternship}
+              onChange={(e) => setDescriptionInternship(e.target.value)}
             ></textarea>
             <div className="flex flex-row"></div>
           </div>
@@ -299,8 +299,8 @@ export default function Internships() {
               <div>
                 <p>{item.position}</p>
                 <p className="flex flex-row text-gray-500">
-                  <span>{item.employer}</span>,{" "}
-                  <span>{item.cityInternships}</span>
+                  <span>{item.Internship}</span>,{" "}
+                  <span>{item.cityInternship}</span>
                 </p>
               </div>
               <div>
@@ -318,7 +318,7 @@ export default function Internships() {
               className="p-1 mt-2 text-blue-950 bg-white border-blue-950 bottom-2 border-2 rounded-lg hover:bg-blue-950 hover:text-white"
               onClick={handleForm}
             >
-              <AddIcon /> Add Employment
+              <AddIcon /> Add Internship
             </button>
           </div>
         </div>
