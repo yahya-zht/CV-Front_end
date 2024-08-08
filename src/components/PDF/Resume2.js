@@ -19,7 +19,7 @@ const labels = {
   4: "Very Good",
   5: "Excellent",
 };
-const Resume1PDF = forwardRef((props, ref) => {
+const Resume2 = forwardRef((props, ref) => {
   const DataProfile = useSelector((state) => state.Profile.DataProfile);
   const DataPersonalDetails = useSelector(
     (state) => state.PersonalDetailsStore.DataPersonalDetails
@@ -846,4 +846,4 @@ const Resume1PDF = forwardRef((props, ref) => {
   );
 });
 
-export default Resume1PDF;
+export default Resume2;

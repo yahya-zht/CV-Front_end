@@ -1,7 +1,8 @@
 import React, { forwardRef } from "react";
 import ResumePDF2 from "./ResumePDF2";
-import Resume1PDF from "./Resume1PDF";
+import Resume2 from "./Resume2";
 import { useSelector } from "react-redux";
+import Resume1 from "./Resume1";
 
 const ResumePDF = forwardRef((props, ref) => {
   const TemplateSelected = useSelector(
@@ -10,11 +11,13 @@ const ResumePDF = forwardRef((props, ref) => {
   const Template = () => {
     switch (TemplateSelected) {
       case 1:
-        return <Resume1PDF />;
+        return <Resume1 />;
       case 2:
+        return <Resume2 />;
+      case 3:
         return <ResumePDF2 />;
       default:
-        return <Resume1PDF />;
+        return <Resume2 />;
     }
   };
   return (
