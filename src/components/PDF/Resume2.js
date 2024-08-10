@@ -112,7 +112,8 @@ const Resume2 = forwardRef((props, ref) => {
           <p className="text-lg">{DataPersonalDetails.headline}</p>
         </div>
         {DataPersonalDetails.website && DataPersonalDetails.checkedWeb && (
-          <div className="">
+          <div className="flex flex-col items-center">
+            <LanguageIcon fontSize="small" sx={{ color: "#111827" }} />
             <QRCodeComponent value={DataPersonalDetails.website} />
           </div>
         )}
@@ -165,12 +166,13 @@ const Resume2 = forwardRef((props, ref) => {
                   <span className="ms-2 ">{DataPersonalDetails.email}</span>
                 </p>
               )}
-              {DataPersonalDetails.website.length > 0 && (
-                <p className="text-xs flex flex-row items-center">
-                  <LanguageIcon fontSize="small" sx={{ color: "#EAB308" }} />
-                  <span className="ms-2">{DataPersonalDetails.website}</span>
-                </p>
-              )}
+              {DataPersonalDetails.website.length > 0 &&
+                !DataPersonalDetails.checkedWeb && (
+                  <p className="text-xs flex flex-row items-center">
+                    <LanguageIcon fontSize="small" sx={{ color: "#EAB308" }} />
+                    <span className="ms-2">{DataPersonalDetails.website}</span>
+                  </p>
+                )}
               {(DataPersonalDetails.address.length > 0 ||
                 DataPersonalDetails.postCode.length > 0 ||
                 DataPersonalDetails.city.length > 0) && (

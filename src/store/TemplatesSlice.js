@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const TemplatesSlice = createSlice({
   name: "Templates",
   initialState: {
-    Zoom: 0.58,
+    Zoom: 0.55,
     TemplateSelected: 1,
   },
   reducers: {

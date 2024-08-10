@@ -11,6 +11,7 @@ import MarkunreadIcon from "@mui/icons-material/Markunread";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { Rating } from "@mui/material";
+import QRCodeComponent from "../QRCodeComponent";
 
 const Resume1 = forwardRef((props, ref) => {
   // DataPersonalDetails
@@ -113,7 +114,7 @@ const Resume1 = forwardRef((props, ref) => {
 
   return (
     <div className="flex flex-row bg-white h-full relative">
-      <div className="absolute bg-blue-900 py-6 px-4 h-40 top-16 start-0 right-0 z-0 flex flex-row ">
+      <div className="absolute bg-blue-900 py-6 px-4 h-40 top-16 start-0 right-0 z-0 flex flex-row justify-between">
         <div className={DataPersonalDetails.uploadedImage ? "ms-72 " : "ms-44"}>
           <p className="text-4xl font-bold text-white mb-1 ">
             {DataPersonalDetails.firstName}
@@ -125,7 +126,21 @@ const Resume1 = forwardRef((props, ref) => {
             {DataPersonalDetails.headline}
           </p>
         </div>
-        <div></div>
+        <div>
+          {DataPersonalDetails.website && DataPersonalDetails.checkedWeb && (
+            <div className="flex flex-col items-center">
+              <LanguageIcon fontSize="small" sx={{ color: "white" }} />
+              <QRCodeComponent value={DataPersonalDetails.website} />
+            </div>
+          )}
+          {DataPersonalDetails.linkedIn &&
+            DataPersonalDetails.checkedLinkedIn && (
+              <div className="flex flex-col items-center">
+                <LinkedInIcon fontSize="small" sx={{ color: "white" }} />
+                <QRCodeComponent value={DataPersonalDetails.linkedIn} />
+              </div>
+            )}
+        </div>
       </div>
       <div className="w-2/5 bg-gray-950 ms-10 p-6">
         <div className="flex flex-row  justify-center static z-20 mt-5">
@@ -194,16 +209,17 @@ const Resume1 = forwardRef((props, ref) => {
                   </span>
                 </p>
               )}
-              {DataPersonalDetails.website.length > 0 && (
-                <p className="text-xs flex flex-row items-center mb-1">
-                  <span className="bg-blue-700 p-1 rounded-full">
-                    <LanguageIcon fontSize="small" sx={{ color: "white" }} />
-                  </span>
-                  <span className="ms-2 text-white">
-                    {DataPersonalDetails.website}
-                  </span>
-                </p>
-              )}
+              {DataPersonalDetails.website.length > 0 &&
+                !DataPersonalDetails.checkedWeb && (
+                  <p className="text-xs flex flex-row items-center mb-1">
+                    <span className="bg-blue-700 p-1 rounded-full">
+                      <LanguageIcon fontSize="small" sx={{ color: "white" }} />
+                    </span>
+                    <span className="ms-2 text-white">
+                      {DataPersonalDetails.website}
+                    </span>
+                  </p>
+                )}
               {(DataPersonalDetails.address.length > 0 ||
                 DataPersonalDetails.postCode.length > 0 ||
                 DataPersonalDetails.city.length > 0) && (

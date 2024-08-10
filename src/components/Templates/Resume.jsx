@@ -9,11 +9,11 @@ export default function Resume() {
   const zoom = useSelector((state) => state.Templates.Zoom);
   const dispatch = useDispatch();
   const handleZoom = () => {
-    if (zoom == 0.58) {
+    if (zoom == 0.55) {
       dispatch(setZoom(0.9));
       setZoomInOut({ cursor: "zoom-out" });
     } else {
-      dispatch(setZoom(0.58));
+      dispatch(setZoom(0.55));
       setZoomInOut({ cursor: "zoom-in" });
     }
   };
