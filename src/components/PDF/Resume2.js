@@ -12,6 +12,10 @@ import Rating from "@mui/material/Rating";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import SquareIcon from "@mui/icons-material/Square";
 import QRCodeComponent from "../QRCodeComponent";
+import Profile from "../DetailsInfo/Profile";
+import Skills from "../DetailsInfo/Skills";
+import Language from "../DetailsInfo/Language";
+import Hobbies from "../DetailsInfo/Hobbies";
 const labels = {
   1: "Beginner",
   2: "Moderate",
@@ -270,120 +274,48 @@ const Resume2 = forwardRef((props, ref) => {
               </div>
             </div>
           )}
-          {(DataSkill.skill || DataListSkills.length > 0) && (
-            <div className="mb-4">
-              <p className="text-lg font-bold border-b-4 border-yellow-500 ">
-                Skills
-              </p>
-              <div className="mt-1  ms-2">
-                {DataListSkills.length > 0 &&
-                  DataListSkills.map((skill, i) => (
-                    <div key={i} className="mb-1">
-                      <div className="flex flex-row justify-between items-center">
-                        <p className="text-sm text-start">{skill.skill}</p>
-                        <Rating
-                          name="size-small"
-                          size="small"
-                          value={skill.value}
-                          readOnly
-                        />
-                        {/* <Box sx={{ ml: 1 }}>{labels[DataSkill.value]}</Box> */}
-                      </div>
-                    </div>
-                  ))}
-                {DataSkill.skill.length > 0 && (
-                  <div className="">
-                    <div className="flex flex-row justify-between items-center">
-                      <p className="text-sm text-start">{DataSkill.skill}</p>
-                      <Rating
-                        name="size-small"
-                        size="small"
-                        value={DataSkill.value}
-                        readOnly
-                      />
-                      {/* <Box sx={{ ml: 1 }}>{labels[DataSkill.value]}</Box> */}
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
-          {(DataListLanguages.length > 0 || DataLanguage.language) && (
-            <div className="mb-4">
-              <p className="text-lg font-bold border-b-4 border-yellow-500 ">
-                LANGUAGE
-              </p>
-              <div className="mt-1 ms-2">
-                {DataListLanguages.length > 0 &&
-                  DataListLanguages.map((language, i) => (
-                    <div className="mb-1" key={i}>
-                      <div className="flex flex-row justify-between items-center">
-                        <p className="text-sm text-start">
-                          {language.language}
-                        </p>
-                        <Rating
-                          name="size-small"
-                          size="small"
-                          value={language.value}
-                          readOnly
-                        />
-                      </div>
-                    </div>
-                  ))}
-                {DataLanguage.language.length > 0 && (
-                  <div className="">
-                    <div className="flex flex-row justify-between items-center">
-                      <p className="text-sm  text-start">
-                        {DataLanguage.language}
-                      </p>
-                      <Rating
-                        name="size-small"
-                        size="small"
-                        value={DataLanguage.value}
-                        readOnly
-                      />
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
-          {(DataListHobbies.length > 0 || DataHobby.hobby) && (
-            <div className="mb-4">
-              <p className="text-lg font-bold border-b-4 border-yellow-500 ">
-                HOBBIES
-              </p>
-              <div className="my-1 ms-2">
-                {DataListHobbies.length > 0 &&
-                  DataListHobbies.map((hobby, i) => (
-                    <div className="" key={i}>
-                      <p className="text-xs flex flex-row items-center">
-                        <FiberManualRecordIcon
-                          fontSize="small"
-                          sx={{ color: "#EAB308" }}
-                        />
-                        <span className="text-start text-sm ">
-                          {hobby.hobby}
-                        </span>
-                      </p>
-                    </div>
-                  ))}
-                {DataHobby.hobby.length > 0 && (
-                  <div className="">
-                    <p className="text-xs flex flex-row items-center">
-                      <FiberManualRecordIcon
-                        fontSize="small"
-                        sx={{ color: "#EAB308" }}
-                      />
-                      <span className="text-start text-sm ">
-                        {DataHobby.hobby}
-                      </span>
-                    </p>
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
+          <Skills
+            DataListSkills={DataListSkills}
+            DataSkill={DataSkill}
+            StyleContainer={"mb-2"}
+            StyleTitle={"text-lg font-bold border-b-4 border-yellow-500"}
+            styleContainerList={"mb-1"}
+            styleList={"flex flex-row justify-between items-center"}
+            StyleTitleSkill={"text-sm text-start"}
+            IconTitleSkill={false}
+            Rating={true}
+            StyledRating={false}
+            Color={"#eab308"}
+          />
+          {/* DataListLanguages */}
+          <Language
+            DataListLanguages={DataListLanguages}
+            DataLanguage={DataLanguage}
+            StyleContainer={"mb-2"}
+            StyleTitle={"text-lg font-bold border-b-4 border-yellow-500"}
+            styleContainerList={"mb-1"}
+            styleList={"flex flex-row justify-between items-center"}
+            StyleTitleSkill={"text-sm text-start"}
+            IconTitleSkill={false}
+            IconColorSkill={"white"}
+            Rating={true}
+            StyledRating={false}
+            Color={"#eab308"}
+          />
+          {/* DataListHobbies */}
+          <Hobbies
+            DataListHobbies={DataListHobbies}
+            DataHobby={DataHobby}
+            StyleContainer={"mb-2"}
+            StyleTitle={"text-lg font-bold border-b-4 border-yellow-500"}
+            styleContainerList={"mb-1"}
+            styleList={"flex flex-row justify-between items-center"}
+            StyleTitleSkill={"text-sm text-start"}
+            IconTitleSkill={false}
+            IconColorSkill={"#eab308"}
+            Color={"#eab308"}
+          />
+
           {formQualities && (
             <div className="mb-4">
               <p className="text-lg font-bold border-b-4 border-yellow-500 ">
@@ -425,16 +357,25 @@ const Resume2 = forwardRef((props, ref) => {
       <div className="col-span-2 p-3 mt-36 grid ">
         <div className=" flex flex-col justify-between">
           <div className="mt-6">
-            {formProfile && (
-              <div className="mt-2">
-                <p className="text-lg font-bold border-b-4 border-yellow-500">
+            {/* {formProfile && (
+              <div className=>
+                <p className=>
                   Profile
                 </p>
-                <p className="text-sm ms-4 ">
+                <p className=" ">
                   {DataProfile.descriptionProfile}
                 </p>
               </div>
-            )}
+            )} */}
+            <Profile
+              formProfile={formProfile}
+              DataProfile={DataProfile}
+              styleContainer={"mt-2"}
+              styleTitle={"text-lg font-bold border-b-4 border-yellow-500"}
+              Color={"#eab308"}
+              ProfileStyleDescription={"text-sm ms-4 "}
+              IconTitle={false}
+            />
             {(DataListEmployment.length > 0 ||
               DataEmployment.position ||
               DataEmployment.startMonthEmployment ||

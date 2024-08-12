@@ -12,6 +12,10 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { Rating } from "@mui/material";
 import QRCodeComponent from "../QRCodeComponent";
+import Profile from "../DetailsInfo/Profile";
+import Skills from "../DetailsInfo/Skills";
+import Language from "../DetailsInfo/Language";
+import Hobbies from "../DetailsInfo/Hobbies";
 
 const Resume1 = forwardRef((props, ref) => {
   // DataPersonalDetails
@@ -161,20 +165,21 @@ const Resume1 = forwardRef((props, ref) => {
           )}
         </div>
         {/* formProfile */}
-        {formProfile && (
-          <div
-            className={
-              DataPersonalDetails.uploadedImage ? "mt-0 mb-3" : "mt-14 mb-3"
-            }
-          >
-            <p className="text-lg font-light border-b-4 border-blue-900 text-white text-center font-mono">
-              Profile
-            </p>
-            <p className="text-sm mx-2 font-sans text-white whitespace-pre-wrap text-center ">
-              {DataProfile.descriptionProfile}
-            </p>
-          </div>
-        )}
+        <Profile
+          formProfile={formProfile}
+          DataProfile={DataProfile}
+          styleContainer={
+            DataPersonalDetails.uploadedImage ? "mt-0 mb-3" : "mt-14 mb-3"
+          }
+          styleTitle={
+            "text-lg font-light border-b-4 border-blue-900 text-white text-center font-mono"
+          }
+          Color={"#1e3a8a"}
+          ProfileStyleDescription={
+            "text-sm mx-2 font-sans text-white whitespace-pre-wrap text-center "
+          }
+          IconTitle={false}
+        />
         <div
           className={
             formProfile || DataPersonalDetails.uploadedImage ? "mt-0" : "mt-14"
@@ -247,128 +252,56 @@ const Resume1 = forwardRef((props, ref) => {
             </div>
           )}
           {/* DataListLanguages */}
-          {(DataListLanguages.length > 0 || DataLanguage.language) && (
-            <div className="mb-2">
-              <p className="text-lg font-light border-4 border-blue-900 text-white text-center font-mono rounded-full">
-                Language
-              </p>
-              <div className="mt-1 ms-2">
-                {DataListLanguages.length > 0 &&
-                  DataListLanguages.map((language, i) => (
-                    <div className="mb-1 text-white">
-                      <div className="flex flex-row justify-between items-center">
-                        <p className="text-sm text-start">
-                          <CircleIcon sx={{ color: "white", fontSize: 10 }} />{" "}
-                          {language.language}
-                        </p>
-                        <StyledRating
-                          readOnly
-                          name="customized-color"
-                          value={language.value}
-                          precision={1}
-                          icon={<CircleIcon fontSize="small" />}
-                          emptyIcon={
-                            <CircleOutlinedIcon
-                              sx={{
-                                color: language.value >= 1 ? "#1E3A8A" : "",
-                              }}
-                              fontSize="small"
-                            />
-                          }
-                        />
-                      </div>
-                    </div>
-                  ))}
-
-                {DataLanguage.language.length > 0 && (
-                  <div className="list-disc text-white">
-                    <div className="flex flex-row justify-between items-center">
-                      <p className="text-sm  text-start">
-                        <CircleIcon sx={{ color: "white", fontSize: 10 }} />{" "}
-                        {DataLanguage.language}
-                      </p>
-                      <StyledRating
-                        readOnly
-                        name="customized-color"
-                        value={DataLanguage.value}
-                        precision={1}
-                        icon={<CircleIcon fontSize="small" />}
-                        emptyIcon={
-                          <CircleOutlinedIcon
-                            sx={{
-                              color: DataLanguage.value >= 1 ? "#1E3A8A" : "",
-                            }}
-                            fontSize="small"
-                          />
-                        }
-                      />
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
+          <Language
+            DataListLanguages={DataListLanguages}
+            DataLanguage={DataLanguage}
+            StyleContainer={"mb-2"}
+            StyleTitle={
+              "text-lg font-light border-4 border-blue-900 text-white text-center font-mono rounded-full"
+            }
+            styleContainerList={"mb-1 text-white"}
+            styleList={"flex flex-row justify-between items-center"}
+            StyleTitleSkill={"text-sm text-start"}
+            IconTitleSkill={true}
+            IconColorSkill={"white"}
+            Rating={false}
+            StyledRating={true}
+            Color={"#1E3A8A"}
+          />
           {/* DataListSkills */}
-          {(DataListSkills.length > 0 || DataSkill.skill) && (
-            <div className="mb-2">
-              <p className="text-lg font-light border-4 border-blue-900 text-white text-center font-mono rounded-full">
-                Skills
-              </p>
-              <div className="mt-1 ms-2">
-                {DataListSkills.length > 0 &&
-                  DataListSkills.map((skill, i) => (
-                    <div className="mb-1 text-white">
-                      <div className="flex flex-row justify-between items-center">
-                        <p className="text-sm text-start">
-                          <CircleIcon sx={{ color: "white", fontSize: 10 }} />{" "}
-                          {skill.skill}
-                        </p>
-                        <StyledRating
-                          readOnly
-                          name="customized-color"
-                          value={skill.value}
-                          precision={1}
-                          icon={<CircleIcon fontSize="small" />}
-                          emptyIcon={
-                            <CircleOutlinedIcon
-                              sx={{
-                                color: skill.value >= 1 ? "#1E3A8A" : "",
-                              }}
-                              fontSize="small"
-                            />
-                          }
-                        />
-                      </div>
-                    </div>
-                  ))}
-                {DataSkill.skill.length > 0 && (
-                  <div className="list-disc text-white">
-                    <div className="flex flex-row justify-between items-center">
-                      <p className="text-sm  text-start">
-                        <CircleIcon sx={{ color: "white", fontSize: 10 }} />{" "}
-                        {DataSkill.skill}
-                      </p>
-                      <StyledRating
-                        readOnly
-                        name="customized-color"
-                        value={DataSkill.value}
-                        precision={1}
-                        icon={<CircleIcon fontSize="small" />}
-                        emptyIcon={
-                          <CircleOutlinedIcon
-                            sx={{
-                              color: DataSkill.value >= 1 ? "#1E3A8A" : "",
-                            }}
-                            fontSize="small"
-                          />
-                        }
-                      />
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
+          <Skills
+            DataListSkills={DataListSkills}
+            DataSkill={DataSkill}
+            StyleContainer={"mb-2"}
+            StyleTitle={
+              "text-lg font-light border-4 border-blue-900 text-white text-center font-mono rounded-full"
+            }
+            styleContainerList={"mb-1 text-white"}
+            styleList={"flex flex-row justify-between items-center"}
+            StyleTitleSkill={"text-sm text-start"}
+            IconTitleSkill={true}
+            IconColorSkill={"white"}
+            Rating={false}
+            StyledRating={true}
+            Color={"#1E3A8A"}
+          />
+
+          <Hobbies
+            DataListHobbies={DataListHobbies}
+            DataHobby={DataHobby}
+            StyleContainer={"mb-2"}
+            StyleTitle={
+              "text-lg font-light border-4 border-blue-900 text-white text-center font-mono rounded-full"
+            }
+            styleContainerList={"mb-1 text-white"}
+            styleList={"flex flex-row justify-between items-center"}
+            StyleTitleSkill={"text-sm text-start"}
+            IconTitleSkill={true}
+            IconColorSkill={"white"}
+            Rating={false}
+            StyledRating={true}
+            Color={"#1E3A8A"}
+          />
           {/* formCourses */}
           {formCourses && (
             <div className="mb-2">
@@ -412,8 +345,8 @@ const Resume1 = forwardRef((props, ref) => {
               </div>
             </div>
           )}
-          {/* DataListHobbies */}
-          {(DataListHobbies.length > 0 || DataHobby.hobby) && (
+
+          {/* {(DataListHobbies.length > 0 || DataHobby.hobby) && (
             <div className="mb-2">
               <p className="text-lg font-light border-4 border-blue-900 text-white text-center font-mono rounded-full">
                 Hobbies
@@ -473,7 +406,7 @@ const Resume1 = forwardRef((props, ref) => {
                 )}
               </div>
             </div>
-          )}
+          )} */}
           {/* formQualities */}
           {formQualities && (
             <div className="mb-2">
