@@ -1,15 +1,21 @@
 import React from "react";
 import CircleIcon from "@mui/icons-material/Circle";
 import CircleOutlinedIcon from "@mui/icons-material/CircleOutlined";
+import { useSelector } from "react-redux";
 export default function Hobbies(props) {
+    const DataHobby = useSelector((state) => state.Hobbies.DataHobby);
+    const DataListHobbies = useSelector(
+      (state) => state.Hobbies.DataListHobbies
+    );
+
   return (
     <div>
-      {(props.DataListHobbies.length > 0 || props.DataHobby.hobby) && (
+      {(DataListHobbies.length > 0 || DataHobby.hobby) && (
         <div className={props.StyleContainer}>
           <p className={props.StyleTitle}>Hobbies</p>
           <div className="mt-1 ms-2">
-            {props.DataListHobbies.length > 0 &&
-              props.DataListHobbies.map((hobby, i) => (
+            {DataListHobbies.length > 0 &&
+              DataListHobbies.map((hobby, i) => (
                 <div className={props.styleContainerList}>
                   <div className={props.styleList}>
                     <p className={props.StyleTitleSkill}>
@@ -23,7 +29,7 @@ export default function Hobbies(props) {
                   </div>
                 </div>
               ))}
-            {props.DataHobby.hobby.length > 0 && (
+            {DataHobby.hobby.length > 0 && (
               <div className={props.styleContainerList}>
                 <div className={props.styleList}>
                   <p className={props.StyleTitleSkill}>
@@ -32,7 +38,7 @@ export default function Hobbies(props) {
                         sx={{ color: props.IconColorSkill, fontSize: 10 }}
                       />
                     )}
-                    {props.DataHobby.hobby}
+                    {DataHobby.hobby}
                   </p>
                 </div>
               </div>
