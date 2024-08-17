@@ -15,6 +15,7 @@ import LanguagesReducer from "./LanguagesSlice";
 import HobbiesReducer from "./HobbiesSlice";
 import EmploymentReducer from "./EmploymentSlice";
 import TemplatesReducer from "./TemplatesSlice";
+import SectionReducer from "./SectionSlice";
 
 export const store = configureStore({
   reducer: {
@@ -34,5 +35,6 @@ export const store = configureStore({
     Hobbies: HobbiesReducer,
     Employment: EmploymentReducer,
     Templates: TemplatesReducer,
+    Section: SectionReducer,
   },
 });

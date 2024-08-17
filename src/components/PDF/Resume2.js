@@ -17,8 +17,15 @@ import References from "../DetailsInfo/References";
 import UploadedImage from "../DetailsInfo/UploadedImage";
 import PersonalDetails from "../DetailsInfo/PersonalDetails";
 import PersonalInfo from "../DetailsInfo/PersonalInfo";
-
+import EntriesSection from "../DetailsInfo/EntriesSection";
+import Description from "../DetailsInfo/DescriptionSection";
+import List from "../DetailsInfo/ListSection";
+import SkillsSection from "../DetailsInfo/SkillsSection";
 const Resume2 = forwardRef((props, ref) => {
+  const formEntries = useSelector((state) => state.Section.formEntries);
+  const formDescription = useSelector((state) => state.Section.formDescription);
+  const formList = useSelector((state) => state.Section.formList);
+  const formSkills = useSelector((state) => state.Section.formSkills);
   return (
     <div className="grid grid-cols-3 h-full relative">
       <PersonalInfo
@@ -192,6 +199,64 @@ const Resume2 = forwardRef((props, ref) => {
               styleContainerList={"mb-2"}
               styleTitleList={"text-md font-bold"}
             />
+            {formEntries > 0 &&
+              Array.from({ length: formEntries }).map((_, index) => (
+                <EntriesSection
+                  index={index}
+                  StyleTitleContainer={"border-b-4 border-yellow-500"}
+                  StyleTitle={"text-lg font-bold"}
+                  Icon={false}
+                  IconColor={"#eab308"}
+                  styleContainerList={"border-l-4 border-yellow-500 pl-4 mb-1"}
+                  styleList={"flex flex-row justify-between items-center"}
+                  StyleTitleList={"text-[16px] font-bold"}
+                  styleCity={"text-sm font-semibold text-gray-600"}
+                  styleDate={"text-xs text-gray-600"}
+                  StyleDescription={
+                    "text-[12px] text-justify whitespace-pre-wrap"
+                  }
+                />
+              ))}
+            {formDescription > 0 &&
+              Array.from({ length: formDescription }).map((_, index) => (
+                <Description
+                  index={index}
+                  styleContainer={"mt-2"}
+                  StyleTitle={"text-lg font-bold border-b-4 border-yellow-500"}
+                  Color={"#eab308"}
+                  ProfileStyleDescription={"text-sm ms-4  whitespace-pre-wrap"}
+                  IconTitle={false}
+                />
+              ))}
+            {formList > 0 &&
+              Array.from({ length: formList }).map((_, index) => (
+                <List
+                  index={index}
+                  StyleContainer={"mb-2"}
+                  StyleTitle={"text-lg font-bold border-b-4 border-yellow-500 "}
+                  styleContainerList={"mb-1"}
+                  styleList={"flex flex-row justify-between items-center"}
+                  StyleTitleList={"text-sm text-start"}
+                  Icon={true}
+                  IconColor={"#eab308"}
+                  Color={"#eab308"}
+                />
+              ))}
+            {formSkills > 0 &&
+              Array.from({ length: formSkills }).map((_, index) => (
+                <SkillsSection
+                  index={index}
+                  StyleContainer={"mb-2"}
+                  StyleTitle={"text-lg font-bold border-b-4 border-yellow-500"}
+                  styleContainerList={"mb-1"}
+                  styleList={"flex flex-row justify-between items-center"}
+                  StyleTitleSkill={"text-sm text-start"}
+                  IconTitleSkill={false}
+                  Rating={true}
+                  StyledRating={false}
+                  Color={"#eab308"}
+                />
+              ))}
           </div>
           <div>
             <Footer

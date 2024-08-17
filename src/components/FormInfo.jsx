@@ -35,8 +35,81 @@ import Profile from "./Forms/Profile";
 import { toggleFormProfile } from "@/store/ProfileSlice";
 import Achievements from "./Forms/Achievements";
 import { toggleFormAchievements } from "@/store/AchievementsSlice";
-
+import Entries from "./Forms/EntriesSection";
+import { useState } from "react";
+import {
+  setDelete,
+  setDescriptionTitle,
+  setEntriesTitle,
+  setListTitle,
+  setSkillsTitle,
+} from "@/store/SectionSlice";
+import Description from "./Forms/DescriptionSection";
+import List from "./Forms/ListSection";
+import SkillsSection from "./Forms/SkillsSection";
 export default function FormInfo() {
+  const dispatch = useDispatch();
+  const formEntries = useSelector((state) => state.Section.formEntries);
+  const formDescription = useSelector((state) => state.Section.formDescription);
+  const formList = useSelector((state) => state.Section.formList);
+  const formSkills = useSelector((state) => state.Section.formSkills);
+  const [entriesTitleList, setEntriesTitleList] = useState([]);
+  const [DescriptionTitleList, setDescriptionTitleList] = useState([]);
+  const [titleList, setTitleList] = useState([]);
+  const [titleSkills, setTitleSkills] = useState([]);
+  const handleTitleChange = (index, title) => {
+    setEntriesTitleList((prevList) => {
+      const updatedList = [...prevList];
+      updatedList[index] = title;
+      return updatedList;
+    });
+    dispatch(
+      setEntriesTitle({
+        index: index,
+        data: title,
+      })
+    );
+  };
+  const handleDescriptionTitleChange = (index, title) => {
+    setDescriptionTitleList((prevList) => {
+      const updatedList = [...prevList];
+      updatedList[index] = title;
+      return updatedList;
+    });
+    dispatch(
+      setDescriptionTitle({
+        index: index,
+        data: title,
+      })
+    );
+  };
+  const handleTitleListChange = (index, title) => {
+    setTitleList((prevList) => {
+      const updatedList = [...prevList];
+      updatedList[index] = title;
+      return updatedList;
+    });
+    dispatch(
+      setListTitle({
+        index: index,
+        data: title,
+      })
+    );
+  };
+  const handleTitleSkillsChange = (index, title) => {
+    setTitleSkills((prevList) => {
+      const updatedList = [...prevList];
+      updatedList[index] = title;
+      return updatedList;
+    });
+
+    dispatch(
+      setSkillsTitle({
+        index: index,
+        data: title,
+      })
+    );
+  };
   const formCourse = useSelector((state) => state.course.formCourse);
   const formInternships = useSelector(
     (state) => state.Internships.formInternships
@@ -56,8 +129,6 @@ export default function FormInfo() {
   const formAchievements = useSelector(
     (state) => state.Achievements.formAchievements
   );
-
-  const dispatch = useDispatch();
   const handleAddCourseForm = () => {
     dispatch(toggleFormCourse());
   };
@@ -86,6 +157,33 @@ export default function FormInfo() {
   const handleAddAchievementsForm = () => {
     dispatch(toggleFormAchievements());
   };
+  const handleDelete = (index, type) => {
+    let updatedList;
+    switch (type) {
+      case "Entries":
+        updatedList = entriesTitleList.filter((_, i) => i !== index);
+        setEntriesTitleList(updatedList);
+        dispatch(setDelete({ index, type }));
+        break;
+      case "Description":
+        updatedList = DescriptionTitleList.filter((_, i) => i !== index);
+        setDescriptionTitleList(updatedList);
+        dispatch(setDelete({ index, type }));
+        break;
+      case "List":
+        updatedList = titleList.filter((_, i) => i !== index);
+        setTitleList(updatedList);
+        dispatch(setDelete({ index, type }));
+        break;
+      case "Skills":
+        updatedList = titleSkills.filter((_, i) => i !== index);
+        setTitleSkills(updatedList);
+        dispatch(setDelete({ index, type }));
+        break;
+      default:
+        console.error("Unknown type:", type);
+    }
+  };
   return (
     <div className="p-6 pt-20">
       <div>
@@ -102,31 +200,6 @@ export default function FormInfo() {
             <PersonalDetails />
           </AccordionDetails>
         </Accordion>
-        {formProfile && (
-          <Accordion>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel3-content"
-              id="panel3-header"
-              className="text-xl font-bold"
-            >
-              <span> Profile </span>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Profile />
-            </AccordionDetails>
-            <AccordionActions>
-              <Button
-                startIcon={<DeleteIcon />}
-                onClick={handleAddProfileForm}
-                color="error"
-                variant="contained"
-              >
-                Delete
-              </Button>
-            </AccordionActions>
-          </Accordion>
-        )}
         <Accordion>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
@@ -192,6 +265,31 @@ export default function FormInfo() {
             <Hobbies />
           </AccordionDetails>
         </Accordion>
+        {formProfile && (
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel3-content"
+              id="panel3-header"
+              className="text-xl font-bold"
+            >
+              <span> Profile </span>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Profile />
+            </AccordionDetails>
+            <AccordionActions>
+              <Button
+                // startIcon={<DeleteIcon />}
+                onClick={handleAddProfileForm}
+                color="error"
+                variant="contained"
+              >
+                <DeleteIcon />
+              </Button>
+            </AccordionActions>
+          </Accordion>
+        )}
         {formCourse && (
           <Accordion>
             <AccordionSummary
@@ -207,12 +305,12 @@ export default function FormInfo() {
             </AccordionDetails>
             <AccordionActions>
               <Button
-                startIcon={<DeleteIcon />}
+                // startIcon={<DeleteIcon />}
                 onClick={handleAddCourseForm}
                 color="error"
                 variant="contained"
               >
-                Delete
+                <DeleteIcon />
               </Button>
             </AccordionActions>
           </Accordion>
@@ -232,12 +330,12 @@ export default function FormInfo() {
             </AccordionDetails>
             <AccordionActions>
               <Button
-                startIcon={<DeleteIcon />}
+                // startIcon={<DeleteIcon />}
                 onClick={handleAddInternshipsForm}
                 color="error"
                 variant="contained"
               >
-                Delete
+                <DeleteIcon />
               </Button>
             </AccordionActions>
           </Accordion>
@@ -257,12 +355,12 @@ export default function FormInfo() {
             </AccordionDetails>
             <AccordionActions>
               <Button
-                startIcon={<DeleteIcon />}
+                // startIcon={<DeleteIcon />}
                 onClick={handleAddCertificatesForm}
                 color="error"
                 variant="contained"
               >
-                Delete
+                <DeleteIcon />
               </Button>
             </AccordionActions>
           </Accordion>
@@ -282,12 +380,12 @@ export default function FormInfo() {
             </AccordionDetails>
             <AccordionActions>
               <Button
-                startIcon={<DeleteIcon />}
+                // startIcon={<DeleteIcon />}
                 onClick={handleAddQualitiesForm}
                 color="error"
                 variant="contained"
               >
-                Delete
+                <DeleteIcon />
               </Button>
             </AccordionActions>
           </Accordion>
@@ -307,12 +405,12 @@ export default function FormInfo() {
             </AccordionDetails>
             <AccordionActions>
               <Button
-                startIcon={<DeleteIcon />}
+                // startIcon={<DeleteIcon />}
                 onClick={handleAddExtracurricularActivitiesForm}
                 color="error"
                 variant="contained"
               >
-                Delete
+                <DeleteIcon />
               </Button>
             </AccordionActions>
           </Accordion>
@@ -332,12 +430,12 @@ export default function FormInfo() {
             </AccordionDetails>
             <AccordionActions>
               <Button
-                startIcon={<DeleteIcon />}
+                // startIcon={<DeleteIcon />}
                 onClick={handleAddReferencesForm}
                 color="error"
                 variant="contained"
               >
-                Delete
+                <DeleteIcon />
               </Button>
             </AccordionActions>
           </Accordion>
@@ -357,12 +455,12 @@ export default function FormInfo() {
             </AccordionDetails>
             <AccordionActions>
               <Button
-                startIcon={<DeleteIcon />}
+                // startIcon={<DeleteIcon />}
                 onClick={handleAddAchievementsForm}
                 color="error"
                 variant="contained"
               >
-                Delete
+                <DeleteIcon />
               </Button>
             </AccordionActions>
           </Accordion>
@@ -382,16 +480,158 @@ export default function FormInfo() {
             </AccordionDetails>
             <AccordionActions>
               <Button
-                startIcon={<DeleteIcon />}
+                // startIcon={<DeleteIcon />}
                 onClick={handleAddFooterForm}
                 color="error"
                 variant="contained"
               >
-                Delete
+                <DeleteIcon />
               </Button>
             </AccordionActions>
           </Accordion>
         )}
+        {formEntries > 0 &&
+          Array.from({ length: formEntries }).map((_, index) => (
+            <Accordion key={index}>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls={`panel${index + 3}-content`}
+                id={`panel${index + 3}-header`}
+                className="text-xl font-bold"
+              >
+                <span>
+                  <input
+                    type="text"
+                    name=""
+                    id=""
+                    placeholder={`Custom section Entries ${index + 1}`}
+                    value={entriesTitleList[index] || ""}
+                    onChange={(e) => handleTitleChange(index, e.target.value)}
+                  />
+                </span>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Entries index={index} />
+              </AccordionDetails>
+              <AccordionActions>
+                <Button
+                  onClick={() => handleDelete(index, "Entries")}
+                  color="error"
+                  variant="contained"
+                >
+                  <DeleteIcon />
+                </Button>
+              </AccordionActions>
+            </Accordion>
+          ))}
+        {formDescription > 0 &&
+          Array.from({ length: formDescription }).map((_, index) => (
+            <Accordion key={index}>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls={`panel${index + 3}-content`}
+                id={`panel${index + 3}-header`}
+                className="text-xl font-bold"
+              >
+                <span>
+                  <input
+                    type="text"
+                    name=""
+                    id=""
+                    placeholder={`Custom section Description ${index + 1}`}
+                    value={DescriptionTitleList[index] || ""}
+                    onChange={(e) =>
+                      handleDescriptionTitleChange(index, e.target.value)
+                    }
+                  />
+                </span>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Description index={index} />
+              </AccordionDetails>
+              <AccordionActions>
+                <Button
+                  onClick={() => handleDelete(index, "Description")}
+                  color="error"
+                  variant="contained"
+                >
+                  <DeleteIcon />
+                </Button>
+              </AccordionActions>
+            </Accordion>
+          ))}
+        {formList > 0 &&
+          Array.from({ length: formList }).map((_, index) => (
+            <Accordion key={index}>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls={`panel${index + 3}-content`}
+                id={`panel${index + 3}-header`}
+                className="text-xl font-bold"
+              >
+                <span>
+                  <input
+                    type="text"
+                    name=""
+                    id=""
+                    placeholder={`Custom section List ${index + 1}`}
+                    value={titleList[index] || ""}
+                    onChange={(e) =>
+                      handleTitleListChange(index, e.target.value)
+                    }
+                  />
+                </span>
+              </AccordionSummary>
+              <AccordionDetails>
+                <List index={index} />
+              </AccordionDetails>
+              <AccordionActions>
+                <Button
+                  onClick={() => handleDelete(index, "List")}
+                  color="error"
+                  variant="contained"
+                >
+                  <DeleteIcon />
+                </Button>
+              </AccordionActions>
+            </Accordion>
+          ))}
+        {formSkills > 0 &&
+          Array.from({ length: formSkills }).map((_, index) => (
+            <Accordion key={index}>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls={`panel${index + 3}-content`}
+                id={`panel${index + 3}-header`}
+                className="text-xl font-bold"
+              >
+                <span>
+                  <input
+                    type="text"
+                    name=""
+                    id=""
+                    placeholder={`Custom section Skills ${index + 1}`}
+                    value={titleSkills[index] || ""}
+                    onChange={(e) =>
+                      handleTitleSkillsChange(index, e.target.value)
+                    }
+                  />
+                </span>
+              </AccordionSummary>
+              <AccordionDetails>
+                <SkillsSection index={index} />
+              </AccordionDetails>
+              <AccordionActions>
+                <Button
+                  onClick={() => handleDelete(index, "Skills")}
+                  color="error"
+                  variant="contained"
+                >
+                  <DeleteIcon />
+                </Button>
+              </AccordionActions>
+            </Accordion>
+          ))}
         <div>
           <AddForms />
         </div>

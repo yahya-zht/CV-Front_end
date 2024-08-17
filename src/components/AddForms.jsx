@@ -10,6 +10,7 @@ import { toggleFormReferences } from "@/store/ReferencesSlice";
 import { toggleFormFooter } from "@/store/FooterSlice";
 import { toggleFormProfile } from "@/store/ProfileSlice";
 import { toggleFormAchievements } from "@/store/AchievementsSlice";
+import SectionCreator from "./SectionCreator";
 
 export default function AddForms() {
   const formCourse = useSelector((state) => state.course.formCourse);
@@ -141,6 +142,7 @@ export default function AddForms() {
           Achievements
         </button>
       )}
+      <SectionCreator />
     </div>
   );
 }

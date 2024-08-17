@@ -17,13 +17,21 @@ import References from "../DetailsInfo/References";
 import UploadedImage from "../DetailsInfo/UploadedImage";
 import PersonalDetails from "../DetailsInfo/PersonalDetails";
 import PersonalInfo from "../DetailsInfo/PersonalInfo";
-
+import EntriesSection from "../DetailsInfo/EntriesSection";
+import Description from "../DetailsInfo/DescriptionSection";
+import List from "../DetailsInfo/ListSection";
+import SkillsSection from "../DetailsInfo/SkillsSection";
 const Resume1 = forwardRef((props, ref) => {
   // DataPersonalDetails
   const DataPersonalDetails = useSelector(
     (state) => state.PersonalDetailsStore.DataPersonalDetails
   );
   const formProfile = useSelector((state) => state.Profile.formProfile);
+  const formEntries = useSelector((state) => state.Section.formEntries);
+  const formDescription = useSelector((state) => state.Section.formDescription);
+  const formList = useSelector((state) => state.Section.formList);
+  const formSkills = useSelector((state) => state.Section.formSkills);
+
   return (
     <div className="flex flex-row bg-white h-full relative">
       <PersonalInfo
@@ -238,6 +246,72 @@ const Resume1 = forwardRef((props, ref) => {
               styleContainerList={"mb-2"}
               styleTitleList={"text-md font-bold"}
             />
+            {formEntries > 0 &&
+              Array.from({ length: formEntries }).map((_, index) => (
+                <EntriesSection
+                  index={index}
+                  StyleTitleContainer={"flex"}
+                  StyleTitle={
+                    " border-4 border-blue-900 rounded-full px-2 text-lg font-mono w-auto bg-blue-900 text-white text-center"
+                  }
+                  Icon={false}
+                  IconColor={"#1E3A8A"}
+                  styleContainerList={"pl-4 mb-2"}
+                  styleList={"flex flex-row justify-between items-center"}
+                  StyleTitleList={"text-[16px] font-bold"}
+                  styleCity={"text-sm font-semibold text-gray-600"}
+                  styleDate={"text-xs text-gray-600"}
+                  StyleDescription={
+                    "text-[12px] text-justify whitespace-pre-wrap"
+                  }
+                />
+              ))}
+            {formDescription > 0 &&
+              Array.from({ length: formDescription }).map((_, index) => (
+                <Description
+                  index={index}
+                  styleContainer={"mb-2"}
+                  StyleContainerTitle={"flex"}
+                  StyleTitle={
+                    "border-4 border-blue-900 rounded-full px-2 text-lg font-mono w-auto bg-blue-900 text-white text-center"
+                  }
+                  styleDescription={"text-sm ms-4  whitespace-pre-wrap"}
+                />
+              ))}
+            {formList > 0 &&
+              Array.from({ length: formList }).map((_, index) => (
+                <List
+                  index={index}
+                  StyleContainer={"mb-2"}
+                  StyleTitle={
+                    "border-4 border-blue-900 rounded-full px-2 text-lg font-mono w-auto bg-blue-900 text-white text-center"
+                  }
+                  styleContainerList={"mb-1"}
+                  styleList={"flex flex-row justify-between items-center"}
+                  StyleTitleList={"text-sm text-start"}
+                  Icon={true}
+                  IconColor={"#1E3A8A"}
+                  Color={"#1E3A8A"}
+                />
+              ))}
+            {formSkills > 0 &&
+              Array.from({ length: formSkills }).map((_, index) => (
+                <SkillsSection
+                  index={index}
+                  StyleContainer={"mb-2"}
+                  StyleTitle={
+                    "border-4 border-blue-900 rounded-full px-2 text-lg font-mono w-auto bg-blue-900 text-white text-center"
+                  }
+                  styleContainerList={"mb-1 "}
+                  styleList={"flex flex-row justify-between items-center"}
+                  StyleTitleSkill={"text-sm text-start"}
+                  IconTitleSkill={true}
+                  IconColorSkill={"#1E3A8A"}
+                  Rating={false}
+                  StyledRating={true}
+                  Color={"#1E3A8A"}
+                />
+              ))}
           </div>
           <div>
             {/* formFooter */}
