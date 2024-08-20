@@ -6,7 +6,7 @@ import Resume3 from "./Resume3";
 import Resume4 from "../Templates/Resume1";
 import { useReactToPrint } from "react-to-print";
 
-const ResumePDF = forwardRef((props, ref) => {
+const Resume = forwardRef((props, ref) => {
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
@@ -15,7 +15,7 @@ const ResumePDF = forwardRef((props, ref) => {
   useEffect(() => {
     if (props.clk) {
       handlePrint();
-      props.setClk(false); 
+      props.setClk(false);
     }
   }, [props.clk, handlePrint, props.setClk]);
 
@@ -48,4 +48,4 @@ const ResumePDF = forwardRef((props, ref) => {
   );
 });
 
-export default ResumePDF;
+export default Resume;

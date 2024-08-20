@@ -1,18 +1,13 @@
 "use client";
 import { COLORS } from "@/constants/theme";
 import DownloadForOfflineIcon from "@mui/icons-material/DownloadForOffline";
-import { useRef } from "react";
-import { useReactToPrint } from "react-to-print";
-import ResumePDF from "./PDF/ResumePDF";
 import Link from "next/link";
-export default function NavbarCreate() {
-  const componentRef = useRef();
-
-  const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
-    documentTitle: "resume",
-    // onAfterPrint: () => alert("PDF saved successfully!"),
-  });
+import { useState } from "react";
+export default function NavbarCreate(props) {
+  const download = () => {
+    console.log("click");
+    props.setClk(true);
+  };
   return (
     <nav style={{ backgroundColor: COLORS.primary }}>
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -26,7 +21,7 @@ export default function NavbarCreate() {
             <button
               type="button"
               className="relative rounded-xl bg-white px-8 py-1 hover:bg-blue-950 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-              onClick={handlePrint}
+              onClick={download}
             >
               <span className="font-black flex flex-row justify-center">
                 <DownloadForOfflineIcon
@@ -37,9 +32,6 @@ export default function NavbarCreate() {
                 Download
               </span>
             </button>
-          </div>
-          <div style={{ display: "none" }}>
-            <ResumePDF ref={componentRef} />
           </div>
         </div>
       </div>

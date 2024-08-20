@@ -10,7 +10,10 @@ import Image from "next/image";
 import { DataImages } from "@/constants/DataTemplates";
 import { KeyboardArrowUp } from "@mui/icons-material";
 import { useDispatch } from "react-redux";
-import { setTemplateSelected } from "@/store/TemplatesSlice";
+import { setTemplateSelected, setZoom } from "@/store/TemplatesSlice";
+import ZoomInIcon from "@mui/icons-material/ZoomIn";
+import ZoomOutIcon from "@mui/icons-material/ZoomOut";
+import { useSelector } from "react-redux";
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -72,8 +75,16 @@ export default function NavTemplates() {
     dispatch(setTemplateSelected(T));
     setAnchorEl(null);
   };
+  const zoom = useSelector((state) => state.Templates.Zoom);
+  const handleZoom = () => {
+    if (zoom == 0.55) {
+      dispatch(setZoom(0.9));
+    } else {
+      dispatch(setZoom(0.55));
+    }
+  };
   return (
-    <div className=" px-6 py-2 bg-gray-50 rounded-lg  absolute bottom-7 left-10 right-10 z-20 shadow-xl  border-2 border-gray-200">
+    <div className=" px-6 py-2 bg-gray-50 rounded-lg  absolute bottom-7 left-10 right-10 z-20 shadow-xl  border-2 border-gray-200 flex flex-row justify-between">
       <Button
         id="demo-customized-button"
         aria-controls={open ? "demo-customized-menu" : undefined}
@@ -115,6 +126,19 @@ export default function NavTemplates() {
           </MenuItem>
         ))}
       </StyledMenu>
+      <Button
+        onClick={handleZoom}
+        sx={{
+          backgroundColor: "#EEEEEE",
+          color: "#201E43",
+          "&:hover": {
+            backgroundColor: "#201E43",
+            color: "#EEEEEE",
+          },
+        }}
+      >
+        {zoom == 0.55 ? <ZoomInIcon /> : <ZoomOutIcon />}
+      </Button>
     </div>
   );
 }

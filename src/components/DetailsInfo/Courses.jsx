@@ -7,7 +7,7 @@ export default function Courses(props) {
   const CoursesList = useSelector((state) => state.course.CoursesList);
 
   return (
-    <div>
+    <div className={props.styleContainer}>
       {formCourses && (
         <div className="my-1">
           <p className={props.StyleTitle}>
