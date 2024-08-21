@@ -4,6 +4,7 @@ export const InternshipsSlice = createSlice({
   name: "Internships",
   initialState: {
     formInternships: false,
+    Title: "",
     InternshipsData: {},
     InternshipsList: [],
   },
@@ -17,10 +18,16 @@ export const InternshipsSlice = createSlice({
     setInternshipsList: (state, action) => {
       state.InternshipsList = action.payload;
     },
+    setInternshipsTitle: (state, action) => {
+      state.Title = action.payload;
+    },
   },
 });
 
-export const { toggleFormInternships } = InternshipsSlice.actions;
-export const { setInternshipsData } = InternshipsSlice.actions;
-export const { setInternshipsList } = InternshipsSlice.actions;
+export const {
+  toggleFormInternships,
+  setInternshipsTitle,
+  setInternshipsData,
+  setInternshipsList,
+} = InternshipsSlice.actions;
 export default InternshipsSlice.reducer;

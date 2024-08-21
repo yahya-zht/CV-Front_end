@@ -5,12 +5,15 @@ export default function Qualities(props) {
   const formQualities = useSelector((state) => state.Qualities.formQualities);
   const QualitiesData = useSelector((state) => state.Qualities.QualitiesData);
   const QualitiesList = useSelector((state) => state.Qualities.QualitiesList);
+  const TitleQualities = useSelector((state) => state.Qualities.Title);
 
   return (
     <div>
       {formQualities && (
         <div className={props.StyleContainer}>
-          <p className={props.StyleTitle}>Qualities</p>
+          <p className={props.StyleTitle}>
+            {TitleQualities.length > 0 ? TitleQualities : `Qualities`}
+          </p>
           <div className="mt-1 ms-2">
             {QualitiesList.length > 0 &&
               QualitiesList.map((quality, i) => (

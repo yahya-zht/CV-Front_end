@@ -4,6 +4,7 @@ export const CertificatesSlice = createSlice({
   name: "Internships",
   initialState: {
     formCertificates: false,
+    Title: "",
     CertificateData: {},
     CertificatesList: [],
   },
@@ -17,10 +18,16 @@ export const CertificatesSlice = createSlice({
     setCertificatesList: (state, action) => {
       state.CertificatesList = action.payload;
     },
+    setCertificatesTitle: (state, action) => {
+      state.Title = action.payload;
+    },
   },
 });
 
-export const { toggleformCertificates } = CertificatesSlice.actions;
-export const { setCertificateData } = CertificatesSlice.actions;
-export const { setCertificatesList } = CertificatesSlice.actions;
+export const {
+  toggleformCertificates,
+  setCertificateData,
+  setCertificatesList,
+  setCertificatesTitle,
+} = CertificatesSlice.actions;
 export default CertificatesSlice.reducer;

@@ -8,6 +8,8 @@ export default function Employment(props) {
   const DataListEmployment = useSelector(
     (state) => state.Employment.DataListEmployment
   );
+  const TitleEmployment = useSelector((state) => state.Employment.Title);
+
   return (
     <div>
       {(DataListEmployment.length > 0 ||
@@ -23,7 +25,9 @@ export default function Employment(props) {
           <div className={props.StyleTitleContainer}>
             <p className={props.StyleTitle}>
               {props.Icon && <CircleIcon sx={{ color: props.IconColor }} />}
-              <span className="">Employment</span>
+              <span className="">
+                {TitleEmployment.length > 0 ? TitleEmployment : `Employment`}
+              </span>
             </p>
           </div>
           <div className="mt-1">

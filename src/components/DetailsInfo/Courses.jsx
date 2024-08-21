@@ -5,15 +5,20 @@ export default function Courses(props) {
   const formCourses = useSelector((state) => state.course.formCourse);
   const CourseData = useSelector((state) => state.course.CourseData);
   const CoursesList = useSelector((state) => state.course.CoursesList);
+  const Titlecourse = useSelector((state) => state.course.Title);
 
   return (
     <div className={props.styleContainer}>
       {formCourses && (
         <div className="my-1">
-          <p className={props.StyleTitle}>
-            {props.IconTitle && <CircleIcon sx={{ color: props.IconColor }} />}
-            Courses
-          </p>
+          <div className={props.StyleTitleContainer}>
+            <p className={props.StyleTitle}>
+              {props.IconTitle && (
+                <CircleIcon sx={{ color: props.IconColor }} />
+              )}
+              {Titlecourse.length > 0 ? Titlecourse : `Courses`}
+            </p>
+          </div>
           <div className="mt-1 mx-2">
             {CoursesList.length > 0 &&
               CoursesList.map((course, i) => (
@@ -51,11 +56,9 @@ export default function Courses(props) {
                     )}{" "}
                     {CourseData.course}
                   </p>
-                  {(CourseData.monthCourse ||
-                    CourseData.yearCourse) && (
+                  {(CourseData.monthCourse || CourseData.yearCourse) && (
                     <p className={props.styleDate}>
-                      {CourseData.monthCourse} -{" "}
-                      {CourseData.yearCourse}
+                      {CourseData.monthCourse} - {CourseData.yearCourse}
                     </p>
                   )}
                 </div>

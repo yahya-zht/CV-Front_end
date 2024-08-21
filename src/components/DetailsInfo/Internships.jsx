@@ -13,6 +13,8 @@ export default function Internships(props) {
   const InternshipsList = useSelector(
     (state) => state.Internships.InternshipsList
   );
+  const TitleInternships = useSelector((state) => state.Internships.Title);
+
   return (
     <div>
       {formInternships && (
@@ -20,7 +22,9 @@ export default function Internships(props) {
           <div className={props.StyleTitleContainer}>
             <p className={props.StyleTitle}>
               {props.Icon && <CircleIcon sx={{ color: props.IconColor }} />}
-              <span className="">Internships</span>
+              <span className="">
+                {TitleInternships.length > 0 ? TitleInternships : `Internships`}
+              </span>
             </p>
           </div>
           <div className="mt-1">

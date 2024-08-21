@@ -4,6 +4,7 @@ export const courseSlice = createSlice({
   name: "course",
   initialState: {
     formCourse: false,
+    Title: "",
     CourseData: {},
     CoursesList: [],
   },
@@ -17,10 +18,16 @@ export const courseSlice = createSlice({
     setCoursesList: (state, action) => {
       state.CoursesList = action.payload;
     },
+    setCoursesTitle: (state, action) => {
+      state.Title = action.payload;
+    },
   },
 });
 
-export const { toggleFormCourse } = courseSlice.actions;
-export const { setCourseData } = courseSlice.actions;
-export const { setCoursesList } = courseSlice.actions;
+export const {
+  toggleFormCourse,
+  setCourseData,
+  setCoursesList,
+  setCoursesTitle,
+} = courseSlice.actions;
 export default courseSlice.reducer;

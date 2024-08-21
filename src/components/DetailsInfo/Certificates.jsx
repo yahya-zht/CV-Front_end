@@ -12,11 +12,19 @@ export default function Certificates(props) {
   const CertificatesList = useSelector(
     (state) => state.Certificates.CertificatesList
   );
+  const TitleCertificates = useSelector((state) => state.Certificates.Title);
+
   return (
     <div>
       {formCertificates && (
         <div className="my-1">
-          <p className={props.StyleTitle}>Certificates</p>
+          <div className={props.StyleTitleContainer}>
+            <p className={props.StyleTitle}>
+              {TitleCertificates.length > 0
+                ? TitleCertificates
+                : `Certificates`}
+            </p>
+          </div>
           <div className="mt-1 mx-2">
             {CertificatesList.length > 0 &&
               CertificatesList.map((certificate, i) => (

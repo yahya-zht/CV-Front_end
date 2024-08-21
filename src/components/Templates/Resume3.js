@@ -39,6 +39,7 @@ const Resume3 = forwardRef(() => {
     "Hobbies",
   ];
   const initialItemsRight = [
+    "Profile",
     "Courses",
     "Education",
     "Employment",
@@ -131,8 +132,9 @@ const Resume3 = forwardRef(() => {
   const componentRight = {
     Profile: (
       <Profile
+        StyleTitleContainer={"flex"}
         styleTitle={
-          "text-lg font-semibold border-b-4 border-[#5C8E8F] text-center w-2/4 rounded-xl"
+          "text-lg font-semibold border-b-4 border-[#5C8E8F] text-center w-auto px-5 rounded-xl"
         }
         IconTitle={false}
         Color={"#5C8E8F"}
@@ -145,7 +147,7 @@ const Resume3 = forwardRef(() => {
       <Education
         StyleTitleContainer={"flex"}
         StyleTitle={
-          "border-b-4 border-[#5C8E8F] rounded-full px-2 text-lg font-semibold w-2/4 text-center"
+          "border-b-4 border-[#5C8E8F] rounded-full px-5 text-lg font-semibold w-auto text-center"
         }
         Icon={false}
         IconColor={"#5C8E8F"}
@@ -159,8 +161,9 @@ const Resume3 = forwardRef(() => {
     ),
     Courses: (
       <Courses
+        StyleTitleContainer={"flex"}
         StyleTitle={
-          "border-b-4 border-[#5C8E8F] rounded-full px-2 text-lg font-semibold w-2/4 text-center"
+          "border-b-4 border-[#5C8E8F] rounded-full px-5 text-lg font-semibold w-auto text-center"
         }
         styleContainerList={"mb-1"}
         styleList={"flex flex-row justify-between items-center"}
@@ -175,7 +178,7 @@ const Resume3 = forwardRef(() => {
       <Employment
         StyleTitleContainer={"flex"}
         StyleTitle={
-          "border-b-4 border-[#5C8E8F] rounded-full px-2 text-lg font-semibold w-2/4 text-center"
+          "border-b-4 border-[#5C8E8F] rounded-full px-5 text-lg font-semibold w-auto  text-center"
         }
         Icon={false}
         IconColor={"#5C8E8F"}
@@ -191,7 +194,7 @@ const Resume3 = forwardRef(() => {
       <Internships
         StyleTitleContainer={"flex"}
         StyleTitle={
-          "border-b-4 border-[#5C8E8F] rounded-full px-2 text-lg font-semibold w-2/4 text-center"
+          "border-b-4 border-[#5C8E8F] rounded-full px-5 text-lg font-semibold w-auto text-center"
         }
         Icon={false}
         IconColor={"#5C8E8F"}
@@ -205,8 +208,9 @@ const Resume3 = forwardRef(() => {
     ),
     Certificates: (
       <Certificates
+        StyleTitleContainer={"flex"}
         StyleTitle={
-          "border-b-4 border-[#5C8E8F] rounded-full px-2 text-lg font-semibold w-2/4 text-center"
+          "border-b-4 border-[#5C8E8F] rounded-full px-5 text-lg font-semibold w-auto text-center"
         }
         styleContainerList={"mb-1"}
         styleList={"flex flex-row justify-between items-center"}
@@ -221,7 +225,7 @@ const Resume3 = forwardRef(() => {
       <ExtracurricularActivities
         StyleTitleContainer={"flex"}
         StyleTitle={
-          "border-b-4 border-[#5C8E8F] rounded-full px-2 text-lg font-semibold w-3/4 text-center"
+          "border-b-4 border-[#5C8E8F] rounded-full px-5 text-lg font-semibold w-auto text-center"
         }
         Icon={false}
         IconColor={"#5C8E8F"}
@@ -238,7 +242,7 @@ const Resume3 = forwardRef(() => {
         styleContainer={"mt-2"}
         StyleContainerTitle={"flex"}
         StyleTitle={
-          "border-b-4 border-[#5C8E8F] rounded-full px-2 text-lg font-semibold w-2/4 text-center"
+          "border-b-4 border-[#5C8E8F] rounded-full px-5 text-lg font-semibold w-auto text-center"
         }
         styleDescription={"text-sm ms-4  whitespace-pre-wrap"}
       />
@@ -248,7 +252,7 @@ const Resume3 = forwardRef(() => {
         styleContainer={"mt-2"}
         styleContainerTitle={"flex "}
         styleTitle={
-          "border-b-4 border-[#5C8E8F] rounded-full px-2 text-lg font-semibold w-2/4 text-center"
+          "border-b-4 border-[#5C8E8F] rounded-full px-5 text-lg font-semibold w-auto text-center"
         }
         styleContainerList={"mb-2"}
         styleTitleList={"text-md font-bold"}
@@ -261,7 +265,7 @@ const Resume3 = forwardRef(() => {
           index={index}
           StyleTitleContainer={"flex"}
           StyleTitle={
-            "border-b-4 border-[#5C8E8F] rounded-full px-2 text-lg font-semibold w-2/4 text-center"
+            "border-b-4 border-[#5C8E8F] rounded-full px-5 text-lg font-semibold w-auto text-center"
           }
           Icon={false}
           IconColor={"#5C8E8F"}
@@ -281,7 +285,7 @@ const Resume3 = forwardRef(() => {
           styleContainer={"mt-2"}
           StyleContainerTitle={"flex"}
           StyleTitle={
-            "border-b-4 border-[#5C8E8F] rounded-full px-2 text-lg font-semibold w-2/4 text-center"
+            "border-b-4 border-[#5C8E8F] rounded-full px-5 text-lg font-semibold w-auto text-center"
           }
           styleDescription={"text-sm ms-4  whitespace-pre-wrap"}
         />
@@ -293,7 +297,7 @@ const Resume3 = forwardRef(() => {
           index={index}
           StyleContainer={"mb-2"}
           StyleTitle={
-            "text-lg font-semibold border-b-4 border-[#5C8E8F] text-center rounded-full w-2/4"
+            "text-lg font-semibold border-b-4 border-[#5C8E8F] text-center rounded-full w-auto px-5"
           }
           styleContainerList={"mb-1"}
           styleList={"flex flex-row justify-between items-center"}
@@ -310,7 +314,7 @@ const Resume3 = forwardRef(() => {
           index={index}
           StyleContainer={"mb-2"}
           StyleTitle={
-            "text-lg font-semibold border-b-4 border-[#5C8E8F] text-center rounded-full w-2/4"
+            "text-lg font-semibold border-b-4 border-[#5C8E8F] text-center rounded-full w-auto px-5"
           }
           styleContainerList={"mb-1"}
           styleList={"flex flex-row justify-between items-center"}

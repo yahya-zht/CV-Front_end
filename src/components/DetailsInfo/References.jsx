@@ -11,12 +11,16 @@ export default function References(props) {
   const DataReferences = useSelector(
     (state) => state.References.DataReferences
   );
+  const TitleReferences = useSelector((state) => state.References.Title);
+
   return (
     <div>
       {formReferences && (
         <div className={props.styleContainer}>
           <div className={props.styleContainerTitle}>
-            <p className={props.styleTitle}>Reference</p>
+            <p className={props.styleTitle}>
+              {TitleReferences.length > 0 ? TitleReferences : `Reference`}
+            </p>
           </div>
           <div className="mt-1 ms-2">
             {DataListReferences.length > 0 &&

@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const EmploymentSlice = createSlice({
   name: "Employment",
   initialState: {
+    Title: "",
     DataEmployment: [],
     DataListEmployment: [],
   },
@@ -13,9 +14,12 @@ export const EmploymentSlice = createSlice({
     setDataListEmployment: (state, action) => {
       state.DataListEmployment = action.payload;
     },
+    setEmploymentTitle: (state, action) => {
+      state.Title = action.payload;
+    },
   },
 });
 
-export const { setDataListEmployment } = EmploymentSlice.actions;
-export const { setDataEmployment } = EmploymentSlice.actions;
+export const { setDataListEmployment, setDataEmployment, setEmploymentTitle } =
+  EmploymentSlice.actions;
 export default EmploymentSlice.reducer;

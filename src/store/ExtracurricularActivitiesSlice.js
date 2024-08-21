@@ -4,6 +4,7 @@ export const ExtracurricularActivitiesSlice = createSlice({
   name: "ExtracurricularActivities",
   initialState: {
     formExtracurricularActivities: false,
+    Title: "",
     ExtracurricularActivitiesData: {},
     ExtracurricularActivitiesList: [],
   },
@@ -18,14 +19,16 @@ export const ExtracurricularActivitiesSlice = createSlice({
     setExtracurricularActivitiesList: (state, action) => {
       state.ExtracurricularActivitiesList = action.payload;
     },
+    setExtracurricularActivitiesTitle: (state, action) => {
+      state.Title = action.payload;
+    },
   },
 });
 
-export const { toggleFormExtracurricularActivities } =
-  ExtracurricularActivitiesSlice.actions;
-
-export const { setExtracurricularActivitiesData } =
-  ExtracurricularActivitiesSlice.actions;
-export const { setExtracurricularActivitiesList } =
-  ExtracurricularActivitiesSlice.actions;
+export const {
+  toggleFormExtracurricularActivities,
+  setExtracurricularActivitiesData,
+  setExtracurricularActivitiesList,
+  setExtracurricularActivitiesTitle,
+} = ExtracurricularActivitiesSlice.actions;
 export default ExtracurricularActivitiesSlice.reducer;

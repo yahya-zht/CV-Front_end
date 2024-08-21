@@ -7,6 +7,8 @@ import { useSelector } from "react-redux";
 export default function Skills(props) {
   const DataSkill = useSelector((state) => state.Skills.DataSkill);
   const DataListSkills = useSelector((state) => state.Skills.DataListSkills);
+  const TitleSkills = useSelector((state) => state.Skills.Title);
+
   const labels = {
     1: "Beginner",
     2: "Moderate",
@@ -26,7 +28,9 @@ export default function Skills(props) {
     <div>
       {(DataListSkills.length > 0 || DataSkill.skill) && (
         <div className={props.StyleContainer}>
-          <p className={props.StyleTitle}>Skills</p>
+          <p className={props.StyleTitle}>
+            {TitleSkills.length > 0 ? TitleSkills : `Skills`}
+          </p>
           <div className="mt-1 ms-2">
             {DataListSkills.length > 0 &&
               DataListSkills.map((skill, i) => (

@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const SkillsSlice = createSlice({
   name: "Skill",
   initialState: {
+    Title: "",
     DataSkill: [],
     DataListSkills: [],
   },
@@ -13,9 +14,12 @@ export const SkillsSlice = createSlice({
     setDataListSkills: (state, action) => {
       state.DataListSkills = action.payload;
     },
+    setSkillTitle: (state, action) => {
+      state.Title = action.payload;
+    },
   },
 });
 
-export const { setDataListSkills } = SkillsSlice.actions;
-export const { setDataSkill } = SkillsSlice.actions;
+export const { setDataListSkills, setDataSkill, setSkillTitle } =
+  SkillsSlice.actions;
 export default SkillsSlice.reducer;

@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const HobbiesSlice = createSlice({
   name: "Hobby",
   initialState: {
+    Title: "",
     DataHobby: [],
     DataListHobbies: [],
   },
@@ -13,9 +14,12 @@ export const HobbiesSlice = createSlice({
     setDataListHobbies: (state, action) => {
       state.DataListHobbies = action.payload;
     },
+    setHobbyTitle: (state, action) => {
+      state.Title = action.payload;
+    },
   },
 });
 
-export const { setDataListHobbies } = HobbiesSlice.actions;
-export const { setDataHobby } = HobbiesSlice.actions;
+export const { setDataListHobbies, setDataHobby, setHobbyTitle } =
+  HobbiesSlice.actions;
 export default HobbiesSlice.reducer;

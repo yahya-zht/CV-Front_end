@@ -32,6 +32,7 @@ const Resume2 = forwardRef((props, ref) => {
     "Hobbies",
   ];
   const initialItemsRight = [
+    "Profile",
     "Courses",
     "Employment",
     "Internships",
@@ -211,7 +212,7 @@ const Resume2 = forwardRef((props, ref) => {
       <Achievements
         styleContainer={"mt-2"}
         StyleContainerTitle={"flex"}
-        StyleTitle={"text-lg font-bold border-b-4 border-yellow-500"}
+        StyleTitle={"text-lg font-bold border-b-4 border-yellow-500 w-full"}
         styleDescription={"text-sm ms-4  whitespace-pre-wrap"}
       />
     ),
@@ -219,7 +220,7 @@ const Resume2 = forwardRef((props, ref) => {
       <References
         styleContainer={"mt-2"}
         styleContainerTitle={"flex "}
-        styleTitle={"text-lg font-bold border-b-4 border-yellow-500"}
+        styleTitle={"text-lg font-bold border-b-4 border-yellow-500 w-full"}
         styleContainerList={"mb-2"}
         styleTitleList={"text-md font-bold"}
       />
@@ -230,7 +231,7 @@ const Resume2 = forwardRef((props, ref) => {
         <EntriesSection
           index={index}
           StyleTitleContainer={"border-b-4 border-yellow-500"}
-          StyleTitle={"text-lg font-bold"}
+          StyleTitle={"text-lg font-bold w-full"}
           Icon={false}
           IconColor={"#eab308"}
           styleContainerList={"border-l-4 border-yellow-500 pl-4 mb-1"}
@@ -247,7 +248,7 @@ const Resume2 = forwardRef((props, ref) => {
         <Description
           index={index}
           styleContainer={"mt-2"}
-          StyleTitle={"text-lg font-bold border-b-4 border-yellow-500"}
+          StyleTitle={"text-lg font-bold border-b-4 border-yellow-500 w-full"}
           Color={"#eab308"}
           ProfileStyleDescription={"text-sm ms-4  whitespace-pre-wrap"}
           IconTitle={false}
@@ -259,7 +260,7 @@ const Resume2 = forwardRef((props, ref) => {
         <List
           index={index}
           StyleContainer={"mb-2"}
-          StyleTitle={"text-lg font-bold border-b-4 border-yellow-500 "}
+          StyleTitle={"text-lg font-bold border-b-4 border-yellow-500 w-full"}
           styleContainerList={"mb-1"}
           styleList={"flex flex-row justify-between items-center"}
           StyleTitleList={"text-sm text-start"}
@@ -274,7 +275,7 @@ const Resume2 = forwardRef((props, ref) => {
         <SkillsSection
           index={index}
           StyleContainer={"mb-2"}
-          StyleTitle={"text-lg font-bold border-b-4 border-yellow-500"}
+          StyleTitle={"text-lg font-bold border-b-4 border-yellow-500 w-full"}
           styleContainerList={"mb-1"}
           styleList={"flex flex-row justify-between items-center"}
           StyleTitleSkill={"text-sm text-start"}

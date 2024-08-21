@@ -7,6 +7,7 @@ export default function Education(props) {
   const DataListEducation = useSelector(
     (state) => state.Education.DataListEducation
   );
+  const TitleEducation = useSelector((state) => state.Education.Title);
   return (
     <div>
       {(DataListEducation.length > 0 ||
@@ -20,7 +21,9 @@ export default function Education(props) {
           <div className={props.StyleTitleContainer}>
             <p className={props.StyleTitle}>
               {props.Icon && <CircleIcon sx={{ color: props.IconColor }} />}
-              <span className="">Education</span>
+              <span className="">
+                {TitleEducation.length > 0 ? TitleEducation : `Education`}
+              </span>
             </p>
           </div>
           <div className="mt-1">

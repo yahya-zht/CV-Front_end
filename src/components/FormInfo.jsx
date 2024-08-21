@@ -14,27 +14,40 @@ import AddForms from "./AddForms";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Courses from "./Forms/Courses";
 import { useSelector, useDispatch } from "react-redux";
-import { toggleFormCourse } from "../store/courseSlice";
+import { setCoursesTitle, toggleFormCourse } from "../store/courseSlice";
 import { Button } from "@mui/material";
 import Internships from "./Forms/Internships";
-import { toggleFormInternships } from "@/store/InternshipsSlice";
-import { toggleformCertificates } from "@/store/CertificatesSlice";
+import {
+  setInternshipsTitle,
+  toggleFormInternships,
+} from "@/store/InternshipsSlice";
+import {
+  setCertificatesTitle,
+  toggleformCertificates,
+} from "@/store/CertificatesSlice";
 import Certificates from "./Forms/Certificates";
-import { toggleFormQualities } from "@/store/QualitiesSlice";
+import { setQualitiesTitle, toggleFormQualities } from "@/store/QualitiesSlice";
 import Qualities from "./Forms/Qualities";
-import { toggleFormExtracurricularActivities } from "@/store/ExtracurricularActivitiesSlice";
+import {
+  setExtracurricularActivitiesTitle,
+  toggleFormExtracurricularActivities,
+} from "@/store/ExtracurricularActivitiesSlice";
 import ExtracurricularActivities from "./Forms/ExtracurricularActivities";
 import {
   setDataListReferences,
+  setReferencesTitle,
   toggleFormReferences,
 } from "@/store/ReferencesSlice";
 import References from "./Forms/References";
 import Footer from "./Forms/Footer";
 import { toggleFormFooter } from "@/store/FooterSlice";
 import Profile from "./Forms/Profile";
-import { toggleFormProfile } from "@/store/ProfileSlice";
+import { setProfileTitle, toggleFormProfile } from "@/store/ProfileSlice";
 import Achievements from "./Forms/Achievements";
-import { toggleFormAchievements } from "@/store/AchievementsSlice";
+import {
+  setAchievementsTitle,
+  toggleFormAchievements,
+} from "@/store/AchievementsSlice";
 import Entries from "./Forms/EntriesSection";
 import { useState } from "react";
 import {
@@ -47,6 +60,11 @@ import {
 import Description from "./Forms/DescriptionSection";
 import List from "./Forms/ListSection";
 import SkillsSection from "./Forms/SkillsSection";
+import { setEducationTitle } from "@/store/EducationSlice";
+import { setEmploymentTitle } from "@/store/EmploymentSlice";
+import { setSkillTitle } from "@/store/SkillsSlice";
+import { setLanguageTitle } from "@/store/LanguagesSlice";
+import { setHobbyTitle } from "@/store/HobbiesSlice";
 export default function FormInfo() {
   const dispatch = useDispatch();
   const formEntries = useSelector((state) => state.Section.formEntries);
@@ -57,6 +75,74 @@ export default function FormInfo() {
   const [DescriptionTitleList, setDescriptionTitleList] = useState([]);
   const [titleList, setTitleList] = useState([]);
   const [titleSkills, setTitleSkills] = useState([]);
+  const [titleEducation, setTitleEducation] = useState("");
+  const [titleEmployment, setTitleEmployment] = useState("");
+  const [titleSkill, setTitleSkill] = useState("");
+  const [titleLanguages, setTitleLanguages] = useState("");
+  const [titleHobby, setTitleHobby] = useState("");
+  const [titleAchievement, setTitleAchievement] = useState("");
+  const [titleCertificate, setTitleCertificate] = useState("");
+  const [titleCourse, setTitleCourse] = useState("");
+  const [titleExtracurricularActivities, setTitleExtracurricularActivities] =
+    useState("");
+  const [titleInternships, setTitleInternships] = useState("");
+  const [titleProfile, setTitleProfile] = useState("");
+  const [titleQualities, setTitleQualities] = useState("");
+  const [titleReferences, setTitleReferences] = useState("");
+
+  const handleTitleReferences = (title) => {
+    setTitleReferences(title);
+    dispatch(setReferencesTitle(title));
+  };
+  const handleTitleQualities = (title) => {
+    setTitleQualities(title);
+    dispatch(setQualitiesTitle(title));
+  };
+  const handleTitleCertificate = (title) => {
+    setTitleCertificate(title);
+    dispatch(setCertificatesTitle(title));
+  };
+  const handleTitleCourse = (title) => {
+    setTitleCourse(title);
+    dispatch(setCoursesTitle(title));
+  };
+  const handleTitleExtracurricularActivities = (title) => {
+    setTitleExtracurricularActivities(title);
+    dispatch(setExtracurricularActivitiesTitle(title));
+  };
+  const handleTitleProfile = (title) => {
+    setTitleProfile(title);
+    dispatch(setProfileTitle(title));
+  };
+  const handleTitleInternships = (title) => {
+    setTitleInternships(title);
+    dispatch(setInternshipsTitle(title));
+  };
+
+  const handleTitleAchievement = (title) => {
+    setTitleAchievement(title);
+    dispatch(setAchievementsTitle(title));
+  };
+  const handleTitleEducation = (title) => {
+    setTitleEducation(title);
+    dispatch(setEducationTitle(title));
+  };
+  const handleTitleEmployment = (title) => {
+    setTitleEmployment(title);
+    dispatch(setEmploymentTitle(title));
+  };
+  const handleTitleSkill = (title) => {
+    setTitleSkill(title);
+    dispatch(setSkillTitle(title));
+  };
+  const handleTitleLanguages = (title) => {
+    setTitleLanguages(title);
+    dispatch(setLanguageTitle(title));
+  };
+  const handleTitleHobbies = (title) => {
+    setTitleHobby(title);
+    dispatch(setHobbyTitle(title));
+  };
   const handleTitleChange = (index, title) => {
     setEntriesTitleList((prevList) => {
       const updatedList = [...prevList];
@@ -207,7 +293,14 @@ export default function FormInfo() {
             id="panel2-header"
             className="text-xl font-bold"
           >
-            Education / Formation
+            <input
+              type="text"
+              name=""
+              id=""
+              placeholder={` Education / Formation`}
+              value={titleEducation || ""}
+              onChange={(e) => handleTitleEducation(e.target.value)}
+            />
           </AccordionSummary>
           <AccordionDetails>
             <Education />
@@ -220,7 +313,14 @@ export default function FormInfo() {
             id="panel3-header"
             className="text-xl font-bold"
           >
-            Employment
+            <input
+              type="text"
+              name=""
+              id=""
+              placeholder={`Employment`}
+              value={titleEmployment || ""}
+              onChange={(e) => handleTitleEmployment(e.target.value)}
+            />
           </AccordionSummary>
           <AccordionDetails>
             <Employment />
@@ -233,7 +333,14 @@ export default function FormInfo() {
             id="panel3-header"
             className="text-xl font-bold"
           >
-            Skills
+            <input
+              type="text"
+              name=""
+              id=""
+              placeholder={`Skills`}
+              value={titleSkill || ""}
+              onChange={(e) => handleTitleSkill(e.target.value)}
+            />
           </AccordionSummary>
           <AccordionDetails>
             <Skills />
@@ -246,7 +353,14 @@ export default function FormInfo() {
             id="panel3-header"
             className="text-xl font-bold"
           >
-            Languages
+            <input
+              type="text"
+              name=""
+              id=""
+              placeholder={`Languages`}
+              value={titleLanguages || ""}
+              onChange={(e) => handleTitleLanguages(e.target.value)}
+            />
           </AccordionSummary>
           <AccordionDetails>
             <Languages />
@@ -259,7 +373,14 @@ export default function FormInfo() {
             id="panel3-header"
             className="text-xl font-bold"
           >
-            Hobbies
+            <input
+              type="text"
+              name=""
+              id=""
+              placeholder={`Hobbies`}
+              value={titleHobby || ""}
+              onChange={(e) => handleTitleHobbies(e.target.value)}
+            />
           </AccordionSummary>
           <AccordionDetails>
             <Hobbies />
@@ -273,7 +394,14 @@ export default function FormInfo() {
               id="panel3-header"
               className="text-xl font-bold"
             >
-              <span> Profile </span>
+              <input
+                type="text"
+                name=""
+                id=""
+                placeholder={`Profile`}
+                value={titleProfile || ""}
+                onChange={(e) => handleTitleProfile(e.target.value)}
+              />
             </AccordionSummary>
             <AccordionDetails>
               <Profile />
@@ -298,7 +426,14 @@ export default function FormInfo() {
               id="panel3-header"
               className="text-xl font-bold"
             >
-              <span> Courses </span>
+              <input
+                type="text"
+                name=""
+                id=""
+                placeholder={`Courses`}
+                value={titleCourse || ""}
+                onChange={(e) => handleTitleCourse(e.target.value)}
+              />
             </AccordionSummary>
             <AccordionDetails>
               <Courses />
@@ -323,7 +458,14 @@ export default function FormInfo() {
               id="panel3-header"
               className="text-xl font-bold"
             >
-              <span> Internships </span>
+              <input
+                type="text"
+                name=""
+                id=""
+                placeholder={`Internships`}
+                value={titleInternships || ""}
+                onChange={(e) => handleTitleInternships(e.target.value)}
+              />
             </AccordionSummary>
             <AccordionDetails>
               <Internships />
@@ -348,7 +490,14 @@ export default function FormInfo() {
               id="panel3-header"
               className="text-xl font-bold"
             >
-              <span> Certificates </span>
+              <input
+                type="text"
+                name=""
+                id=""
+                placeholder={`Certificates`}
+                value={titleCertificate || ""}
+                onChange={(e) => handleTitleCertificate(e.target.value)}
+              />
             </AccordionSummary>
             <AccordionDetails>
               <Certificates />
@@ -373,7 +522,15 @@ export default function FormInfo() {
               id="panel3-header"
               className="text-xl font-bold"
             >
-              <span> Qualities </span>
+              <span> </span>
+              <input
+                type="text"
+                name=""
+                id=""
+                placeholder={`Qualities`}
+                value={titleQualities || ""}
+                onChange={(e) => handleTitleQualities(e.target.value)}
+              />
             </AccordionSummary>
             <AccordionDetails>
               <Qualities />
@@ -398,7 +555,17 @@ export default function FormInfo() {
               id="panel3-header"
               className="text-xl font-bold"
             >
-              <span> Extracurricular Activities </span>
+              <span> </span>
+              <input
+                type="text"
+                name=""
+                id=""
+                placeholder={`Extracurricular Activities`}
+                value={titleExtracurricularActivities || ""}
+                onChange={(e) =>
+                  handleTitleExtracurricularActivities(e.target.value)
+                }
+              />
             </AccordionSummary>
             <AccordionDetails>
               <ExtracurricularActivities />
@@ -423,7 +590,14 @@ export default function FormInfo() {
               id="panel3-header"
               className="text-xl font-bold"
             >
-              <span> References </span>
+              <input
+                type="text"
+                name=""
+                id=""
+                placeholder={`References`}
+                value={titleReferences || ""}
+                onChange={(e) => handleTitleReferences(e.target.value)}
+              />
             </AccordionSummary>
             <AccordionDetails>
               <References />
@@ -448,7 +622,15 @@ export default function FormInfo() {
               id="panel3-header"
               className="text-xl font-bold"
             >
-              <span> Achievements </span>
+              <span> </span>
+              <input
+                type="text"
+                name=""
+                id=""
+                placeholder={`Achievements`}
+                value={titleAchievement || ""}
+                onChange={(e) => handleTitleAchievement(e.target.value)}
+              />
             </AccordionSummary>
             <AccordionDetails>
               <Achievements />

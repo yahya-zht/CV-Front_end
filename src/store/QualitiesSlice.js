@@ -4,6 +4,7 @@ export const QualitiesSlice = createSlice({
   name: "Qualities",
   initialState: {
     formQualities: false,
+    Title: "",
     QualitiesData: {},
     QualitiesList: [],
   },
@@ -17,10 +18,16 @@ export const QualitiesSlice = createSlice({
     setQualitiesList: (state, action) => {
       state.QualitiesList = action.payload;
     },
+    setQualitiesTitle: (state, action) => {
+      state.Title = action.payload;
+    },
   },
 });
 
-export const { toggleFormQualities } = QualitiesSlice.actions;
-export const { setQualitiesData } = QualitiesSlice.actions;
-export const { setQualitiesList } = QualitiesSlice.actions;
+export const {
+  toggleFormQualities,
+  setQualitiesTitle,
+  setQualitiesData,
+  setQualitiesList,
+} = QualitiesSlice.actions;
 export default QualitiesSlice.reducer;

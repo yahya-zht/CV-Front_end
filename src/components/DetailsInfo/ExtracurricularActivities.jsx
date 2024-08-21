@@ -13,6 +13,10 @@ export default function ExtracurricularActivities(props) {
   const ExtracurricularActivitiesList = useSelector(
     (state) => state.ExtracurricularActivities.ExtracurricularActivitiesList
   );
+  const TitleExtracurricularActivities = useSelector(
+    (state) => state.ExtracurricularActivities.Title
+  );
+
   return (
     <div>
       {formExtracurricularActivities && (
@@ -20,7 +24,11 @@ export default function ExtracurricularActivities(props) {
           <div className={props.StyleTitleContainer}>
             <p className={props.StyleTitle}>
               {props.Icon && <CircleIcon sx={{ color: props.IconColor }} />}
-              <span className="">Extracurricular Activities</span>
+              <span className="">
+                {TitleExtracurricularActivities.length > 0
+                  ? TitleExtracurricularActivities
+                  : `Extracurricular Activities`}
+              </span>
             </p>
           </div>
           <div className="mt-1">

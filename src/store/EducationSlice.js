@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const EducationSlice = createSlice({
   name: "Education",
   initialState: {
+    Title: "",
     DataEducation: [],
     DataListEducation: [],
   },
@@ -13,9 +14,12 @@ export const EducationSlice = createSlice({
     setDataListEducation: (state, action) => {
       state.DataListEducation = action.payload;
     },
+    setEducationTitle: (state, action) => {
+      state.Title = action.payload;
+    },
   },
 });
 
-export const { setDataListEducation } = EducationSlice.actions;
-export const { setDataEducation } = EducationSlice.actions;
+export const { setDataListEducation, setDataEducation, setEducationTitle } =
+  EducationSlice.actions;
 export default EducationSlice.reducer;

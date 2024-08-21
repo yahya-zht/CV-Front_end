@@ -8,12 +8,15 @@ export default function Achievements(props) {
   const AchievementsData = useSelector(
     (state) => state.Achievements.AchievementsData
   );
+  const TitleAchievement = useSelector((state) => state.Achievements.Title);
   return (
     <div>
       {formAchievements && (
         <div className={props.styleContainer}>
           <div className={props.StyleContainerTitle}>
-            <p className={props.StyleTitle}>Achievements</p>
+            <p className={props.StyleTitle}>
+              {TitleAchievement.length > 0 ? TitleAchievement : `Achievements`}
+            </p>
           </div>
           <p className={props.styleDescription}>
             {AchievementsData.descriptionAchievements}
