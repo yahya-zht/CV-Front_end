@@ -8,9 +8,12 @@ import { useDispatch } from "react-redux";
 import {
   setInternshipsData,
   setInternshipsList,
+  setEdit,
 } from "@/store/InternshipsSlice";
+import EditIcon from "@mui/icons-material/Edit";
+import SaveAsIcon from "@mui/icons-material/SaveAs";
 export default function Internships() {
-  const [id, setIdEmployment] = useState();
+  const [id, setIdInternships] = useState();
   const [listInternships, setListInternships] = useState([]);
   const [position, setPosition] = useState("");
   const [Internship, setInternship] = useState("");
@@ -22,6 +25,8 @@ export default function Internships() {
   const [descriptionInternship, setDescriptionInternship] = useState("");
   const [formInternships, setFormInternships] = useState(true);
   const [errorInternships, setErrorInternships] = useState("");
+  const [edit, setEditItem] = useState(false);
+
   const dispatch = useDispatch();
   const Internships = {
     position,
@@ -40,13 +45,16 @@ export default function Internships() {
   const handleForm = () => {
     setErrorInternships("");
     setFormInternships(true);
+    deleteForm();
+    setEditItem(false);
+    dispatch(setEdit(false));
   };
   const handleDelete = (Id) => {
     setListInternships((prev) => prev.filter((e) => e.id !== Id));
     listInternships.length == 1 && setFormInternships(true);
   };
   const deleteForm = () => {
-    setIdEmployment("");
+    setIdInternships("");
     setPosition("");
     setInternship("");
     setCityInternships("");
@@ -78,13 +86,7 @@ export default function Internships() {
         descriptionInternship,
       },
     ]);
-    console.log(
-      "listInternships.length ",
-      listInternships.length == 0
-        ? 1
-        : listInternships[listInternships.length - 1].id
-    );
-    setIdEmployment("");
+    setIdInternships("");
     setPosition("");
     setInternship("");
     setCityInternships("");
@@ -113,6 +115,57 @@ export default function Internships() {
 
   const years = Array.from({ length: 35 }, (_, i) => 2024 - i);
 
+  const handleEdit = (id) => {
+    setFormInternships(true);
+    const item = listInternships.find((e) => e.id === id);
+    if (item) {
+      setIdInternships(item.id);
+      dispatch(setEdit(true));
+      setPosition(item.position);
+      setInternship(item.Internship);
+      setCityInternships(item.cityInternship);
+      setStartMonthInternship(item.startMonthInternship);
+      setStartYearInternship(item.startYearInternship);
+      setEndMonthInternship(item.endMonthInternship);
+      setEndYearInternship(item.endYearInternship);
+      setDescriptionInternship(item.description);
+      setEditItem(true);
+    }
+  };
+  const handleUpdate = () => {
+    if (!position) {
+      setErrorhobbies("Position is required.");
+      return;
+    }
+    const updatedList = listInternships.map((item) =>
+      item.id === id
+        ? {
+            id,
+            position,
+            Internship,
+            cityInternship,
+            startMonthInternship,
+            startYearInternship,
+            endMonthInternship,
+            endYearInternship,
+            descriptionInternship,
+          }
+        : item
+    );
+    setListInternships(updatedList);
+    dispatch(setEdit(false));
+    setIdInternships("");
+    setPosition("");
+    setInternship("");
+    setCityInternships("");
+    setStartMonthInternship("");
+    setStartYearInternship("");
+    setEndMonthInternship("");
+    setEndYearInternship("");
+    setDescriptionInternship("");
+    setFormInternships(false);
+    setEditItem(false);
+  };
   return (
     <div className="">
       {formInternships && (
@@ -279,12 +332,21 @@ export default function Internships() {
             >
               <DeleteForeverIcon />
             </button>
-            <button
-              onClick={handleAdd}
-              className="p-1 pe-2 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
-            >
-              <DoneIcon /> Done
-            </button>
+            {edit ? (
+              <button
+                onClick={handleUpdate}
+                className="p-1 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
+              >
+                <SaveAsIcon /> Update
+              </button>
+            ) : (
+              <button
+                onClick={handleAdd}
+                className="p-1 pe-2 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
+              >
+                <DoneIcon /> Done
+              </button>
+            )}
           </div>
         </div>
       )}
@@ -304,6 +366,12 @@ export default function Internships() {
                 </p>
               </div>
               <div>
+                <button
+                  className="p-1 text-blue-900 hover:text-gray-500 me-2"
+                  onClick={() => handleEdit(item.id)}
+                >
+                  <EditIcon />
+                </button>
                 <button
                   className="p-1 text-red-600 hover:text-red-500 me-2"
                   onClick={() => handleDelete(item.id)}

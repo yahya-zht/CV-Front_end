@@ -6,6 +6,7 @@ export default function Courses(props) {
   const CourseData = useSelector((state) => state.course.CourseData);
   const CoursesList = useSelector((state) => state.course.CoursesList);
   const Titlecourse = useSelector((state) => state.course.Title);
+  const EditCourse = useSelector((state) => state.course.Edit);
 
   return (
     <div className={props.styleContainer}>
@@ -45,7 +46,7 @@ export default function Courses(props) {
                   </p>
                 </div>
               ))}
-            {CourseData.course && (
+            {CourseData.course && EditCourse == false && (
               <div className={props.styleContainerList}>
                 <div className={props.styleList}>
                   <p className={props.StyleTitleList}>

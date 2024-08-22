@@ -8,6 +8,7 @@ export default function Skills(props) {
   const DataSkill = useSelector((state) => state.Skills.DataSkill);
   const DataListSkills = useSelector((state) => state.Skills.DataListSkills);
   const TitleSkills = useSelector((state) => state.Skills.Title);
+  const EditSkills = useSelector((state) => state.Skills.Edit);
 
   const labels = {
     1: "Beginner",
@@ -73,7 +74,7 @@ export default function Skills(props) {
                   </div>
                 </div>
               ))}
-            {DataSkill.skill.length > 0 && (
+            {DataSkill.skill.length > 0 && EditSkills == false && (
               <div className={props.styleContainerList}>
                 <div className={props.styleList}>
                   <p className={props.StyleTitleSkill}>

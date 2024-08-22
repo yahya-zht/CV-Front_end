@@ -8,7 +8,14 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setDataLanguage, setDataListLanguages } from "@/store/LanguagesSlice";
+import {
+  setDataLanguage,
+  setDataListLanguages,
+  setEdit,
+} from "@/store/LanguagesSlice";
+import EditIcon from "@mui/icons-material/Edit";
+import SaveAsIcon from "@mui/icons-material/SaveAs";
+
 const units = [
   "Make a choice",
   "Beginner",
@@ -50,11 +57,13 @@ function calculateValue(value) {
   return value;
 }
 export default function Languages() {
+  const [id, setId] = useState();
   const [listLanguage, setlistLanguage] = useState([]);
   const [language, setlanguage] = useState("");
   const [value, setValue] = React.useState(0);
   const [errorlanguages, setErrorlanguages] = useState("");
   const [formlanguage, setFormlanguage] = useState(true);
+  const [edit, setEditItem] = useState(false);
 
   const dispatch = useDispatch();
   dispatch(setDataListLanguages(listLanguage));
@@ -75,6 +84,10 @@ export default function Languages() {
   const handleForm = () => {
     setErrorlanguages("");
     setFormlanguage(true);
+    deleteForm();
+    dispatch(setEdit(false));
+    setEditItem(false);
+
   };
   const deleteForm = () => {
     setlanguage("");
@@ -108,6 +121,40 @@ export default function Languages() {
     setValue(0);
     setErrorlanguages("");
     setFormlanguage(false);
+  };
+
+  const handleEdit = (id) => {
+    setFormlanguage(true);
+    const item = listLanguage.find((e) => e.id === id);
+    if (item) {
+      setId(item.id);
+      setEditItem(true);
+      dispatch(setEdit(true));
+      setlanguage(item.language);
+      setValue(item.value);
+    }
+  };
+  const handleUpdate = () => {
+    if (!language) {
+      setErrorlanguages("language is required");
+      return;
+    }
+    const updatedList = listLanguage.map((item) =>
+      item.id === id
+        ? {
+            id,
+            language,
+            value,
+          }
+        : item
+    );
+    dispatch(setEdit(false));
+    setlistLanguage(updatedList);
+    setFormlanguage(false);
+    setEditItem(false);
+    setId("");
+    setlanguage("");
+    setValue("");
   };
   return (
     <div>
@@ -159,12 +206,21 @@ export default function Languages() {
             >
               <DeleteForeverIcon />
             </button>
-            <button
-              onClick={handleAdd}
-              className="p-1 pe-2 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
-            >
-              <DoneIcon /> Done
-            </button>
+            {edit ? (
+              <button
+                onClick={handleUpdate}
+                className="p-1 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
+              >
+                <SaveAsIcon /> Update
+              </button>
+            ) : (
+              <button
+                onClick={handleAdd}
+                className="p-1 pe-2 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
+              >
+                <DoneIcon /> Done
+              </button>
+            )}
           </div>
         </div>
       )}
@@ -182,6 +238,12 @@ export default function Languages() {
                 </p>
               </div>
               <div>
+                <button
+                  className="p-1 text-blue-900 hover:text-gray-500 me-2"
+                  onClick={() => handleEdit(item.id)}
+                >
+                  <EditIcon />
+                </button>
                 <button
                   className="p-1 text-red-600 hover:text-red-500 me-2"
                   onClick={() => handleDelete(item.id)}

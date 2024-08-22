@@ -4,6 +4,7 @@ export const HobbiesSlice = createSlice({
   name: "Hobby",
   initialState: {
     Title: "",
+    Edit: "",
     DataHobby: [],
     DataListHobbies: [],
   },
@@ -17,9 +18,12 @@ export const HobbiesSlice = createSlice({
     setHobbyTitle: (state, action) => {
       state.Title = action.payload;
     },
+    setEdit: (state, action) => {
+      state.Edit = action.payload;
+    },
   },
 });
 
-export const { setDataListHobbies, setDataHobby, setHobbyTitle } =
+export const { setDataListHobbies, setDataHobby, setHobbyTitle, setEdit } =
   HobbiesSlice.actions;
 export default HobbiesSlice.reducer;

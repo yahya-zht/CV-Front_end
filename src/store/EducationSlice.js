@@ -4,6 +4,7 @@ export const EducationSlice = createSlice({
   name: "Education",
   initialState: {
     Title: "",
+    Edit: false,
     DataEducation: [],
     DataListEducation: [],
   },
@@ -17,9 +18,16 @@ export const EducationSlice = createSlice({
     setEducationTitle: (state, action) => {
       state.Title = action.payload;
     },
+    setEdit: (state, action) => {
+      state.Edit = action.payload;
+    },
   },
 });
 
-export const { setDataListEducation, setDataEducation, setEducationTitle } =
-  EducationSlice.actions;
+export const {
+  setDataListEducation,
+  setDataEducation,
+  setEducationTitle,
+  setEdit,
+} = EducationSlice.actions;
 export default EducationSlice.reducer;

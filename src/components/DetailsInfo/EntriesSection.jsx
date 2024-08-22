@@ -4,6 +4,7 @@ import CircleIcon from "@mui/icons-material/Circle";
 
 export default function EntriesSection(props) {
   const Title = useSelector((state) => state.Section.EntriesTitle[props.index]);
+  const Edit = useSelector((state) => state.Section.EditEntries[props.index]);
   const Entries = useSelector(
     (state) => state.Section.DataEntries[props.index]
   );
@@ -63,28 +64,29 @@ export default function EntriesSection(props) {
               Entries.endYear ||
               Entries.description ||
               Entries.summary ||
-              Entries.city) && (
-              <div className={props.styleContainerList}>
-                <p className="">
-                  <div className={props.styleList}>
-                    <p className={props.StyleTitleList}>{Entries.title}</p>
-                    <p className={props.styleDate}>
-                      {Entries.startMonth} {Entries.startYear} -{" "}
-                      {Entries.endMonth} {Entries.endYear}
+              Entries.city) &&
+              (Edit == false || Edit == undefined) && (
+                <div className={props.styleContainerList}>
+                  <p className="">
+                    <div className={props.styleList}>
+                      <p className={props.StyleTitleList}>{Entries.title}</p>
+                      <p className={props.styleDate}>
+                        {Entries.startMonth} {Entries.startYear} -{" "}
+                        {Entries.endMonth} {Entries.endYear}
+                      </p>
+                    </div>
+                    {(Entries.summary || Entries.city) && (
+                      <p className={props.styleCity}>
+                        {Entries.summary}
+                        <span>, {Entries.city}</span>
+                      </p>
+                    )}
+                    <p className={props.StyleDescription}>
+                      {Entries.description}
                     </p>
-                  </div>
-                  {(Entries.summary || Entries.city) && (
-                    <p className={props.styleCity}>
-                      {Entries.summary}
-                      <span>, {Entries.city}</span>
-                    </p>
-                  )}
-                  <p className={props.StyleDescription}>
-                    {Entries.description}
                   </p>
-                </p>
-              </div>
-            )}
+                </div>
+              )}
           </div>
         )}
       </div>

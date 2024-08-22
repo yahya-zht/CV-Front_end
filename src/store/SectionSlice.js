@@ -3,14 +3,17 @@ export const SectionSlice = createSlice({
   name: "Section",
   initialState: {
     formEntries: 0,
+    EditEntries: [],
     EntriesTitle: [],
     DataEntries: [],
     ListDataEntries: [],
     formSkills: 0,
+    EditSkills: [],
     SkillsTitle: [],
     DataSkills: [],
     ListDataSkills: [],
     formList: 0,
+    EditList: [],
     ListTitle: [],
     DataList: [],
     ListDataList: [],
@@ -25,6 +28,10 @@ export const SectionSlice = createSlice({
       state.EntriesTitle.push({});
       state.DataEntries.push({});
       state.ListDataEntries.push([]);
+    },
+    setEditEntries: (state, action) => {
+      const { index, data } = action.payload;
+      state.EditEntries[index] = data;
     },
     setEntriesTitle: (state, action) => {
       const { index, data } = action.payload;
@@ -44,6 +51,10 @@ export const SectionSlice = createSlice({
       state.DataSkills.push({});
       state.ListDataSkills.push([]);
     },
+    setEditSkills: (state, action) => {
+      const { index, data } = action.payload;
+      state.EditSkills[index] = data;
+    },
     setSkillsTitle: (state, action) => {
       const { index, data } = action.payload;
       state.SkillsTitle[index] = data;
@@ -61,6 +72,10 @@ export const SectionSlice = createSlice({
       state.ListTitle.push({});
       state.DataList.push({});
       state.ListDataList.push([]);
+    },
+    setEditList: (state, action) => {
+      const { index, data } = action.payload;
+      state.EditList[index] = data;
     },
     setListTitle: (state, action) => {
       const { index, data } = action.payload;
@@ -124,9 +139,6 @@ export const SectionSlice = createSlice({
         default:
           break;
       }
-      console.log("DataEntries======>>>", state.DataEntries);
-      console.log("EntriesTitle=====>>>", state.EntriesTitle);
-      console.log("ListDataEntries==>>>", state.ListDataEntries);
     },
   },
 });
@@ -149,6 +161,9 @@ export const {
   setDataDescription,
   setListDataDescription,
   setDelete,
+  setEditEntries,
+  setEditSkills,
+  setEditList,
 } = SectionSlice.actions;
 
 export default SectionSlice.reducer;

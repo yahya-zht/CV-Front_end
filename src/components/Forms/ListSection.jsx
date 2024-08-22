@@ -5,13 +5,22 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setDataList, setListDataList } from "@/store/SectionSlice";
+import {
+  setDataList,
+  setListDataList,
+  setEditList,
+} from "@/store/SectionSlice";
+import EditIcon from "@mui/icons-material/Edit";
+import SaveAsIcon from "@mui/icons-material/SaveAs";
 
 export default function List(props) {
+  const [id, setId] = useState();
   const [list, setList] = useState([]);
   const [title, setTitle] = useState("");
   const [errorList, setErrorList] = useState("");
   const [formList, setFormList] = useState(true);
+  const [edit, setEditItem] = useState(false);
+
   const ListData = useSelector(
     (state) => state.Section.ListDataList[props.index]
   );
@@ -34,6 +43,9 @@ export default function List(props) {
     list.length == 1 && setFormList(true);
   };
   const handleForm = () => {
+    dispatch(setEditList({ index: props.index, data: false }));
+    setEditItem(false);
+    setTitle("");
     setErrorList("");
     setFormList(true);
   };
@@ -59,6 +71,37 @@ export default function List(props) {
     setTitle("");
     setErrorList("");
     setFormList(false);
+  };
+  const handleEdit = (id) => {
+    setFormList(true);
+    const item = list.find((e) => e.id === id);
+    if (item) {
+      setId(item.id);
+      setTitle(item.title);
+      setEditItem(true);
+      dispatch(setEditList({ index: props.index, data: true }));
+    }
+  };
+  const handleUpdate = () => {
+    if (!title) {
+      setErrorList("Title is required");
+      return;
+    }
+    const updatedList = list.map((item) =>
+      item.id === id
+        ? {
+            id,
+            title,
+          }
+        : item
+    );
+    dispatch(setEditList({ index: props.index, data: false }));
+    setList(updatedList);
+    setFormList(false);
+    setEditItem(false);
+    setId(null);
+    setErrorList("");
+    setTitle("");
   };
   return (
     <div>
@@ -90,12 +133,21 @@ export default function List(props) {
             >
               <DeleteForeverIcon />
             </button>
-            <button
-              onClick={handleAdd}
-              className="p-1 pe-2 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
-            >
-              <DoneIcon /> Done
-            </button>
+            {edit ? (
+              <button
+                onClick={handleUpdate}
+                className="p-1 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
+              >
+                <SaveAsIcon /> Update
+              </button>
+            ) : (
+              <button
+                onClick={handleAdd}
+                className="p-1 pe-2 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
+              >
+                <DoneIcon /> Done
+              </button>
+            )}
           </div>
         </div>
       )}
@@ -110,6 +162,12 @@ export default function List(props) {
                 <p>{item.title}</p>
               </div>
               <div>
+                <button
+                  className="p-1 text-blue-900 hover:text-gray-500 me-2"
+                  onClick={() => handleEdit(item.id)}
+                >
+                  <EditIcon />
+                </button>
                 <button
                   className="p-1 text-red-600 hover:text-red-500 me-2"
                   onClick={() => handleDelete(item.id)}

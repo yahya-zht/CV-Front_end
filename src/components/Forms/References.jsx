@@ -8,7 +8,10 @@ import { useDispatch } from "react-redux";
 import {
   setDataListReferences,
   setDataReferences,
+  setEdit,
 } from "@/store/ReferencesSlice";
+import EditIcon from "@mui/icons-material/Edit";
+import SaveAsIcon from "@mui/icons-material/SaveAs";
 export default function References() {
   const [id, setIdReference] = useState();
   const [listReferences, setListReferences] = useState([]);
@@ -19,6 +22,7 @@ export default function References() {
   const [email, setEmail] = useState("");
   const [formReferences, setFormReferences] = useState(true);
   const [errorReferences, setErrorReferences] = useState("");
+  const [edit, setEditItem] = useState(false);
 
   const dispatch = useDispatch();
   dispatch(setDataListReferences(listReferences));
@@ -33,6 +37,9 @@ export default function References() {
   const handleForm = () => {
     setErrorReferences("");
     setFormReferences(true);
+    deleteForm();
+    setEditItem(false);
+    dispatch(setEdit(false));
   };
   const handleDelete = (Id) => {
     setListReferences((prev) => prev.filter((e) => e.id !== Id));
@@ -94,6 +101,50 @@ export default function References() {
     "November",
     "December",
   ];
+  const handleEdit = (id) => {
+    setFormReferences(true);
+    const item = listReferences.find((e) => e.id === id);
+    if (item) {
+      setEditItem(true);
+      dispatch(setEdit(true));
+      setIdReference(item.id);
+      setName(item.name);
+      setOrganization(item.organization);
+      setCityReferences(item.cityReferences);
+      setPhoneNumber(item.phoneNumber);
+      setEmail(item.email);
+      setErrorReferences("");
+    }
+  };
+  const handleUpdate = () => {
+    if (!name) {
+      setErrorReferences("name is required.");
+      return;
+    }
+    const updatedList = listReferences.map((item) =>
+      item.id === id
+        ? {
+            id,
+            name,
+            organization,
+            cityReferences,
+            phoneNumber,
+            email,
+          }
+        : item
+    );
+    setListReferences(updatedList);
+    dispatch(setEdit(false));
+    setEditItem(false);
+    setIdReference("");
+    setIdReference("");
+    setName("");
+    setOrganization("");
+    setCityReferences("");
+    setPhoneNumber("");
+    setEmail("");
+    setFormReferences(false);
+  };
   return (
     <div className="">
       {formReferences && (
@@ -193,12 +244,21 @@ export default function References() {
             >
               <DeleteForeverIcon />
             </button>
-            <button
-              onClick={handleAdd}
-              className="p-1 pe-2 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
-            >
-              <DoneIcon /> Done
-            </button>
+            {edit ? (
+              <button
+                onClick={handleUpdate}
+                className="p-1 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
+              >
+                <SaveAsIcon /> Update
+              </button>
+            ) : (
+              <button
+                onClick={handleAdd}
+                className="p-1 pe-2 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
+              >
+                <DoneIcon /> Done
+              </button>
+            )}
           </div>
         </div>
       )}
@@ -218,6 +278,12 @@ export default function References() {
                 </p>
               </div>
               <div>
+                <button
+                  className="p-1 text-blue-900 hover:text-gray-500 me-2"
+                  onClick={() => handleEdit(item.id)}
+                >
+                  <EditIcon />
+                </button>
                 <button
                   className="p-1 text-red-600 hover:text-red-500 me-2"
                   onClick={() => handleDelete(item.id)}

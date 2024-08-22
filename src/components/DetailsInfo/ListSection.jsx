@@ -3,6 +3,7 @@ import CircleIcon from "@mui/icons-material/Circle";
 import { useSelector } from "react-redux";
 export default function List(props) {
   const Title = useSelector((state) => state.Section.ListTitle[props.index]);
+  const Edit = useSelector((state) => state.Section.EditList[props.index]);
   const titleList = useSelector((state) => state.Section.DataList[props.index]);
   const List = useSelector((state) => state.Section.ListDataList[props.index]);
   return (
@@ -26,7 +27,8 @@ export default function List(props) {
               </div>
             </div>
           ))}
-        {titleList.title && (
+
+        {titleList.title && (Edit == false || Edit == undefined) && (
           <div className="list-disc">
             <div className={props.styleList}>
               <p className={props.StyleTitleList}>

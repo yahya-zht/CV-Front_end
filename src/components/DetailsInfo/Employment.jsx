@@ -9,6 +9,7 @@ export default function Employment(props) {
     (state) => state.Employment.DataListEmployment
   );
   const TitleEmployment = useSelector((state) => state.Employment.Title);
+  const EditEmployment = useSelector((state) => state.Employment.Edit);
 
   return (
     <div>
@@ -65,33 +66,34 @@ export default function Employment(props) {
               DataEmployment.endYearEmployment ||
               DataEmployment.descriptionEmployment ||
               DataEmployment.employer ||
-              DataEmployment.cityEmployment) && (
-              <div className={props.styleContainerList}>
-                <p className="">
-                  <div className={props.styleList}>
-                    <p className={props.StyleTitleList}>
-                      {DataEmployment.position}
+              DataEmployment.cityEmployment) &&
+              EditEmployment == false && (
+                <div className={props.styleContainerList}>
+                  <p className="">
+                    <div className={props.styleList}>
+                      <p className={props.StyleTitleList}>
+                        {DataEmployment.position}
+                      </p>
+                      <p className={props.styleDate}>
+                        {DataEmployment.startMonthEmployment}{" "}
+                        {DataEmployment.startYearEmployment} -{" "}
+                        {DataEmployment.endMonthEmployment}{" "}
+                        {DataEmployment.endYearEmployment}
+                      </p>
+                    </div>
+                    {(DataEmployment.employer ||
+                      DataEmployment.cityEmployment) && (
+                      <p className={props.styleCity}>
+                        {DataEmployment.employer}
+                        <span>, {DataEmployment.cityEmployment}</span>
+                      </p>
+                    )}
+                    <p className={props.StyleDescription}>
+                      {DataEmployment.descriptionEmployment}
                     </p>
-                    <p className={props.styleDate}>
-                      {DataEmployment.startMonthEmployment}{" "}
-                      {DataEmployment.startYearEmployment} -{" "}
-                      {DataEmployment.endMonthEmployment}{" "}
-                      {DataEmployment.endYearEmployment}
-                    </p>
-                  </div>
-                  {(DataEmployment.employer ||
-                    DataEmployment.cityEmployment) && (
-                    <p className={props.styleCity}>
-                      {DataEmployment.employer}
-                      <span>, {DataEmployment.cityEmployment}</span>
-                    </p>
-                  )}
-                  <p className={props.StyleDescription}>
-                    {DataEmployment.descriptionEmployment}
                   </p>
-                </p>
-              </div>
-            )}
+                </div>
+              )}
           </div>
         </div>
       )}

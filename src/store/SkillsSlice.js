@@ -4,6 +4,7 @@ export const SkillsSlice = createSlice({
   name: "Skill",
   initialState: {
     Title: "",
+    Edit: "",
     DataSkill: [],
     DataListSkills: [],
   },
@@ -17,9 +18,12 @@ export const SkillsSlice = createSlice({
     setSkillTitle: (state, action) => {
       state.Title = action.payload;
     },
+    setEdit: (state, action) => {
+      state.Edit = action.payload;
+    },
   },
 });
 
-export const { setDataListSkills, setDataSkill, setSkillTitle } =
+export const { setDataListSkills, setDataSkill, setSkillTitle, setEdit } =
   SkillsSlice.actions;
 export default SkillsSlice.reducer;

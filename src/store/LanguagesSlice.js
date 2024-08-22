@@ -4,6 +4,7 @@ export const LanguagesSlice = createSlice({
   name: "Language",
   initialState: {
     Title: "",
+    Edit: "",
     DataLanguage: [],
     DataListLanguages: [],
   },
@@ -17,9 +18,16 @@ export const LanguagesSlice = createSlice({
     setLanguageTitle: (state, action) => {
       state.Title = action.payload;
     },
+    setEdit: (state, action) => {
+      state.Edit = action.payload;
+    },
   },
 });
 
-export const { setDataListLanguages, setDataLanguage, setLanguageTitle } =
-  LanguagesSlice.actions;
+export const {
+  setDataListLanguages,
+  setDataLanguage,
+  setLanguageTitle,
+  setEdit,
+} = LanguagesSlice.actions;
 export default LanguagesSlice.reducer;

@@ -5,13 +5,21 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setQualitiesData, setQualitiesList } from "@/store/QualitiesSlice";
+import {
+  setQualitiesData,
+  setQualitiesList,
+  setEdit,
+} from "@/store/QualitiesSlice";
+import EditIcon from "@mui/icons-material/Edit";
+import SaveAsIcon from "@mui/icons-material/SaveAs";
 
 export default function Qualities() {
+  const [id, setId] = useState([]);
   const [listQualities, setListQualities] = useState([]);
   const [quality, setQuality] = useState("");
   const [errorqualities, setErrorqualities] = useState("");
   const [formqualities, setFormqualities] = useState(true);
+  const [edit, setEditItem] = useState(false);
 
   const dispatch = useDispatch();
   const QualitiesData = {
@@ -27,6 +35,9 @@ export default function Qualities() {
   const handleForm = () => {
     setErrorqualities("");
     setFormqualities(true);
+    dispatch(setEdit(false));
+    setEditItem(false);
+    deleteForm();
   };
   const deleteForm = () => {
     setQuality("");
@@ -58,6 +69,37 @@ export default function Qualities() {
     setErrorqualities("");
     setFormqualities(false);
   };
+  const handleEdit = (id) => {
+    setFormqualities(true);
+    const item = listQualities.find((e) => e.id === id);
+    if (item) {
+      setId(item.id);
+      setEditItem(true);
+      dispatch(setEdit(true));
+      setQuality(item.quality);
+    }
+  };
+  const handleUpdate = () => {
+    if (!quality) {
+      setErrorqualities("Quality is required");
+      return;
+    }
+    const updatedList = listQualities.map((item) =>
+      item.id === id
+        ? {
+            id,
+            quality,
+          }
+        : item
+    );
+    setListQualities(updatedList);
+    dispatch(setEdit(false));
+    setEditItem(false);
+    setFormqualities(false);
+    setErrorqualities("");
+    setId("");
+    setQuality("");
+  };
   return (
     <div>
       {formqualities && (
@@ -88,12 +130,21 @@ export default function Qualities() {
             >
               <DeleteForeverIcon />
             </button>
-            <button
-              onClick={handleAdd}
-              className="p-1 pe-2 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
-            >
-              <DoneIcon /> Done
-            </button>
+            {edit ? (
+              <button
+                onClick={handleUpdate}
+                className="p-1 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
+              >
+                <SaveAsIcon /> Update
+              </button>
+            ) : (
+              <button
+                onClick={handleAdd}
+                className="p-1 pe-2 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
+              >
+                <DoneIcon /> Done
+              </button>
+            )}
           </div>
         </div>
       )}
@@ -108,6 +159,12 @@ export default function Qualities() {
                 <p>{item.quality}</p>
               </div>
               <div>
+                <button
+                  className="p-1 text-blue-900 hover:text-gray-500 me-2"
+                  onClick={() => handleEdit(item.id)}
+                >
+                  <EditIcon />
+                </button>
                 <button
                   className="p-1 text-red-600 hover:text-red-500 me-2"
                   onClick={() => handleDelete(item.id)}

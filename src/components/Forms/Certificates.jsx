@@ -8,7 +8,11 @@ import { useDispatch } from "react-redux";
 import {
   setCertificateData,
   setCertificatesList,
+  setEdit,
 } from "@/store/CertificatesSlice";
+import EditIcon from "@mui/icons-material/Edit";
+import SaveAsIcon from "@mui/icons-material/SaveAs";
+
 export default function Certificates() {
   const [id, setIdCertificate] = useState();
   const [listCertificates, setListCertificates] = useState([]);
@@ -18,6 +22,7 @@ export default function Certificates() {
   const [descriptionCertificate, setDescriptionCertificate] = useState("");
   const [formCertificate, setFormCertificate] = useState(true);
   const [errorCertificate, setErrorCertificate] = useState("");
+  const [edit, setEditCertificate] = useState(false);
   const dispatch = useDispatch();
   const CertificatesData = {
     Certificate,
@@ -31,6 +36,9 @@ export default function Certificates() {
   const handleForm = () => {
     setErrorCertificate("");
     setFormCertificate(true);
+    deleteForm();
+    setEditCertificate(false);
+    dispatch(setEdit(false));
   };
   const handleDelete = (Id) => {
     setListCertificates((prev) => prev.filter((e) => e.id !== Id));
@@ -84,6 +92,46 @@ export default function Certificates() {
     "December",
   ];
   const years = Array.from({ length: 35 }, (_, i) => 2024 - i);
+
+  const handleEdit = (id) => {
+    setFormCertificate(true);
+    const item = listCertificates.find((e) => e.id === id);
+    if (item) {
+      setIdCertificate(item.id);
+      setCertificate(item.Certificate);
+      setMonthCertificate(item.monthCertificate);
+      setYearCertificate(item.yearCertificate);
+      setDescriptionCertificate(item.descriptionCertificate);
+      setEditCertificate(true);
+      dispatch(setEdit(true));
+    }
+  };
+  const handleUpdate = () => {
+    if (!Certificate) {
+      setErrorCertificate("Education is required.");
+      return;
+    }
+    const updatedList = listCertificates.map((item) =>
+      item.id === id
+        ? {
+            id,
+            Certificate,
+            monthCertificate,
+            yearCertificate,
+            descriptionCertificate,
+          }
+        : item
+    );
+    setListCertificates(updatedList);
+    setFormCertificate(false);
+    setIdCertificate("");
+    setCertificate("");
+    setMonthCertificate("");
+    setYearCertificate("");
+    setDescriptionCertificate("");
+    setEditCertificate(false);
+    dispatch(setEdit(false));
+  };
 
   return (
     <div className="">
@@ -174,12 +222,21 @@ export default function Certificates() {
             >
               <DeleteForeverIcon />
             </button>
-            <button
-              onClick={handleAdd}
-              className="p-1 pe-2 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
-            >
-              <DoneIcon /> Done
-            </button>
+            {edit ? (
+              <button
+                onClick={handleUpdate}
+                className="p-1 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
+              >
+                <SaveAsIcon /> Update
+              </button>
+            ) : (
+              <button
+                onClick={handleAdd}
+                className="p-1 pe-2 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
+              >
+                <DoneIcon /> Done
+              </button>
+            )}
           </div>
         </div>
       )}
@@ -195,6 +252,12 @@ export default function Certificates() {
                 <p>{item.Certificate}</p>
               </div>
               <div>
+                <button
+                  className="p-1 text-blue-900 hover:text-gray-500 me-2"
+                  onClick={() => handleEdit(item.id)}
+                >
+                  <EditIcon />
+                </button>
                 <button
                   className="p-1 text-red-600 hover:text-red-500 me-2"
                   onClick={() => handleDelete(item.id)}

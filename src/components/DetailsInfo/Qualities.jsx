@@ -6,6 +6,7 @@ export default function Qualities(props) {
   const QualitiesData = useSelector((state) => state.Qualities.QualitiesData);
   const QualitiesList = useSelector((state) => state.Qualities.QualitiesList);
   const TitleQualities = useSelector((state) => state.Qualities.Title);
+  const EditQualities = useSelector((state) => state.Qualities.Edit);
 
   return (
     <div>
@@ -30,7 +31,7 @@ export default function Qualities(props) {
                   </div>
                 </div>
               ))}
-            {QualitiesData.quality && (
+            {QualitiesData.quality && EditQualities == false && (
               <div className="list-disc">
                 <div className={props.styleList}>
                   <p className={props.StyleTitleList}>

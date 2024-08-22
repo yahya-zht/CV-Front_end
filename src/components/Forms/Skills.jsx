@@ -8,7 +8,10 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setDataListSkills, setDataSkill } from "@/store/SkillsSlice";
+import { setDataListSkills, setDataSkill, setEdit } from "@/store/SkillsSlice";
+import EditIcon from "@mui/icons-material/Edit";
+import SaveAsIcon from "@mui/icons-material/SaveAs";
+
 const units = [
   "Make a choice",
   "Beginner",
@@ -50,12 +53,13 @@ function calculateValue(value) {
   return value;
 }
 export default function Skills() {
-  const [idSkill, setIdSkill] = useState("");
+  const [id, setIdSkill] = useState("");
   const [listSkills, setListSkills] = useState([]);
   const [skill, setSkill] = useState("");
   const [value, setValue] = React.useState(0);
   const [errorSkills, setErrorSkills] = useState("");
   const [formSkill, setFormSkill] = useState(true);
+  const [edit, setEditItem] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -77,6 +81,9 @@ export default function Skills() {
   const handleForm = () => {
     setErrorSkills("");
     setFormSkill(true);
+    dispatch(setEdit(false));
+    setEditItem(false);
+    deleteForm();
   };
   const deleteForm = () => {
     setSkill("");
@@ -104,6 +111,39 @@ export default function Skills() {
     setValue(0);
     setErrorSkills("");
     setFormSkill(false);
+  };
+  const handleEdit = (id) => {
+    setFormSkill(true);
+    const item = listSkills.find((e) => e.id === id);
+    if (item) {
+      setEditItem(true);
+      dispatch(setEdit(true));
+      setIdSkill(item.id);
+      setSkill(item.skill);
+      setValue(item.value);
+    }
+  };
+  const handleUpdate = () => {
+    if (!skill) {
+      setErrorSkills("Skill is required");
+      return;
+    }
+    const updatedList = listSkills.map((item) =>
+      item.id === id
+        ? {
+            id,
+            skill,
+            value,
+          }
+        : item
+    );
+    setListSkills(updatedList);
+    dispatch(setEdit(false));
+    setEditItem(false);
+    setFormSkill(false);
+    setIdSkill("");
+    setSkill("");
+    setValue("");
   };
   return (
     <div>
@@ -155,12 +195,21 @@ export default function Skills() {
             >
               <DeleteForeverIcon />
             </button>
-            <button
-              onClick={handleAdd}
-              className="p-1 pe-2 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
-            >
-              <DoneIcon /> Done
-            </button>
+            {edit ? (
+              <button
+                onClick={handleUpdate}
+                className="p-1 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
+              >
+                <SaveAsIcon /> Update
+              </button>
+            ) : (
+              <button
+                onClick={handleAdd}
+                className="p-1 pe-2 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
+              >
+                <DoneIcon /> Done
+              </button>
+            )}
           </div>
         </div>
       )}
@@ -178,6 +227,12 @@ export default function Skills() {
                 </p>
               </div>
               <div>
+                <button
+                  className="p-1 text-blue-900 hover:text-gray-500 me-2"
+                  onClick={() => handleEdit(item.id)}
+                >
+                  <EditIcon />
+                </button>
                 <button
                   className="p-1 text-red-600 hover:text-red-500 me-2"
                   onClick={() => handleDelete(item.id)}

@@ -5,6 +5,7 @@ export const CertificatesSlice = createSlice({
   initialState: {
     formCertificates: false,
     Title: "",
+    Edit: "",
     CertificateData: {},
     CertificatesList: [],
   },
@@ -21,6 +22,9 @@ export const CertificatesSlice = createSlice({
     setCertificatesTitle: (state, action) => {
       state.Title = action.payload;
     },
+    setEdit: (state, action) => {
+      state.Edit = action.payload;
+    },
   },
 });
 
@@ -29,5 +33,6 @@ export const {
   setCertificateData,
   setCertificatesList,
   setCertificatesTitle,
+  setEdit,
 } = CertificatesSlice.actions;
 export default CertificatesSlice.reducer;

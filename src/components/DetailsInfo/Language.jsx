@@ -11,6 +11,7 @@ export default function Language(props) {
   );
   const DataLanguage = useSelector((state) => state.Languages.DataLanguage);
   const TitleLanguage = useSelector((state) => state.Languages.Title);
+  const EditLanguage = useSelector((state) => state.Languages.Edit);
 
   const StyledRating = styled(Rating)({
     "& .MuiRating-iconFilled": {
@@ -69,7 +70,7 @@ export default function Language(props) {
                   </div>
                 </div>
               ))}
-            {DataLanguage.language.length > 0 && (
+            {DataLanguage.language.length > 0 && EditLanguage == false && (
               <div className={props.styleContainerList}>
                 <div className={props.styleList}>
                   <p className={props.StyleTitleSkill}>

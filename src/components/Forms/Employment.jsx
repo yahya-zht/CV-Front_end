@@ -8,7 +8,11 @@ import { useDispatch } from "react-redux";
 import {
   setDataEmployment,
   setDataListEmployment,
+  setEdit,
 } from "@/store/EmploymentSlice";
+import EditIcon from "@mui/icons-material/Edit";
+import SaveAsIcon from "@mui/icons-material/SaveAs";
+
 export default function Employment() {
   const [id, setIdEmployment] = useState();
   const [listEmployment, setListEmployment] = useState([]);
@@ -22,6 +26,7 @@ export default function Employment() {
   const [descriptionEmployment, setDescriptionEmployment] = useState("");
   const [formEmployment, setFormEmployment] = useState(true);
   const [errorEmployment, setErrorEmployment] = useState("");
+  const [edit, setEditEmployment] = useState(false);
 
   const dispatch = useDispatch();
   dispatch(setDataListEmployment(listEmployment));
@@ -41,6 +46,9 @@ export default function Employment() {
   const handleForm = () => {
     setErrorEmployment("");
     setFormEmployment(true);
+    dispatch(setEdit(false));
+    deleteForm();
+    setEditEmployment(false);
   };
   const handleDelete = (Id) => {
     setListEmployment((prev) => prev.filter((e) => e.id !== Id));
@@ -113,7 +121,57 @@ export default function Employment() {
   ];
 
   const years = Array.from({ length: 35 }, (_, i) => 2024 - i);
-
+  const handleEdit = (id) => {
+    setFormEmployment(true);
+    const item = listEmployment.find((e) => e.id === id);
+    if (item) {
+      setIdEmployment(item.id);
+      setPosition(item.position);
+      setEmployer(item.employer);
+      setCityEmployment(item.cityEmployment);
+      setStartMonthEmployment(item.startMonthEmployment);
+      setStartYearEmployment(item.startYearEmployment);
+      setEndMonthEmployment(item.endMonthEmployment);
+      setEndYearEmployment(item.endYearEmployment);
+      setDescriptionEmployment(item.descriptionEmployment);
+      setEditEmployment(true);
+      dispatch(setEdit(true));
+    }
+  };
+  const handleUpdate = () => {
+    if (!position) {
+      setErrorEmployment("Position is required.");
+      return;
+    }
+    const updatedList = listEmployment.map((item) =>
+      item.id === id
+        ? {
+            id,
+            position,
+            employer,
+            cityEmployment,
+            startMonthEmployment,
+            startYearEmployment,
+            endMonthEmployment,
+            endYearEmployment,
+            descriptionEmployment,
+          }
+        : item
+    );
+    setListEmployment(updatedList);
+    setFormEmployment(false);
+    setEditEmployment(false);
+    setIdEmployment("");
+    setPosition("");
+    setEmployer("");
+    setCityEmployment("");
+    setStartMonthEmployment("");
+    setStartYearEmployment("");
+    setEndMonthEmployment("");
+    setEndYearEmployment("");
+    setDescriptionEmployment("");
+    dispatch(setEdit(false));
+  };
   return (
     <div className="">
       {formEmployment && (
@@ -280,12 +338,21 @@ export default function Employment() {
             >
               <DeleteForeverIcon />
             </button>
-            <button
-              onClick={handleAdd}
-              className="p-1 pe-2 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
-            >
-              <DoneIcon /> Done
-            </button>
+            {edit ? (
+              <button
+                onClick={handleUpdate}
+                className="p-1 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
+              >
+                <SaveAsIcon /> Update
+              </button>
+            ) : (
+              <button
+                onClick={handleAdd}
+                className="p-1 pe-2 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
+              >
+                <DoneIcon /> Done
+              </button>
+            )}
           </div>
         </div>
       )}
@@ -305,6 +372,12 @@ export default function Employment() {
                 </p>
               </div>
               <div>
+                <button
+                  className="p-1 text-blue-900 hover:text-gray-500 me-2"
+                  onClick={() => handleEdit(item.id)}
+                >
+                  <EditIcon />
+                </button>
                 <button
                   className="p-1 text-red-600 hover:text-red-500 me-2"
                   onClick={() => handleDelete(item.id)}

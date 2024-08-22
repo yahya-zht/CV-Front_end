@@ -8,6 +8,7 @@ export default function Education(props) {
     (state) => state.Education.DataListEducation
   );
   const TitleEducation = useSelector((state) => state.Education.Title);
+  const EditEducation = useSelector((state) => state.Education.Edit);
   return (
     <div>
       {(DataListEducation.length > 0 ||
@@ -59,30 +60,31 @@ export default function Education(props) {
               DataEducation.city ||
               DataEducation.startYear ||
               DataEducation.endYear ||
-              DataEducation.description) && (
-              <div className={props.styleContainerList}>
-                <p className="">
-                  <div className={props.styleList}>
-                    <p className={props.StyleTitleList}>
-                      {DataEducation.education}
+              DataEducation.description) &&
+              EditEducation == false && (
+                <div className={props.styleContainerList}>
+                  <p className="">
+                    <div className={props.styleList}>
+                      <p className={props.StyleTitleList}>
+                        {DataEducation.education}
+                      </p>
+                      <p className={props.styleDate}>
+                        {DataEducation.startMonth} {DataEducation.startYear} -{" "}
+                        {DataEducation.endMonth} {DataEducation.endYear}
+                      </p>
+                    </div>
+                    {(DataEducation.school || DataEducation.city) && (
+                      <p className={props.styleCity}>
+                        {DataEducation.school}
+                        <span>, {DataEducation.city}</span>
+                      </p>
+                    )}
+                    <p className={props.StyleDescription}>
+                      {DataEducation.description}
                     </p>
-                    <p className={props.styleDate}>
-                      {DataEducation.startMonth} {DataEducation.startYear} -{" "}
-                      {DataEducation.endMonth} {DataEducation.endYear}
-                    </p>
-                  </div>
-                  {(DataEducation.school || DataEducation.city) && (
-                    <p className={props.styleCity}>
-                      {DataEducation.school}
-                      <span>, {DataEducation.city}</span>
-                    </p>
-                  )}
-                  <p className={props.StyleDescription}>
-                    {DataEducation.description}
                   </p>
-                </p>
-              </div>
-            )}
+                </div>
+              )}
           </div>
         </div>
       )}

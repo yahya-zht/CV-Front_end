@@ -4,6 +4,7 @@ export const EmploymentSlice = createSlice({
   name: "Employment",
   initialState: {
     Title: "",
+    Edit: "",
     DataEmployment: [],
     DataListEmployment: [],
   },
@@ -17,9 +18,16 @@ export const EmploymentSlice = createSlice({
     setEmploymentTitle: (state, action) => {
       state.Title = action.payload;
     },
+    setEdit: (state, action) => {
+      state.Edit = action.payload;
+    },
   },
 });
 
-export const { setDataListEmployment, setDataEmployment, setEmploymentTitle } =
-  EmploymentSlice.actions;
+export const {
+  setDataListEmployment,
+  setDataEmployment,
+  setEmploymentTitle,
+  setEdit,
+} = EmploymentSlice.actions;
 export default EmploymentSlice.reducer;

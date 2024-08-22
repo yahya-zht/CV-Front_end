@@ -5,7 +5,13 @@ import DoneIcon from "@mui/icons-material/Done";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
 import { useDispatch } from "react-redux";
-import { setDataEducation, setDataListEducation } from "@/store/EducationSlice";
+import {
+  setDataEducation,
+  setDataListEducation,
+  setEdit,
+} from "@/store/EducationSlice";
+import EditIcon from "@mui/icons-material/Edit";
+import SaveAsIcon from "@mui/icons-material/SaveAs";
 export default function Education() {
   const [id, setId] = useState();
   const [list, setList] = useState([]);
@@ -17,6 +23,7 @@ export default function Education() {
   const [endMonth, setEndMonth] = useState("");
   const [endYear, setEndYear] = useState("");
   const [description, setDescription] = useState("");
+  const [edit, setEditEducation] = useState(false);
   const [form, setForm] = useState(true);
   const [error, setError] = useState("");
   const dispatch = useDispatch();
@@ -36,6 +43,9 @@ export default function Education() {
   const handleForm = () => {
     setError("");
     setForm(true);
+    deleteForm();
+    dispatch(setEdit(false));
+    setEditEducation(false);
   };
   const handleDelete = (Id) => {
     setList((prev) => prev.filter((e) => e.id !== Id));
@@ -103,6 +113,59 @@ export default function Education() {
   ];
 
   const years = Array.from({ length: 35 }, (_, i) => 2024 - i);
+
+  const handleEdit = (id) => {
+    setForm(true);
+    const item = list.find((e) => e.id === id);
+    if (item) {
+      setId(item.id);
+      setEducation(item.education);
+      setSchool(item.school);
+      setCity(item.city);
+      setStartMonth(item.startMonth);
+      setStartYear(item.startYear);
+      setEndMonth(item.endMonth);
+      setEndYear(item.endYear);
+      setDescription(item.description);
+      setEditEducation(true);
+      dispatch(setEdit(true));
+    }
+  };
+  const handleUpdate = () => {
+    if (!education) {
+      setError("Education is required.");
+      return;
+    }
+    const updatedList = list.map((item) =>
+      item.id === id
+        ? {
+            id,
+            education,
+            school,
+            city,
+            startMonth,
+            startYear,
+            endMonth,
+            endYear,
+            description,
+          }
+        : item
+    );
+    setList(updatedList);
+    setForm(false);
+    setEditEducation(false);
+    setError("");
+    setId("");
+    setEducation("");
+    setSchool("");
+    setCity("");
+    setStartMonth("");
+    setStartYear("");
+    setEndMonth("");
+    setEndYear("");
+    setDescription("");
+    dispatch(setEdit(false));
+  };
 
   return (
     <div className="">
@@ -261,12 +324,21 @@ export default function Education() {
             >
               <DeleteForeverIcon />
             </button>
-            <button
-              onClick={handleAdd}
-              className="p-1 pe-2 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
-            >
-              <DoneIcon /> Done
-            </button>
+            {edit ? (
+              <button
+                onClick={handleUpdate}
+                className="p-1 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
+              >
+                <SaveAsIcon /> Update
+              </button>
+            ) : (
+              <button
+                onClick={handleAdd}
+                className="p-1 pe-2 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
+              >
+                <DoneIcon /> Done
+              </button>
+            )}
           </div>
         </div>
       )}
@@ -285,6 +357,12 @@ export default function Education() {
                 </p>
               </div>
               <div>
+                <button
+                  className="p-1 text-blue-900 hover:text-gray-500 me-2"
+                  onClick={() => handleEdit(item.id)}
+                >
+                  <EditIcon />
+                </button>
                 <button
                   className="p-1 text-red-600 hover:text-red-500 me-2"
                   onClick={() => handleDelete(item.id)}

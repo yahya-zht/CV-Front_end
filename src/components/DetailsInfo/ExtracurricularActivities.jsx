@@ -16,6 +16,7 @@ export default function ExtracurricularActivities(props) {
   const TitleExtracurricularActivities = useSelector(
     (state) => state.ExtracurricularActivities.Title
   );
+  const Edit = useSelector((state) => state.ExtracurricularActivities.Edit);
 
   return (
     <div>
@@ -67,49 +68,50 @@ export default function ExtracurricularActivities(props) {
               ExtracurricularActivitiesData.endYearExtracurricularActivities ||
               ExtracurricularActivitiesData.descriptionExtracurricularActivities ||
               ExtracurricularActivitiesData.employer ||
-              ExtracurricularActivitiesData.cityExtracurricularActivities) && (
-              <div className={props.styleContainerList}>
-                <p className="">
-                  <div className={props.styleList}>
-                    <p className={props.StyleTitleList}>
-                      {ExtracurricularActivitiesData.position}
-                    </p>
-                    <p className={props.styleDate}>
+              ExtracurricularActivitiesData.cityExtracurricularActivities) &&
+              Edit == false && (
+                <div className={props.styleContainerList}>
+                  <p className="">
+                    <div className={props.styleList}>
+                      <p className={props.StyleTitleList}>
+                        {ExtracurricularActivitiesData.position}
+                      </p>
+                      <p className={props.styleDate}>
+                        {
+                          ExtracurricularActivitiesData.startMonthExtracurricularActivities
+                        }{" "}
+                        {
+                          ExtracurricularActivitiesData.startYearExtracurricularActivities
+                        }{" "}
+                        -{" "}
+                        {
+                          ExtracurricularActivitiesData.endMonthExtracurricularActivities
+                        }{" "}
+                        {
+                          ExtracurricularActivitiesData.endYearExtracurricularActivities
+                        }
+                      </p>
+                    </div>
+                    {(ExtracurricularActivitiesData.employer ||
+                      ExtracurricularActivitiesData.cityExtracurricularActivities) && (
+                      <p className={props.styleCity}>
+                        {ExtracurricularActivitiesData.employer}
+                        <span>
+                          ,{" "}
+                          {
+                            ExtracurricularActivitiesData.cityExtracurricularActivities
+                          }
+                        </span>
+                      </p>
+                    )}
+                    <p className={props.StyleDescription}>
                       {
-                        ExtracurricularActivitiesData.startMonthExtracurricularActivities
-                      }{" "}
-                      {
-                        ExtracurricularActivitiesData.startYearExtracurricularActivities
-                      }{" "}
-                      -{" "}
-                      {
-                        ExtracurricularActivitiesData.endMonthExtracurricularActivities
-                      }{" "}
-                      {
-                        ExtracurricularActivitiesData.endYearExtracurricularActivities
+                        ExtracurricularActivitiesData.descriptionExtracurricularActivities
                       }
                     </p>
-                  </div>
-                  {(ExtracurricularActivitiesData.employer ||
-                    ExtracurricularActivitiesData.cityExtracurricularActivities) && (
-                    <p className={props.styleCity}>
-                      {ExtracurricularActivitiesData.employer}
-                      <span>
-                        ,{" "}
-                        {
-                          ExtracurricularActivitiesData.cityExtracurricularActivities
-                        }
-                      </span>
-                    </p>
-                  )}
-                  <p className={props.StyleDescription}>
-                    {
-                      ExtracurricularActivitiesData.descriptionExtracurricularActivities
-                    }
                   </p>
-                </p>
-              </div>
-            )}
+                </div>
+              )}
           </div>
         </div>
       )}

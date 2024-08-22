@@ -5,6 +5,7 @@ export const ReferencesSlice = createSlice({
   initialState: {
     formReferences: false,
     Title: "",
+    Edit: "",
     DataReferences: [],
     DataListReferences: [],
   },
@@ -21,6 +22,9 @@ export const ReferencesSlice = createSlice({
     setReferencesTitle: (state, action) => {
       state.Title = action.payload;
     },
+    setEdit: (state, action) => {
+      state.Edit = action.payload;
+    },
   },
 });
 
@@ -29,5 +33,6 @@ export const {
   setReferencesTitle,
   setDataReferences,
   setDataListReferences,
+  setEdit,
 } = ReferencesSlice.actions;
 export default ReferencesSlice.reducer;

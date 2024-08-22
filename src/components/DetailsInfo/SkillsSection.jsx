@@ -12,7 +12,8 @@ export default function SkillsSection(props) {
   const DataListSkills = useSelector(
     (state) => state.Section.ListDataSkills[props.index]
   );
-
+  const Edit = useSelector((state) => state.Section.EditSkills[props.index]);
+  console.log("Edit===>", Edit);
   const labels = {
     1: "Beginner",
     2: "Moderate",
@@ -79,45 +80,46 @@ export default function SkillsSection(props) {
                   </div>
                 </div>
               ))}
-            {DataSkill.skill.length > 0 && (
-              <div className={props.styleContainerList}>
-                <div className={props.styleList}>
-                  <p className={props.StyleTitleSkill}>
-                    {props.IconTitleSkill && (
-                      <CircleIcon
-                        sx={{ color: props.IconColorSkill, fontSize: 10 }}
+            {DataSkill.skill.length > 0 &&
+              (Edit == false || Edit === undefined) && (
+                <div className={props.styleContainerList}>
+                  <div className={props.styleList}>
+                    <p className={props.StyleTitleSkill}>
+                      {props.IconTitleSkill && (
+                        <CircleIcon
+                          sx={{ color: props.IconColorSkill, fontSize: 10 }}
+                        />
+                      )}
+                      {DataSkill.skill}
+                    </p>
+                    {props.Rating && DataSkill.value > 0 && (
+                      <Rating
+                        name="size-small"
+                        size="small"
+                        value={DataSkill.value}
+                        readOnly
                       />
                     )}
-                    {DataSkill.skill}
-                  </p>
-                  {props.Rating && DataSkill.value > 0 && (
-                    <Rating
-                      name="size-small"
-                      size="small"
-                      value={DataSkill.value}
-                      readOnly
-                    />
-                  )}
-                  {props.StyledRating && DataSkill.value > 0 && (
-                    <StyledRating
-                      readOnly
-                      name="customized-color"
-                      value={DataSkill.value}
-                      precision={1}
-                      icon={<CircleIcon fontSize="small" />}
-                      emptyIcon={
-                        <CircleOutlinedIcon
-                          sx={{
-                            color: DataSkill.value >= 1 ? props.Color : "",
-                          }}
-                          fontSize="small"
-                        />
-                      }
-                    />
-                  )}
+                    {props.StyledRating && DataSkill.value > 0 && (
+                      <StyledRating
+                        readOnly
+                        name="customized-color"
+                        value={DataSkill.value}
+                        precision={1}
+                        icon={<CircleIcon fontSize="small" />}
+                        emptyIcon={
+                          <CircleOutlinedIcon
+                            sx={{
+                              color: DataSkill.value >= 1 ? props.Color : "",
+                            }}
+                            fontSize="small"
+                          />
+                        }
+                      />
+                    )}
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
           </div>
         )}
       </div>

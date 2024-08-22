@@ -8,13 +8,17 @@ import { useDispatch } from "react-redux";
 import {
   setExtracurricularActivitiesData,
   setExtracurricularActivitiesList,
+  setEdit,
 } from "@/store/ExtracurricularActivitiesSlice";
+import EditIcon from "@mui/icons-material/Edit";
+import SaveAsIcon from "@mui/icons-material/SaveAs";
 export default function ExtracurricularActivities() {
   const [id, setIdExtracurricularActivities] = useState();
+  const [edit, setEditItem] = useState(false);
+  const [employer, setEmployer] = useState("");
   const [listExtracurricularActivities, setListExtracurricularActivities] =
     useState([]);
   const [position, setPosition] = useState("");
-  const [employer, setEmployer] = useState("");
   const [cityExtracurricularActivities, setCityExtracurricularActivities] =
     useState("");
   const [
@@ -58,6 +62,9 @@ export default function ExtracurricularActivities() {
   const handleForm = () => {
     setErrorExtracurricularActivities("");
     setFormExtracurricularActivities(true);
+    dispatch(setEdit(false));
+    deleteForm();
+    setEditItem(false);
   };
   const handleDelete = (Id) => {
     setListExtracurricularActivities((prev) => prev.filter((e) => e.id !== Id));
@@ -128,7 +135,67 @@ export default function ExtracurricularActivities() {
   const currentDate = new Date();
   const ThisYear = currentDate.getFullYear();
   const years = Array.from({ length: 35 }, (_, i) => ThisYear - i);
-
+  const handleEdit = (id) => {
+    setFormExtracurricularActivities(true);
+    const item = listExtracurricularActivities.find((e) => e.id === id);
+    if (item) {
+      setIdExtracurricularActivities(item.id);
+      setPosition(item.position);
+      setEmployer(item.employer);
+      setCityExtracurricularActivities(item.cityExtracurricularActivities);
+      setStartMonthExtracurricularActivities(
+        item.startMonthExtracurricularActivities
+      );
+      setStartYearExtracurricularActivities(
+        item.startYearExtracurricularActivities
+      );
+      setEndMonthExtracurricularActivities(
+        item.endMonthExtracurricularActivities
+      );
+      setEndYearExtracurricularActivities(
+        item.endYearExtracurricularActivities
+      );
+      setDescriptionExtracurricularActivities(
+        item.descriptionExtracurricularActivities
+      );
+      setEditItem(true);
+      dispatch(setEdit(true));
+    }
+  };
+  const handleUpdate = () => {
+    if (!position) {
+      setErrorExtracurricularActivities("Position is required.");
+      return;
+    }
+    const updatedList = listExtracurricularActivities.map((item) =>
+      item.id === id
+        ? {
+            id,
+            position,
+            employer,
+            cityExtracurricularActivities,
+            startMonthExtracurricularActivities,
+            startYearExtracurricularActivities,
+            endMonthExtracurricularActivities,
+            endYearExtracurricularActivities,
+            descriptionExtracurricularActivities,
+          }
+        : item
+    );
+    dispatch(setEdit(false));
+    setListExtracurricularActivities(updatedList);
+    setFormExtracurricularActivities(false);
+    setIdExtracurricularActivities("");
+    setPosition("");
+    setEmployer("");
+    setCityExtracurricularActivities("");
+    setStartMonthExtracurricularActivities("");
+    setStartYearExtracurricularActivities("");
+    setEndMonthExtracurricularActivities("");
+    setEndYearExtracurricularActivities("");
+    setDescriptionExtracurricularActivities("");
+    setEditItem(false);
+  };
   return (
     <div className="">
       {formExtracurricularActivities && (
@@ -309,12 +376,21 @@ export default function ExtracurricularActivities() {
             >
               <DeleteForeverIcon />
             </button>
-            <button
-              onClick={handleAdd}
-              className="p-1 pe-2 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
-            >
-              <DoneIcon /> Done
-            </button>
+            {edit ? (
+              <button
+                onClick={handleUpdate}
+                className="p-1 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
+              >
+                <SaveAsIcon /> Update
+              </button>
+            ) : (
+              <button
+                onClick={handleAdd}
+                className="p-1 pe-2 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
+              >
+                <DoneIcon /> Done
+              </button>
+            )}
           </div>
         </div>
       )}
@@ -334,6 +410,12 @@ export default function ExtracurricularActivities() {
                 </p>
               </div>
               <div>
+                <button
+                  className="p-1 text-blue-900 hover:text-gray-500 me-2"
+                  onClick={() => handleEdit(item.id)}
+                >
+                  <EditIcon />
+                </button>
                 <button
                   className="p-1 text-red-600 hover:text-red-500 me-2"
                   onClick={() => handleDelete(item.id)}

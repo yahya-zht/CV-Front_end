@@ -5,6 +5,7 @@ export const courseSlice = createSlice({
   initialState: {
     formCourse: false,
     Title: "",
+    Edit: "",
     CourseData: {},
     CoursesList: [],
   },
@@ -21,6 +22,9 @@ export const courseSlice = createSlice({
     setCoursesTitle: (state, action) => {
       state.Title = action.payload;
     },
+    setEdit: (state, action) => {
+      state.Edit = action.payload;
+    },
   },
 });
 
@@ -29,5 +33,6 @@ export const {
   setCourseData,
   setCoursesList,
   setCoursesTitle,
+  setEdit,
 } = courseSlice.actions;
 export default courseSlice.reducer;

@@ -5,6 +5,7 @@ export default function Hobbies(props) {
   const DataHobby = useSelector((state) => state.Hobbies.DataHobby);
   const DataListHobbies = useSelector((state) => state.Hobbies.DataListHobbies);
   const TitleHobby = useSelector((state) => state.Hobbies.Title);
+  const EditHobby = useSelector((state) => state.Hobbies.Edit);
   return (
     <div>
       {(DataListHobbies.length > 0 || DataHobby.hobby) && (
@@ -28,7 +29,7 @@ export default function Hobbies(props) {
                   </div>
                 </div>
               ))}
-            {DataHobby.hobby.length > 0 && (
+            {DataHobby.hobby.length > 0 && EditHobby == false   && (
               <div className={props.styleContainerList}>
                 <div className={props.styleList}>
                   <p className={props.StyleTitleSkill}>

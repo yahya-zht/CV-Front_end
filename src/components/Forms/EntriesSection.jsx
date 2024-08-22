@@ -5,7 +5,13 @@ import DoneIcon from "@mui/icons-material/Done";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
 import { useDispatch, useSelector } from "react-redux";
-import { setDataEntries, setDataListEntries } from "@/store/SectionSlice";
+import {
+  setDataEntries,
+  setDataListEntries,
+  setEditEntries,
+} from "@/store/SectionSlice";
+import EditIcon from "@mui/icons-material/Edit";
+import SaveAsIcon from "@mui/icons-material/SaveAs";
 export default function Entries(props) {
   const ListEntries = useSelector(
     (state) => state.Section.ListDataEntries[props.index]
@@ -22,6 +28,8 @@ export default function Entries(props) {
   const [description, setDescription] = useState("");
   const [form, setForm] = useState(true);
   const [error, setError] = useState("");
+  const [edit, setEditItem] = useState(false);
+
   const dispatch = useDispatch();
   const DataEntries = {
     title,
@@ -54,6 +62,9 @@ export default function Entries(props) {
   ]);
 
   function handleForm() {
+    dispatch(setEditEntries({ index: props.index, data: false }));
+    deleteForm();
+    setEditItem(false);
     setError("");
     setForm(true);
   }
@@ -112,9 +123,53 @@ export default function Entries(props) {
     "November",
     "December",
   ];
-
   const years = Array.from({ length: 35 }, (_, i) => 2024 - i);
-
+  const handleEdit = (id) => {
+    setForm(true);
+    const item = list.find((e) => e.id === id);
+    if (item) {
+      setId(item.id);
+      setEditItem(true);
+      dispatch(setEditEntries({ index: props.index, data: true }));
+      setTitle(item.title);
+      setSummary(item.summary);
+      setCity(item.city);
+      setStartMonth(item.startMonth);
+      setStartYear(item.startYear);
+      setEndMonth(item.endMonth);
+      setEndYear(item.endYear);
+      setDescription(item.description);
+      setError("");
+    }
+  };
+  const handleUpdate = () => {
+    if (!title) {
+      setError("Title is required.");
+      return;
+    }
+    const updatedList = list.map((item) =>
+      item.id === id
+        ? {
+            id,
+            title,
+            summary,
+            city,
+            startMonth,
+            startYear,
+            endMonth,
+            endYear,
+            description,
+          }
+        : item
+    );
+    dispatch(setEditEntries({ index: props.index, data: false }));
+    setList(updatedList);
+    setForm(false);
+    setEditItem(false);
+    setId(null);
+    deleteForm();
+    setError("");
+  };
   return (
     <div className="">
       {form && (
@@ -272,12 +327,21 @@ export default function Entries(props) {
             >
               <DeleteForeverIcon />
             </button>
-            <button
-              onClick={handleAdd}
-              className="p-1 pe-2 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
-            >
-              <DoneIcon /> Done
-            </button>
+            {edit ? (
+              <button
+                onClick={handleUpdate}
+                className="p-1 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
+              >
+                <SaveAsIcon /> Update
+              </button>
+            ) : (
+              <button
+                onClick={handleAdd}
+                className="p-1 pe-2 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
+              >
+                <DoneIcon /> Done
+              </button>
+            )}
           </div>
         </div>
       )}
@@ -296,6 +360,12 @@ export default function Entries(props) {
                 </p>
               </div>
               <div>
+                <button
+                  className="p-1 text-blue-900 hover:text-gray-500 me-2"
+                  onClick={() => handleEdit(item.id)}
+                >
+                  <EditIcon />
+                </button>
                 <button
                   className="p-1 text-red-600 hover:text-red-500 me-2"
                   onClick={() => handleDelete(item.id)}

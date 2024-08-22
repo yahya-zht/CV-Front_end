@@ -12,6 +12,7 @@ export default function References(props) {
     (state) => state.References.DataReferences
   );
   const TitleReferences = useSelector((state) => state.References.Title);
+  const EditReferences = useSelector((state) => state.References.Edit);
 
   return (
     <div>
@@ -45,7 +46,7 @@ export default function References(props) {
                 </div>
               ))}
 
-            {formReferences && (
+            {formReferences && EditReferences == false && (
               <div className={props.styleContainerList}>
                 <p className={props.styleTitleList}>{DataReferences.name}</p>
                 {(DataReferences.organization ||

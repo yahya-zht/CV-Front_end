@@ -5,7 +5,10 @@ import DoneIcon from "@mui/icons-material/Done";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
 import { useDispatch } from "react-redux";
-import { setCourseData, setCoursesList } from "@/store/courseSlice";
+import { setCourseData, setCoursesList, setEdit } from "@/store/courseSlice";
+import EditIcon from "@mui/icons-material/Edit";
+import SaveAsIcon from "@mui/icons-material/SaveAs";
+
 export default function Courses() {
   const [id, setIdCourse] = useState();
   const [listCourses, setListCourses] = useState([]);
@@ -15,6 +18,7 @@ export default function Courses() {
   const [descriptionCourse, setDescriptionCourse] = useState("");
   const [formCourse, setFormCourse] = useState(true);
   const [errorCourse, setErrorCourse] = useState("");
+  const [edit, setEditCourse] = useState(false);
   const dispatch = useDispatch();
   const DataCourse = {
     course,
@@ -27,6 +31,9 @@ export default function Courses() {
   const handleForm = () => {
     setErrorCourse("");
     setFormCourse(true);
+    deleteForm();
+    dispatch(setEdit(false));
+    setEditCourse(false);
   };
   const handleDelete = (Id) => {
     setListCourses((prev) => prev.filter((e) => e.id !== Id));
@@ -85,6 +92,48 @@ export default function Courses() {
   ];
 
   const years = Array.from({ length: 35 }, (_, i) => 2024 - i);
+
+  const handleEdit = (id) => {
+    setFormCourse(true);
+    const item = listCourses.find((e) => e.id === id);
+    if (item) {
+      setEditCourse(true);
+      setIdCourse(item.id);
+      setCourse(item.course);
+      setMonthCourse(item.monthCourse);
+      setYearCourse(item.yearCourse);
+      setDescriptionCourse(item.descriptionCourse);
+      setEditCourse(true);
+      dispatch(setEdit(true));
+    }
+  };
+  const handleUpdate = () => {
+    if (!course) {
+      setErrorCourse("Education is required.");
+      return;
+    }
+    const updatedList = listCourses.map((item) =>
+      item.id === id
+        ? {
+            id,
+            course,
+            monthCourse,
+            yearCourse,
+            descriptionCourse,
+          }
+        : item
+    );
+    setListCourses(updatedList);
+    setFormCourse(false);
+    setErrorCourse("");
+    setEditCourse(false);
+    dispatch(setEdit(false));
+    setIdCourse("");
+    setCourse("");
+    setMonthCourse("");
+    setYearCourse("");
+    setDescriptionCourse("");
+  };
 
   return (
     <div className="">
@@ -171,12 +220,21 @@ export default function Courses() {
             >
               <DeleteForeverIcon />
             </button>
-            <button
-              onClick={handleAdd}
-              className="p-1 pe-2 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
-            >
-              <DoneIcon /> Done
-            </button>
+            {edit ? (
+              <button
+                onClick={handleUpdate}
+                className="p-1 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
+              >
+                <SaveAsIcon /> Update
+              </button>
+            ) : (
+              <button
+                onClick={handleAdd}
+                className="p-1 pe-2 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
+              >
+                <DoneIcon /> Done
+              </button>
+            )}
           </div>
         </div>
       )}
@@ -192,6 +250,12 @@ export default function Courses() {
                 <p>{item.course}</p>
               </div>
               <div>
+                <button
+                  className="p-1 text-blue-900 hover:text-gray-500 me-2"
+                  onClick={() => handleEdit(item.id)}
+                >
+                  <EditIcon />
+                </button>
                 <button
                   className="p-1 text-red-600 hover:text-red-500 me-2"
                   onClick={() => handleDelete(item.id)}

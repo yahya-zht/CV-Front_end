@@ -13,6 +13,7 @@ export default function Certificates(props) {
     (state) => state.Certificates.CertificatesList
   );
   const TitleCertificates = useSelector((state) => state.Certificates.Title);
+  const EditCertificates = useSelector((state) => state.Certificates.Edit);
 
   return (
     <div>
@@ -53,7 +54,7 @@ export default function Certificates(props) {
                   </p>
                 </div>
               ))}
-            {CertificateData && (
+            {CertificateData && EditCertificates == false && (
               <div className={props.styleContainerList}>
                 <div className={props.styleList}>
                   <p className={props.StyleTitleList}>

@@ -8,7 +8,13 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setDataListSkills, setDataSkills } from "@/store/SectionSlice";
+import {
+  setDataListSkills,
+  setDataSkills,
+  setEditSkills,
+} from "@/store/SectionSlice";
+import EditIcon from "@mui/icons-material/Edit";
+import SaveAsIcon from "@mui/icons-material/SaveAs";
 const units = [
   "Make a choice",
   "Beginner",
@@ -50,11 +56,13 @@ function calculateValue(value) {
   return value;
 }
 export default function SkillsSection(props) {
+  const [id, setIdSkill] = useState([]);
   const [listSkills, setListSkills] = useState([]);
   const [skill, setSkill] = useState("");
   const [value, setValue] = React.useState(0);
   const [errorSkills, setErrorSkills] = useState("");
   const [formSkill, setFormSkill] = useState(true);
+  const [edit, setEditItem] = useState(false);
   const DataListSkills = useSelector(
     (state) => state.Section.ListDataSkills[props.index]
   );
@@ -81,6 +89,11 @@ export default function SkillsSection(props) {
     listSkills.length == 1 && setFormSkill(true);
   };
   const handleForm = () => {
+    dispatch(setEditSkills({ index: props.index, data: false }));
+    setIdSkill("");
+    setSkill("");
+    setValue("");
+    setEditItem(false);
     setErrorSkills("");
     setFormSkill(true);
   };
@@ -110,6 +123,39 @@ export default function SkillsSection(props) {
     setValue(0);
     setErrorSkills("");
     setFormSkill(false);
+  };
+  const handleEdit = (id) => {
+    setFormSkill(true);
+    const item = listSkills.find((e) => e.id === id);
+    if (item) {
+      setEditItem(true);
+      dispatch(setEditSkills({ index: props.index, data: true }));
+      setIdSkill(item.id);
+      setSkill(item.skill);
+      setValue(item.value);
+    }
+  };
+  const handleUpdate = () => {
+    if (!skill) {
+      setErrorSkills("Skill is required");
+      return;
+    }
+    const updatedList = listSkills.map((item) =>
+      item.id === id
+        ? {
+            id,
+            skill,
+            value,
+          }
+        : item
+    );
+    setListSkills(updatedList);
+    dispatch(setEditSkills({ index: props.index, data: false }));
+    setEditItem(false);
+    setFormSkill(false);
+    setIdSkill("");
+    setSkill("");
+    setValue("");
   };
   return (
     <div>
@@ -161,12 +207,21 @@ export default function SkillsSection(props) {
             >
               <DeleteForeverIcon />
             </button>
-            <button
-              onClick={handleAdd}
-              className="p-1 pe-2 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
-            >
-              <DoneIcon /> Done
-            </button>
+            {edit ? (
+              <button
+                onClick={handleUpdate}
+                className="p-1 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
+              >
+                <SaveAsIcon /> Update
+              </button>
+            ) : (
+              <button
+                onClick={handleAdd}
+                className="p-1 pe-2 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
+              >
+                <DoneIcon /> Done
+              </button>
+            )}
           </div>
         </div>
       )}
@@ -184,6 +239,12 @@ export default function SkillsSection(props) {
                 </p>
               </div>
               <div>
+                <button
+                  className="p-1 text-blue-900 hover:text-gray-500 me-2"
+                  onClick={() => handleEdit(item.id)}
+                >
+                  <EditIcon />
+                </button>
                 <button
                   className="p-1 text-red-600 hover:text-red-500 me-2"
                   onClick={() => handleDelete(item.id)}
