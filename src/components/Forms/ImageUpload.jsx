@@ -18,7 +18,17 @@ const ImageUpload = () => {
     onDrop,
     accept: "image/*",
   });
-
+  useEffect(() => {
+    const savedState = localStorage.getItem("appState");
+    if (savedState) {
+      const parsedState = JSON.parse(savedState);
+      if (parsedState.personalDetails.DataPersonalDetails.uploadedImage) {
+        setUploadedImage(
+          parsedState.personalDetails.DataPersonalDetails.uploadedImage
+        );
+      }
+    }
+  }, []);
   return (
     <div>
       <div {...getRootProps()} className="upload-zone">

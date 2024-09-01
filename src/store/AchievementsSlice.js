@@ -8,8 +8,8 @@ export const AchievementsSlice = createSlice({
     AchievementsData: {},
   },
   reducers: {
-    toggleFormAchievements: (state) => {
-      state.formAchievements = !state.formAchievements;
+    toggleFormAchievements: (state, action) => {
+      state.formAchievements = action.payload;
     },
     setAchievementsData: (state, action) => {
       state.AchievementsData = action.payload;

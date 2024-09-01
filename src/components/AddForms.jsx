@@ -13,7 +13,7 @@ import { toggleFormAchievements } from "@/store/AchievementsSlice";
 import SectionCreator from "./SectionCreator";
 
 export default function AddForms() {
-  const formCourse = useSelector((state) => state.course.formCourse);
+  const formCourses = useSelector((state) => state.course.formCourse);
   const formInternships = useSelector(
     (state) => state.Internships.formInternships
   );
@@ -37,35 +37,35 @@ export default function AddForms() {
   const dispatch = useDispatch();
 
   const handleAddCourseForm = () => {
-    dispatch(toggleFormCourse());
+    dispatch(toggleFormCourse(true));
   };
   const handleAddInternshipsForm = () => {
-    dispatch(toggleFormInternships());
+    dispatch(toggleFormInternships(true));
   };
   const handleAddCertificatesForm = () => {
-    dispatch(toggleformCertificates());
+    dispatch(toggleformCertificates(true));
   };
   const handleAddQualitiesForm = () => {
-    dispatch(toggleFormQualities());
+    dispatch(toggleFormQualities(true));
   };
   const handleAddExtracurricularActivitiesForm = () => {
-    dispatch(toggleFormExtracurricularActivities());
+    dispatch(toggleFormExtracurricularActivities(true));
   };
   const handleAddReferencesForm = () => {
-    dispatch(toggleFormReferences());
+    dispatch(toggleFormReferences(true));
   };
   const handleAddFooterForm = () => {
-    dispatch(toggleFormFooter());
+    dispatch(toggleFormFooter(true));
   };
   const handleAddProfileForm = () => {
-    dispatch(toggleFormProfile());
+    dispatch(toggleFormProfile(true));
   };
   const handleAddAchievementsForm = () => {
-    dispatch(toggleFormAchievements());
+    dispatch(toggleFormAchievements(true));
   };
   return (
     <div className="mt-4  ">
-      {!formCourse && (
+      {!formCourses && (
         <button
           className="py-1 px-2 border-2 border-gray-300 rounded-lg hover:bg-blue-100 ms-2 my-1"
           onClick={handleAddCourseForm}

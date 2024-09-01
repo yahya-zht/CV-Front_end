@@ -1,6 +1,6 @@
 "use client";
 import { COLORS } from "@/constants/theme";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DoneIcon from "@mui/icons-material/Done";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
@@ -132,114 +132,146 @@ export default function Certificates() {
     setEditCertificate(false);
     dispatch(setEdit(false));
   };
-
+  useEffect(() => {
+    const savedState = localStorage.getItem("appState");
+    if (savedState) {
+      const parsedState = JSON.parse(savedState);
+      if (parsedState.Certificates.CertificatesList) {
+        setListCertificates(parsedState.Certificates.CertificatesList);
+      }
+      if (parsedState.Certificates.CertificateData.Certificate) {
+        setCertificate(parsedState.Certificates.CertificateData.Certificate);
+      }
+      if (parsedState.Certificates.CertificateData.monthCertificate) {
+        setMonthCertificate(
+          parsedState.Certificates.CertificateData.monthCertificate
+        );
+      }
+      if (parsedState.Certificates.CertificateData.yearCertificate) {
+        setYearCertificate(
+          parsedState.Certificates.CertificateData.yearCertificate
+        );
+      }
+      if (parsedState.Certificates.CertificateData.descriptionCertificate) {
+        setDescriptionCertificate(
+          parsedState.Certificates.CertificateData.descriptionCertificate
+        );
+      }
+      if (parsedState.Certificates.Edit) {
+        setEditCertificate(parsedState.Certificates.Edit);
+      }
+      // if (parsedState.Certificates.formCourse) {
+      //   setFormCertificate(parsedState.Certificates.formCourse);
+      // }
+    }
+  }, []);
   return (
     <div className="">
-      {formCertificate && (
-        <div>
-          <div className="my-2">
-            <label htmlFor="Certificate" className="ps-1 text-sm text-gray-500">
-              Certificate
-            </label>
-            <input
-              type="text"
-              id="Certificate"
-              placeholder="Certificate"
-              className="rounded-md w-full p-2 mt-1"
-              style={{ backgroundColor: COLORS.bg }}
-              value={Certificate}
-              onChange={(e) => setCertificate(e.target.value)}
-            />
-            {errorCertificate && (
-              <div>
-                <div className="text-red-500 text-sm">{errorCertificate}</div>
-              </div>
-            )}
-          </div>
-          <div className="mb-2">
-            <label
-              htmlFor="monthCertificate"
-              className="ps-1 text-sm text-gray-500"
-            >
-              Period
-            </label>
-            <div className="grid grid-cols-2 gap-2 mb-2">
-              <select
-                id="monthCertificate"
-                className="rounded-md w-full p-2 mt-1"
-                style={{ backgroundColor: COLORS.bg }}
-                value={monthCertificate}
-                onChange={(e) => setMonthCertificate(e.target.value)}
-              >
-                <option value="" disabled>
-                  Month
-                </option>
-                {months.map((month) => (
-                  <option key={month} value={month}>
-                    {month}
-                  </option>
-                ))}
-              </select>
-              <select
-                id="yearCertificate"
-                className="rounded-md w-full p-2 mt-1"
-                style={{ backgroundColor: COLORS.bg }}
-                value={yearCertificate}
-                onChange={(e) => setYearCertificate(e.target.value)}
-              >
-                <option value="" disabled>
-                  Year
-                </option>
-                {years.map((year) => (
-                  <option key={year} value={year}>
-                    {year}
-                  </option>
-                ))}
-              </select>
+      {/* {formCertificate && ( */}
+      <div>
+        <div className="my-2">
+          <label htmlFor="Certificate" className="ps-1 text-sm text-gray-500">
+            Certificate
+          </label>
+          <input
+            type="text"
+            id="Certificate"
+            placeholder="Certificate"
+            className="rounded-md w-full p-2 mt-1"
+            style={{ backgroundColor: COLORS.bg }}
+            value={Certificate}
+            onChange={(e) => setCertificate(e.target.value)}
+          />
+          {errorCertificate && (
+            <div>
+              <div className="text-red-500 text-sm">{errorCertificate}</div>
             </div>
-          </div>
-          <div>
-            <label
-              htmlFor="descriptionCertificate"
-              className="ps-1 text-sm text-gray-500"
-            >
-              Description
-            </label>
-            <textarea
-              id="descriptionCertificate"
-              placeholder="Description"
+          )}
+        </div>
+        <div className="mb-2">
+          <label
+            htmlFor="monthCertificate"
+            className="ps-1 text-sm text-gray-500"
+          >
+            Period
+          </label>
+          <div className="grid grid-cols-2 gap-2 mb-2">
+            <select
+              id="monthCertificate"
               className="rounded-md w-full p-2 mt-1"
               style={{ backgroundColor: COLORS.bg }}
-              value={descriptionCertificate}
-              onChange={(e) => setDescriptionCertificate(e.target.value)}
-            ></textarea>
-            <div className="flex flex-row"></div>
-          </div>
-          <div className="flex flex-row justify-end">
-            <button
-              className="p-1 text-red-600 hover:text-red-500 me-2"
-              onClick={deleteForm}
+              value={monthCertificate}
+              onChange={(e) => setMonthCertificate(e.target.value)}
             >
-              <DeleteForeverIcon />
-            </button>
-            {edit ? (
-              <button
-                onClick={handleUpdate}
-                className="p-1 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
-              >
-                <SaveAsIcon /> Update
-              </button>
-            ) : (
-              <button
-                onClick={handleAdd}
-                className="p-1 pe-2 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
-              >
-                <DoneIcon /> Done
-              </button>
-            )}
+              <option value="" disabled>
+                Month
+              </option>
+              {months.map((month) => (
+                <option key={month} value={month}>
+                  {month}
+                </option>
+              ))}
+            </select>
+            <select
+              id="yearCertificate"
+              className="rounded-md w-full p-2 mt-1"
+              style={{ backgroundColor: COLORS.bg }}
+              value={yearCertificate}
+              onChange={(e) => setYearCertificate(e.target.value)}
+            >
+              <option value="" disabled>
+                Year
+              </option>
+              {years.map((year) => (
+                <option key={year} value={year}>
+                  {year}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
-      )}
+        <div>
+          <label
+            htmlFor="descriptionCertificate"
+            className="ps-1 text-sm text-gray-500"
+          >
+            Description
+          </label>
+          <textarea
+            id="descriptionCertificate"
+            placeholder="Description"
+            className="rounded-md w-full p-2 mt-1"
+            style={{ backgroundColor: COLORS.bg }}
+            value={descriptionCertificate}
+            onChange={(e) => setDescriptionCertificate(e.target.value)}
+          ></textarea>
+          <div className="flex flex-row"></div>
+        </div>
+        <div className="flex flex-row justify-end">
+          <button
+            className="p-1 text-red-600 hover:text-red-500 me-2"
+            onClick={deleteForm}
+          >
+            <DeleteForeverIcon />
+          </button>
+          {edit ? (
+            <button
+              onClick={handleUpdate}
+              className="p-1 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
+            >
+              <SaveAsIcon /> Update
+            </button>
+          ) : (
+            <button
+              onClick={handleAdd}
+              className="p-1 pe-2 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
+            >
+              <DoneIcon /> Done
+            </button>
+          )}
+        </div>
+      </div>
+      {/* )} */}
 
       {listCertificates.length > 0 && (
         <div className="">

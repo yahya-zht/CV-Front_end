@@ -8,8 +8,8 @@ export const ProfileSlice = createSlice({
     DataProfile: { descriptionProfile: "" },
   },
   reducers: {
-    toggleFormProfile: (state) => {
-      state.formProfile = !state.formProfile;
+    toggleFormProfile: (state, action) => {
+      state.formProfile = action.payload;
     },
     setDataProfile: (state, action) => {
       state.DataProfile = action.payload;

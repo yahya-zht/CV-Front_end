@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import DoneIcon from "@mui/icons-material/Done";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setDataListSkills, setDataSkill, setEdit } from "@/store/SkillsSlice";
 import EditIcon from "@mui/icons-material/Edit";
@@ -145,6 +145,24 @@ export default function Skills() {
     setSkill("");
     setValue("");
   };
+  useEffect(() => {
+    const savedState = localStorage.getItem("appState");
+    if (savedState) {
+      const parsedState = JSON.parse(savedState);
+      if (parsedState.Skills.DataListSkills) {
+        setListSkills(parsedState.Skills.DataListSkills);
+      }
+      if (parsedState.Skills.DataSkill.skill) {
+        setSkill(parsedState.Skills.DataSkill.skill);
+      }
+      if (parsedState.Skills.DataSkill.value) {
+        setValue(parsedState.Skills.DataSkill.value);
+      }
+      if (parsedState.Skills.Edit) {
+        setEditItem(parsedState.Skills.Edit);
+      }
+    }
+  }, []);
   return (
     <div>
       {formSkill && (

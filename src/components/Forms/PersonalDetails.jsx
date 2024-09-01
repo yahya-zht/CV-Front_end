@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { COLORS } from "@/constants/theme";
 import { useDispatch } from "react-redux";
 import { setDataPersonalDetails } from "@/store/PersonalDetailsSlice";
@@ -68,6 +68,60 @@ export default function PersonalDetails() {
   const DeletePhoto = () => {
     setUploadedImage(null);
   };
+
+  useEffect(() => {
+    const savedState = localStorage.getItem("appState");
+    if (savedState) {
+      const parsedState = JSON.parse(savedState);
+      if (parsedState.personalDetails.DataPersonalDetails.address) {
+        setAddress(parsedState.personalDetails.DataPersonalDetails.address);
+      }
+      if (parsedState.personalDetails.DataPersonalDetails.city) {
+        setCity(parsedState.personalDetails.DataPersonalDetails.city);
+      }
+      if (parsedState.personalDetails.DataPersonalDetails.email) {
+        setEmail(parsedState.personalDetails.DataPersonalDetails.email);
+      }
+      if (parsedState.personalDetails.DataPersonalDetails.firstName) {
+        setFirstName(parsedState.personalDetails.DataPersonalDetails.firstName);
+      }
+      if (parsedState.personalDetails.DataPersonalDetails.headline) {
+        setHeadline(parsedState.personalDetails.DataPersonalDetails.headline);
+      }
+      if (parsedState.personalDetails.DataPersonalDetails.lastName) {
+        setLastName(parsedState.personalDetails.DataPersonalDetails.lastName);
+      }
+      if (parsedState.personalDetails.DataPersonalDetails.checkedLinkedIn) {
+        setCheckedLinkedIn(
+          parsedState.personalDetails.DataPersonalDetails.checkedLinkedIn
+        );
+      }
+      if (parsedState.personalDetails.DataPersonalDetails.checkedWeb) {
+        setCheckedWeb(
+          parsedState.personalDetails.DataPersonalDetails.checkedWeb
+        );
+      }
+      if (parsedState.personalDetails.DataPersonalDetails.website) {
+        setWebsite(parsedState.personalDetails.DataPersonalDetails.website);
+      }
+      if (parsedState.personalDetails.DataPersonalDetails.linkedIn) {
+        setLinkedIn(parsedState.personalDetails.DataPersonalDetails.linkedIn);
+      }
+      if (parsedState.personalDetails.DataPersonalDetails.phoneNumber) {
+        setPhoneNumber(
+          parsedState.personalDetails.DataPersonalDetails.phoneNumber
+        );
+      }
+      if (parsedState.personalDetails.DataPersonalDetails.postCode) {
+        setPostCode(parsedState.personalDetails.DataPersonalDetails.postCode);
+      }
+      if (parsedState.personalDetails.DataPersonalDetails.uploadedImage) {
+        setUploadedImage(
+          parsedState.personalDetails.DataPersonalDetails.uploadedImage
+        );
+      }
+    }
+  }, []);
 
   return (
     <div>

@@ -3,7 +3,7 @@ import { COLORS } from "@/constants/theme";
 import DoneIcon from "@mui/icons-material/Done";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import {
   setDataHobby,
@@ -98,6 +98,21 @@ export default function Hobbies() {
     setErrorhobbies("");
     setHobby("");
   };
+  useEffect(() => {
+    const savedState = localStorage.getItem("appState");
+    if (savedState) {
+      const parsedState = JSON.parse(savedState);
+      if (parsedState.Hobbies.DataListHobbies) {
+        setListhobbies(parsedState.Hobbies.DataListHobbies);
+      }
+      if (parsedState.Hobbies.DataHobby.hobby) {
+        setHobby(parsedState.Hobbies.DataHobby.hobby);
+      }
+      if (parsedState.Hobbies.Edit) {
+        setEditItem(parsedState.Hobbies.Edit);
+      }
+    }
+  }, []);
   return (
     <div>
       {formhobbies && (

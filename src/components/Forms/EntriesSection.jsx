@@ -170,6 +170,46 @@ export default function Entries(props) {
     deleteForm();
     setError("");
   };
+  const formEntriesSave = useSelector((state) => state.Section.formEntries);
+  useEffect(() => {
+    const savedState = localStorage.getItem("appState");
+    if (savedState) {
+      const parsedState = JSON.parse(savedState);
+      if (parsedState.Section.formEntries == formEntriesSave) {
+        if (parsedState.Section.DataEntries[props.index].title) {
+          setTitle(parsedState.Section.DataEntries[props.index].title);
+        }
+        if (parsedState.Section.DataEntries[props.index].summary) {
+          setSummary(parsedState.Section.DataEntries[props.index].summary);
+        }
+        if (parsedState.Section.DataEntries[props.index].startYear) {
+          setStartYear(parsedState.Section.DataEntries[props.index].startYear);
+        }
+        if (parsedState.Section.DataEntries[props.index].startMonth) {
+          setStartMonth(
+            parsedState.Section.DataEntries[props.index].startMonth
+          );
+        }
+        if (parsedState.Section.DataEntries[props.index].endYear) {
+          setEndYear(parsedState.Section.DataEntries[props.index].endYear);
+        }
+        if (parsedState.Section.DataEntries[props.index].endMonth) {
+          setEndMonth(parsedState.Section.DataEntries[props.index].endMonth);
+        }
+        if (parsedState.Section.DataEntries[props.index].description) {
+          setDescription(
+            parsedState.Section.DataEntries[props.index].description
+          );
+        }
+        if (parsedState.Section.DataEntries[props.index].city) {
+          setCity(parsedState.Section.DataEntries[props.index].city);
+        }
+        if (parsedState.Section.ListDataEntries[props.index]) {
+          setList(parsedState.Section.ListDataEntries[props.index]);
+        }
+      }
+    }
+  }, []);
   return (
     <div className="">
       {form && (

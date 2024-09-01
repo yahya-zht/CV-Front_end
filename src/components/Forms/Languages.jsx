@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import DoneIcon from "@mui/icons-material/Done";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import {
   setDataLanguage,
@@ -64,7 +64,25 @@ export default function Languages() {
   const [errorlanguages, setErrorlanguages] = useState("");
   const [formlanguage, setFormlanguage] = useState(true);
   const [edit, setEditItem] = useState(false);
-
+  useEffect(() => {
+    const savedState = localStorage.getItem("appState");
+    if (savedState) {
+      const parsedState = JSON.parse(savedState);
+      console.log("parsedState===>", parsedState);
+      if (parsedState.languages.Edit) {
+        setEditItem(parsedState.languages.Edit);
+      }
+      if (parsedState.languages.DataLanguage.language) {
+        setlanguage(parsedState.languages.DataLanguage.language);
+      }
+      if (parsedState.languages.DataLanguage.value) {
+        setValue(parsedState.languages.DataLanguage.value);
+      }
+      if (parsedState.languages.DataListLanguages) {
+        setlistLanguage(parsedState.languages.DataListLanguages);
+      }
+    }
+  }, []);
   const dispatch = useDispatch();
   dispatch(setDataListLanguages(listLanguage));
   const DataLanguage = {
@@ -87,7 +105,6 @@ export default function Languages() {
     deleteForm();
     dispatch(setEdit(false));
     setEditItem(false);
-
   };
   const deleteForm = () => {
     setlanguage("");

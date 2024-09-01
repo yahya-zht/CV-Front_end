@@ -1,13 +1,24 @@
 "use client";
 import { COLORS } from "@/constants/theme";
 import { setDataProfile } from "@/store/ProfileSlice";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 export default function Profile() {
   const [descriptionProfile, setDescriptionProfile] = useState("");
   const dispatch = useDispatch();
   dispatch(setDataProfile({ descriptionProfile: descriptionProfile }));
+  useEffect(() => {
+    const savedState = localStorage.getItem("appState");
+    if (savedState) {
+      const parsedState = JSON.parse(savedState);
+      if (parsedState.profile.DataProfile.descriptionProfile) {
+        setDescriptionProfile(
+          parsedState.profile.DataProfile.descriptionProfile
+        );
+      }
+    }
+  }, []);
   return (
     <div className="">
       <div>

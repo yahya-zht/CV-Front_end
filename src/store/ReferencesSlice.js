@@ -10,8 +10,8 @@ export const ReferencesSlice = createSlice({
     DataListReferences: [],
   },
   reducers: {
-    toggleFormReferences: (state) => {
-      state.formReferences = !state.formReferences;
+    toggleFormReferences: (state, action) => {
+      state.formReferences = action.payload;
     },
     setDataReferences: (state, action) => {
       state.DataReferences = action.payload;

@@ -1,6 +1,6 @@
 "use client";
 import { COLORS } from "@/constants/theme";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DoneIcon from "@mui/icons-material/Done";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
@@ -13,109 +13,84 @@ import {
 import EditIcon from "@mui/icons-material/Edit";
 import SaveAsIcon from "@mui/icons-material/SaveAs";
 export default function ExtracurricularActivities() {
-  const [id, setIdExtracurricularActivities] = useState();
+  const [id, setId] = useState();
   const [edit, setEditItem] = useState(false);
   const [employer, setEmployer] = useState("");
-  const [listExtracurricularActivities, setListExtracurricularActivities] =
-    useState([]);
+  const [list, setList] = useState([]);
   const [position, setPosition] = useState("");
-  const [cityExtracurricularActivities, setCityExtracurricularActivities] =
-    useState("");
-  const [
-    startMonthExtracurricularActivities,
-    setStartMonthExtracurricularActivities,
-  ] = useState("");
-  const [
-    startYearExtracurricularActivities,
-    setStartYearExtracurricularActivities,
-  ] = useState("");
-  const [
-    endMonthExtracurricularActivities,
-    setEndMonthExtracurricularActivities,
-  ] = useState("");
-  const [
-    endYearExtracurricularActivities,
-    setEndYearExtracurricularActivities,
-  ] = useState("");
-  const [
-    descriptionExtracurricularActivities,
-    setDescriptionExtracurricularActivities,
-  ] = useState("");
-  const [formExtracurricularActivities, setFormExtracurricularActivities] =
-    useState(true);
-  const [errorExtracurricularActivities, setErrorExtracurricularActivities] =
-    useState("");
+  const [city, setCity] = useState("");
+  const [startMonth, setStartMonth] = useState("");
+  const [startYear, setStartYear] = useState("");
+  const [endMonth, setEndMonth] = useState("");
+  const [endYear, setEndYear] = useState("");
+  const [description, setDescription] = useState("");
+  const [form, setForm] = useState(true);
+  const [error, setErrorExtracurricularActivities] = useState("");
 
   const dispatch = useDispatch();
   const ExtracurricularActivitiesData = {
     position,
     employer,
-    cityExtracurricularActivities,
-    startMonthExtracurricularActivities,
-    startYearExtracurricularActivities,
-    endMonthExtracurricularActivities,
-    endYearExtracurricularActivities,
-    descriptionExtracurricularActivities,
+    city,
+    startMonth,
+    startYear,
+    endMonth,
+    endYear,
+    description,
   };
   dispatch(setExtracurricularActivitiesData(ExtracurricularActivitiesData));
-  dispatch(setExtracurricularActivitiesList(listExtracurricularActivities));
+  dispatch(setExtracurricularActivitiesList(list));
   const handleForm = () => {
     setErrorExtracurricularActivities("");
-    setFormExtracurricularActivities(true);
+    setForm(true);
     dispatch(setEdit(false));
     deleteForm();
     setEditItem(false);
   };
   const handleDelete = (Id) => {
-    setListExtracurricularActivities((prev) => prev.filter((e) => e.id !== Id));
-    listExtracurricularActivities.length == 1 &&
-      setFormExtracurricularActivities(true);
+    setList((prev) => prev.filter((e) => e.id !== Id));
+    list.length == 1 && setForm(true);
   };
   const deleteForm = () => {
-    setIdExtracurricularActivities("");
+    setId("");
     setPosition("");
     setEmployer("");
-    setCityExtracurricularActivities("");
-    setStartMonthExtracurricularActivities("");
-    setStartYearExtracurricularActivities("");
-    setEndMonthExtracurricularActivities("");
-    setEndYearExtracurricularActivities("");
-    setDescriptionExtracurricularActivities("");
+    setCity("");
+    setStartMonth("");
+    setStartYear("");
+    setEndMonth("");
+    setEndYear("");
+    setDescription("");
   };
   const handleAdd = () => {
     if (!position) {
       setErrorExtracurricularActivities("Position is required.");
       return;
     }
-    setListExtracurricularActivities([
-      ...listExtracurricularActivities,
+    setList([
+      ...list,
       {
-        id:
-          listExtracurricularActivities.length == 0
-            ? 1
-            : listExtracurricularActivities[
-                listExtracurricularActivities.length - 1
-              ].id + 1,
+        id: list.length == 0 ? 1 : list[list.length - 1].id + 1,
         position,
         employer,
-        cityExtracurricularActivities,
-        startMonthExtracurricularActivities,
-        startYearExtracurricularActivities,
-        endMonthExtracurricularActivities,
-        endYearExtracurricularActivities,
-        descriptionExtracurricularActivities,
+        city,
+        startMonth,
+        startYear,
+        endMonth,
+        endYear,
+        description,
       },
     ]);
-    setIdExtracurricularActivities("");
+    setId("");
     setPosition("");
     setEmployer("");
-    setCityExtracurricularActivities("");
-    setStartMonthExtracurricularActivities("");
-    setStartYearExtracurricularActivities("");
-    setEndMonthExtracurricularActivities("");
-    setEndYearExtracurricularActivities("");
-    setDescriptionExtracurricularActivities("");
-    setFormExtracurricularActivities(false);
+    setCity("");
+    setStartMonth("");
+    setStartYear("");
+    setEndMonth("");
+    setEndYear("");
+    setDescription("");
+    setForm(false);
   };
 
   const months = [
@@ -136,28 +111,18 @@ export default function ExtracurricularActivities() {
   const ThisYear = currentDate.getFullYear();
   const years = Array.from({ length: 35 }, (_, i) => ThisYear - i);
   const handleEdit = (id) => {
-    setFormExtracurricularActivities(true);
-    const item = listExtracurricularActivities.find((e) => e.id === id);
+    setForm(true);
+    const item = list.find((e) => e.id === id);
     if (item) {
-      setIdExtracurricularActivities(item.id);
+      setId(item.id);
       setPosition(item.position);
       setEmployer(item.employer);
-      setCityExtracurricularActivities(item.cityExtracurricularActivities);
-      setStartMonthExtracurricularActivities(
-        item.startMonthExtracurricularActivities
-      );
-      setStartYearExtracurricularActivities(
-        item.startYearExtracurricularActivities
-      );
-      setEndMonthExtracurricularActivities(
-        item.endMonthExtracurricularActivities
-      );
-      setEndYearExtracurricularActivities(
-        item.endYearExtracurricularActivities
-      );
-      setDescriptionExtracurricularActivities(
-        item.descriptionExtracurricularActivities
-      );
+      setCity(item.city);
+      setStartMonth(item.startMonth);
+      setStartYear(item.startYear);
+      setEndMonth(item.endMonth);
+      setEndYear(item.endYear);
+      setDescription(item.description);
       setEditItem(true);
       dispatch(setEdit(true));
     }
@@ -167,38 +132,117 @@ export default function ExtracurricularActivities() {
       setErrorExtracurricularActivities("Position is required.");
       return;
     }
-    const updatedList = listExtracurricularActivities.map((item) =>
+    const updatedList = list.map((item) =>
       item.id === id
         ? {
             id,
             position,
             employer,
-            cityExtracurricularActivities,
-            startMonthExtracurricularActivities,
-            startYearExtracurricularActivities,
-            endMonthExtracurricularActivities,
-            endYearExtracurricularActivities,
-            descriptionExtracurricularActivities,
+            city,
+            startMonth,
+            startYear,
+            endMonth,
+            endYear,
+            description,
           }
         : item
     );
     dispatch(setEdit(false));
-    setListExtracurricularActivities(updatedList);
-    setFormExtracurricularActivities(false);
-    setIdExtracurricularActivities("");
+    setList(updatedList);
+    setForm(false);
+    setId("");
     setPosition("");
     setEmployer("");
-    setCityExtracurricularActivities("");
-    setStartMonthExtracurricularActivities("");
-    setStartYearExtracurricularActivities("");
-    setEndMonthExtracurricularActivities("");
-    setEndYearExtracurricularActivities("");
-    setDescriptionExtracurricularActivities("");
+    setCity("");
+    setStartMonth("");
+    setStartYear("");
+    setEndMonth("");
+    setEndYear("");
+    setDescription("");
     setEditItem(false);
   };
+  useEffect(() => {
+    const savedState = localStorage.getItem("appState");
+    if (savedState) {
+      const parsedState = JSON.parse(savedState);
+      if (parsedState.ExtracurricularActivities.ExtracurricularActivitiesList) {
+        setList(
+          parsedState.ExtracurricularActivities.ExtracurricularActivitiesList
+        );
+      }
+      if (
+        parsedState.ExtracurricularActivities.ExtracurricularActivitiesData
+          .position
+      ) {
+        setPosition(
+          parsedState.ExtracurricularActivities.ExtracurricularActivitiesData
+            .position
+        );
+      }
+      if (
+        parsedState.ExtracurricularActivities.ExtracurricularActivitiesData
+          .employer
+      ) {
+        setEmployer(
+          parsedState.ExtracurricularActivities.ExtracurricularActivitiesData
+            .employer
+        );
+      }
+      if (
+        parsedState.ExtracurricularActivities.ExtracurricularActivitiesData.city
+      ) {
+        setCity(
+          parsedState.ExtracurricularActivities.ExtracurricularActivitiesData
+            .city
+        );
+      }
+      if (
+        parsedState.ExtracurricularActivities.ExtracurricularActivitiesData
+          .startMonth
+      ) {
+        setStartMonth(
+          parsedState.ExtracurricularActivities.ExtracurricularActivitiesData
+            .startMonth
+        );
+      }
+      if (parsedState.ExtracurricularActivities.startYear) {
+        setStartYear(parsedState.ExtracurricularActivities.startYear);
+      }
+      if (
+        parsedState.ExtracurricularActivities.ExtracurricularActivitiesData
+          .endMonth
+      ) {
+        setEndMonth(
+          parsedState.ExtracurricularActivities.ExtracurricularActivitiesData
+            .endMonth
+        );
+      }
+      if (
+        parsedState.ExtracurricularActivities.ExtracurricularActivitiesData
+          .endYear
+      ) {
+        setEndYear(
+          parsedState.ExtracurricularActivities.ExtracurricularActivitiesData
+            .endYear
+        );
+      }
+      if (
+        parsedState.ExtracurricularActivities.ExtracurricularActivitiesData
+          .description
+      ) {
+        setDescription(
+          parsedState.ExtracurricularActivities.ExtracurricularActivitiesData
+            .description
+        );
+      }
+      if (parsedState.ExtracurricularActivities.Edit) {
+        setEditItem(parsedState.ExtracurricularActivities.Edit);
+      }
+    }
+  }, []);
   return (
     <div className="">
-      {formExtracurricularActivities && (
+      {form && (
         <div className="p-2 border-2 border-gray-300 rounded-lg">
           <div className="my-2">
             <label htmlFor="position" className="ps-1 text-sm text-gray-500">
@@ -213,11 +257,9 @@ export default function ExtracurricularActivities() {
               value={position}
               onChange={(e) => setPosition(e.target.value)}
             />
-            {errorExtracurricularActivities && (
+            {error && (
               <div>
-                <div className="text-red-500 text-sm">
-                  {errorExtracurricularActivities}
-                </div>
+                <div className="text-red-500 text-sm">{error}</div>
               </div>
             )}
           </div>
@@ -237,42 +279,35 @@ export default function ExtracurricularActivities() {
               />
             </div>
             <div className="">
-              <label
-                htmlFor="cityExtracurricularActivities"
-                className="ps-1 text-sm text-gray-500"
-              >
+              <label htmlFor="city" className="ps-1 text-sm text-gray-500">
                 City
               </label>
               <input
                 type="text"
-                id="cityExtracurricularActivities"
+                id="city"
                 placeholder="City"
                 className="rounded-md w-full p-2 mt-1"
                 style={{ backgroundColor: COLORS.bg }}
-                value={cityExtracurricularActivities}
-                onChange={(e) =>
-                  setCityExtracurricularActivities(e.target.value)
-                }
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
               />
             </div>
           </div>
           <div className="grid grid-cols-2 gap-2 mb-2">
             <div className="">
               <label
-                htmlFor="startMonthExtracurricularActivities"
+                htmlFor="startMonth"
                 className="ps-1 text-sm text-gray-500"
               >
                 Start date
               </label>
               <div className="grid grid-cols-2 gap-2 mb-2">
                 <select
-                  id="startMonthExtracurricularActivities"
+                  id="startMonth"
                   className="rounded-md w-full p-2 mt-1"
                   style={{ backgroundColor: COLORS.bg }}
-                  value={startMonthExtracurricularActivities}
-                  onChange={(e) =>
-                    setStartMonthExtracurricularActivities(e.target.value)
-                  }
+                  value={startMonth}
+                  onChange={(e) => setStartMonth(e.target.value)}
                 >
                   <option value="" disabled>
                     Month
@@ -284,13 +319,11 @@ export default function ExtracurricularActivities() {
                   ))}
                 </select>
                 <select
-                  id="startYearExtracurricularActivities"
+                  id="startYear"
                   className="rounded-md w-full p-2 mt-1"
                   style={{ backgroundColor: COLORS.bg }}
-                  value={startYearExtracurricularActivities}
-                  onChange={(e) =>
-                    setStartYearExtracurricularActivities(e.target.value)
-                  }
+                  value={startYear}
+                  onChange={(e) => setStartYear(e.target.value)}
                 >
                   <option value="" disabled>
                     Year
@@ -304,21 +337,16 @@ export default function ExtracurricularActivities() {
               </div>
             </div>
             <div className="">
-              <label
-                htmlFor="endMonthExtracurricularActivities"
-                className="ps-1 text-sm text-gray-500"
-              >
+              <label htmlFor="endMonth" className="ps-1 text-sm text-gray-500">
                 End date
               </label>
               <div className="grid grid-cols-2 gap-2 mb-2">
                 <select
-                  id="endMonthExtracurricularActivities"
+                  id="endMonth"
                   className="rounded-md w-full p-2 mt-1"
                   style={{ backgroundColor: COLORS.bg }}
-                  value={endMonthExtracurricularActivities}
-                  onChange={(e) =>
-                    setEndMonthExtracurricularActivities(e.target.value)
-                  }
+                  value={endMonth}
+                  onChange={(e) => setEndMonth(e.target.value)}
                 >
                   <option value="" disabled>
                     Month
@@ -330,13 +358,11 @@ export default function ExtracurricularActivities() {
                   ))}
                 </select>
                 <select
-                  id="endYearExtracurricularActivities"
+                  id="endYear"
                   className="rounded-md w-full p-2 mt-1"
                   style={{ backgroundColor: COLORS.bg }}
-                  value={endYearExtracurricularActivities}
-                  onChange={(e) =>
-                    setEndYearExtracurricularActivities(e.target.value)
-                  }
+                  value={endYear}
+                  onChange={(e) => setEndYear(e.target.value)}
                 >
                   <option value="" disabled>
                     Year
@@ -351,21 +377,16 @@ export default function ExtracurricularActivities() {
             </div>
           </div>
           <div>
-            <label
-              htmlFor="descriptionExtracurricularActivities"
-              className="ps-1 text-sm text-gray-500"
-            >
+            <label htmlFor="description" className="ps-1 text-sm text-gray-500">
               Description
             </label>
             <textarea
-              id="descriptionExtracurricularActivities"
+              id="description"
               placeholder="Description"
               className="rounded-md w-full p-2 mt-1"
               style={{ backgroundColor: COLORS.bg }}
-              value={descriptionExtracurricularActivities}
-              onChange={(e) =>
-                setDescriptionExtracurricularActivities(e.target.value)
-              }
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
             ></textarea>
             <div className="flex flex-row"></div>
           </div>
@@ -395,9 +416,9 @@ export default function ExtracurricularActivities() {
         </div>
       )}
 
-      {listExtracurricularActivities.length > 0 && (
+      {list.length > 0 && (
         <div className="">
-          {listExtracurricularActivities.map((item, i) => (
+          {list.map((item, i) => (
             <div
               key={i}
               className="p-2 border-2 border-gray-500 rounded-lg my-1 flex flex-row justify-between items-center"
@@ -405,8 +426,7 @@ export default function ExtracurricularActivities() {
               <div>
                 <p>{item.position}</p>
                 <p className="flex flex-row text-gray-500">
-                  <span>{item.employer}</span>,{" "}
-                  <span>{item.cityExtracurricularActivities}</span>
+                  <span>{item.employer}</span>, <span>{item.city}</span>
                 </p>
               </div>
               <div>

@@ -1,6 +1,6 @@
 "use client";
 import { COLORS } from "@/constants/theme";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DoneIcon from "@mui/icons-material/Done";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
@@ -137,7 +137,6 @@ export default function References() {
     dispatch(setEdit(false));
     setEditItem(false);
     setIdReference("");
-    setIdReference("");
     setName("");
     setOrganization("");
     setCityReferences("");
@@ -145,6 +144,33 @@ export default function References() {
     setEmail("");
     setFormReferences(false);
   };
+  useEffect(() => {
+    const savedState = localStorage.getItem("appState");
+    if (savedState) {
+      const parsedState = JSON.parse(savedState);
+      if (parsedState.References.DataListReferences) {
+        setListReferences(parsedState.References.DataListReferences);
+      }
+      if (parsedState.References.DataReferences.name) {
+        setName(parsedState.References.DataReferences.name);
+      }
+      if (parsedState.References.DataReferences.organization) {
+        setOrganization(parsedState.References.DataReferences.organization);
+      }
+      if (parsedState.References.DataReferences.cityReferences) {
+        setCityReferences(parsedState.References.DataReferences.cityReferences);
+      }
+      if (parsedState.References.DataReferences.phoneNumber) {
+        setPhoneNumber(parsedState.References.DataReferences.phoneNumber);
+      }
+      if (parsedState.References.DataReferences.email) {
+        setEmail(parsedState.References.DataReferences.email);
+      }
+      if (parsedState.References.DataReferences.Edit) {
+        setEditItem(parsedState.References.DataReferences.Edit);
+      }
+    }
+  }, []);
   return (
     <div className="">
       {formReferences && (

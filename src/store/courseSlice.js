@@ -8,10 +8,12 @@ export const courseSlice = createSlice({
     Edit: "",
     CourseData: {},
     CoursesList: [],
+    Modifier: 0,
   },
   reducers: {
-    toggleFormCourse: (state) => {
-      state.formCourse = !state.formCourse;
+    toggleFormCourse: (state, action) => {
+      state.formCourse = action.payload;
+      state.Modifier++;
     },
     setCourseData: (state, action) => {
       state.CourseData = action.payload;
@@ -34,5 +36,6 @@ export const {
   setCoursesList,
   setCoursesTitle,
   setEdit,
+  Modifier,
 } = courseSlice.actions;
 export default courseSlice.reducer;

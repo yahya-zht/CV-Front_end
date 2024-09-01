@@ -10,8 +10,8 @@ export const CertificatesSlice = createSlice({
     CertificatesList: [],
   },
   reducers: {
-    toggleformCertificates: (state) => {
-      state.formCertificates = !state.formCertificates;
+    toggleformCertificates: (state, action) => {
+      state.formCertificates = action.payload;
     },
     setCertificateData: (state, action) => {
       state.CertificateData = action.payload;

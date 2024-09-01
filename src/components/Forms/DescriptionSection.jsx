@@ -2,6 +2,7 @@
 import { COLORS } from "@/constants/theme";
 import { setDataDescription } from "@/store/SectionSlice";
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
 export default function Description(props) {
@@ -15,6 +16,21 @@ export default function Description(props) {
       dispatch(setDataDescription({ index: props.index, data: Data }));
     }
   }, [description, props.index, dispatch]);
+  const formDescription = useSelector((state) => state.Section.formDescription);
+  useEffect(() => {
+    const savedState = localStorage.getItem("appState");
+    if (savedState) {
+      const parsedState = JSON.parse(savedState);
+      if (parsedState.Section.formDescription == formDescription) {
+        if (parsedState.Section.DataDescription[props.index].description) {
+          setDescription(
+            parsedState.Section.DataDescription[props.index].description
+          );
+        }
+      }
+    }
+  }, []);
+
   return (
     <div className="">
       <div>

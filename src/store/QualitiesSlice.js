@@ -10,8 +10,8 @@ export const QualitiesSlice = createSlice({
     QualitiesList: [],
   },
   reducers: {
-    toggleFormQualities: (state) => {
-      state.formQualities = !state.formQualities;
+    toggleFormQualities: (state, action) => {
+      state.formQualities = action.payload;
     },
     setQualitiesData: (state, action) => {
       state.QualitiesData = action.payload;

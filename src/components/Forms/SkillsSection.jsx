@@ -157,6 +157,24 @@ export default function SkillsSection(props) {
     setSkill("");
     setValue("");
   };
+  const formSkillsSave = useSelector((state) => state.Section.formSkills);
+  useEffect(() => {
+    const savedState = localStorage.getItem("appState");
+    if (savedState) {
+      const parsedState = JSON.parse(savedState);
+      if (parsedState.Section.formSkills == formSkillsSave) {
+        if (parsedState.Section.DataSkills[props.index].skill) {
+          setSkill(parsedState.Section.DataSkills[props.index].skill);
+        }
+        if (parsedState.Section.DataSkills[props.index].value) {
+          setValue(parsedState.Section.DataSkills[props.index].value);
+        }
+        if (parsedState.Section.ListDataSkills[props.index]) {
+          setListSkills(parsedState.Section.ListDataSkills[props.index]);
+        }
+      }
+    }
+  }, []);
   return (
     <div>
       {formSkill && (

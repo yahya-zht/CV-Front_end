@@ -1,6 +1,6 @@
 "use client";
 import { COLORS } from "@/constants/theme";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DoneIcon from "@mui/icons-material/Done";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
@@ -172,6 +172,52 @@ export default function Employment() {
     setDescriptionEmployment("");
     dispatch(setEdit(false));
   };
+  useEffect(() => {
+    const savedState = localStorage.getItem("appState");
+    if (savedState) {
+      const parsedState = JSON.parse(savedState);
+      if (parsedState.Employment.DataListEmployment) {
+        setListEmployment(parsedState.Employment.DataListEmployment);
+      }
+      if (parsedState.Employment.DataEmployment.cityEmployment) {
+        setCityEmployment(parsedState.Employment.DataEmployment.cityEmployment);
+      }
+      if (parsedState.Employment.DataEmployment.descriptionEmployment) {
+        setDescriptionEmployment(
+          parsedState.Employment.DataEmployment.descriptionEmployment
+        );
+      }
+      if (parsedState.Employment.DataEmployment.employer) {
+        setEmployer(parsedState.Employment.DataEmployment.employer);
+      }
+      if (parsedState.Employment.DataEmployment.endMonthEmployment) {
+        setEndMonthEmployment(
+          parsedState.Employment.DataEmployment.endMonthEmployment
+        );
+      }
+      if (parsedState.Employment.DataEmployment.endYearEmployment) {
+        setEndYearEmployment(
+          parsedState.Employment.DataEmployment.endYearEmployment
+        );
+      }
+      if (parsedState.Employment.DataEmployment.position) {
+        setPosition(parsedState.Employment.DataEmployment.position);
+      }
+      if (parsedState.Employment.DataEmployment.startMonthEmployment) {
+        setStartMonthEmployment(
+          parsedState.Employment.DataEmployment.startMonthEmployment
+        );
+      }
+      if (parsedState.Employment.DataEmployment.startYearEmployment) {
+        setStartYearEmployment(
+          parsedState.Employment.DataEmployment.startYearEmployment
+        );
+      }
+      if (parsedState.Employment.Edit) {
+        setEditEducation(parsedState.Employment.Edit);
+      }
+    }
+  }, []);
   return (
     <div className="">
       {formEmployment && (

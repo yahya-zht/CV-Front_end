@@ -1,6 +1,6 @@
 "use client";
 import { COLORS } from "@/constants/theme";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import DoneIcon from "@mui/icons-material/Done";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
@@ -81,10 +81,10 @@ export default function Education() {
         description,
       },
     ]);
-    console.log(
-      "list.length ",
-      list.length == 0 ? 1 : list[list.length - 1].id
-    );
+    // console.log(
+    //   "list.length ",
+    //   list.length == 0 ? 1 : list[list.length - 1].id
+    // );
     setId("");
     setEducation("");
     setSchool("");
@@ -113,6 +113,42 @@ export default function Education() {
   ];
 
   const years = Array.from({ length: 35 }, (_, i) => 2024 - i);
+  useEffect(() => {
+    const savedState = localStorage.getItem("appState");
+    if (savedState) {
+      const parsedState = JSON.parse(savedState);
+      if (parsedState.Education.DataListEducation) {
+        setList(parsedState.Education.DataListEducation);
+      }
+      if (parsedState.Education.DataEducation.city) {
+        setCity(parsedState.Education.DataEducation.city);
+      }
+      if (parsedState.Education.DataEducation.description) {
+        setDescription(parsedState.Education.DataEducation.description);
+      }
+      if (parsedState.Education.DataEducation.education) {
+        setEducation(parsedState.Education.DataEducation.education);
+      }
+      if (parsedState.Education.DataEducation.endMonth) {
+        setEndMonth(parsedState.Education.DataEducation.endMonth);
+      }
+      if (parsedState.Education.DataEducation.endYear) {
+        setEndYear(parsedState.Education.DataEducation.endYear);
+      }
+      if (parsedState.Education.DataEducation.school) {
+        setSchool(parsedState.Education.DataEducation.school);
+      }
+      if (parsedState.Education.DataEducation.startMonth) {
+        setStartMonth(parsedState.Education.DataEducation.startMonth);
+      }
+      if (parsedState.Education.DataEducation.startYear) {
+        setStartYear(parsedState.Education.DataEducation.startYear);
+      }
+      if (parsedState.Education.Edit) {
+        setEditEducation(parsedState.Education.Edit);
+      }
+    }
+  }, []);
 
   const handleEdit = (id) => {
     setForm(true);

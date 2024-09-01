@@ -103,6 +103,21 @@ export default function List(props) {
     setErrorList("");
     setTitle("");
   };
+  const formListSave = useSelector((state) => state.Section.formList);
+  useEffect(() => {
+    const savedState = localStorage.getItem("appState");
+    if (savedState) {
+      const parsedState = JSON.parse(savedState);
+      if (parsedState.Section.formList == formListSave) {
+        if (parsedState.Section.DataList[props.index].title) {
+          setTitle(parsedState.Section.DataList[props.index].title);
+        }
+        if (parsedState.Section.ListDataList[props.index]) {
+          setList(parsedState.Section.ListDataList[props.index]);
+        }
+      }
+    }
+  }, []);
   return (
     <div>
       {formList && (

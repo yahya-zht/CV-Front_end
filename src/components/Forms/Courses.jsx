@@ -1,6 +1,6 @@
 "use client";
 import { COLORS } from "@/constants/theme";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DoneIcon from "@mui/icons-material/Done";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
@@ -134,110 +134,136 @@ export default function Courses() {
     setYearCourse("");
     setDescriptionCourse("");
   };
-
+  useEffect(() => {
+    const savedState = localStorage.getItem("appState");
+    if (savedState) {
+      const parsedState = JSON.parse(savedState);
+      if (parsedState.course.CoursesList) {
+        setListCourses(parsedState.course.CoursesList);
+      }
+      if (parsedState.course.CourseData.course) {
+        setCourse(parsedState.course.CourseData.course);
+      }
+      if (parsedState.course.CourseData.monthCourse) {
+        setMonthCourse(parsedState.course.CourseData.monthCourse);
+      }
+      if (parsedState.course.CourseData.yearCourse) {
+        setYearCourse(parsedState.course.CourseData.yearCourse);
+      }
+      if (parsedState.course.CourseData.descriptionCourse) {
+        setDescriptionCourse(parsedState.course.CourseData.descriptionCourse);
+      }
+      if (parsedState.course.Edit) {
+        setEditCourse(parsedState.course.Edit);
+      }
+      if (parsedState.course.formCourse) {
+        setFormCourse(parsedState.course.formCourse);
+      }
+    }
+  }, []);
   return (
     <div className="">
-      {formCourse && (
-        <div>
-          <div className="my-2">
-            <label htmlFor="Course" className="ps-1 text-sm text-gray-500">
-              Course
-            </label>
-            <input
-              type="text"
-              id="Course"
-              placeholder="Course"
-              className="rounded-md w-full p-2 mt-1"
-              style={{ backgroundColor: COLORS.bg }}
-              value={course}
-              onChange={(e) => setCourse(e.target.value)}
-            />
-            {errorCourse && (
-              <div>
-                <div className="text-red-500 text-sm">{errorCourse}</div>
-              </div>
-            )}
-          </div>
-          <div className="mb-2">
-            <label htmlFor="monthCourse" className="ps-1 text-sm text-gray-500">
-              Period
-            </label>
-            <div className="grid grid-cols-2 gap-2 mb-2">
-              <select
-                id="monthCourse"
-                className="rounded-md w-full p-2 mt-1"
-                style={{ backgroundColor: COLORS.bg }}
-                value={monthCourse}
-                onChange={(e) => setMonthCourse(e.target.value)}
-              >
-                <option value="" disabled>
-                  Month
-                </option>
-                {months.map((month) => (
-                  <option key={month} value={month}>
-                    {month}
-                  </option>
-                ))}
-              </select>
-              <select
-                id="yearCourse"
-                className="rounded-md w-full p-2 mt-1"
-                style={{ backgroundColor: COLORS.bg }}
-                value={yearCourse}
-                onChange={(e) => setYearCourse(e.target.value)}
-              >
-                <option value="" disabled>
-                  Year
-                </option>
-                {years.map((year) => (
-                  <option key={year} value={year}>
-                    {year}
-                  </option>
-                ))}
-              </select>
+      {/* {formCourse && ( */}
+      <div>
+        <div className="my-2">
+          <label htmlFor="Course" className="ps-1 text-sm text-gray-500">
+            Course
+          </label>
+          <input
+            type="text"
+            id="Course"
+            placeholder="Course"
+            className="rounded-md w-full p-2 mt-1"
+            style={{ backgroundColor: COLORS.bg }}
+            value={course}
+            onChange={(e) => setCourse(e.target.value)}
+          />
+          {errorCourse && (
+            <div>
+              <div className="text-red-500 text-sm">{errorCourse}</div>
             </div>
-          </div>
-          <div>
-            <label
-              htmlFor="descriptionCourse"
-              className="ps-1 text-sm text-gray-500"
-            >
-              Description
-            </label>
-            <textarea
-              id="descriptionCourse"
-              placeholder="Description"
+          )}
+        </div>
+        <div className="mb-2">
+          <label htmlFor="monthCourse" className="ps-1 text-sm text-gray-500">
+            Period
+          </label>
+          <div className="grid grid-cols-2 gap-2 mb-2">
+            <select
+              id="monthCourse"
               className="rounded-md w-full p-2 mt-1"
               style={{ backgroundColor: COLORS.bg }}
-              value={descriptionCourse}
-              onChange={(e) => setDescriptionCourse(e.target.value)}
-            ></textarea>
-          </div>
-          <div className="flex flex-row justify-end">
-            <button
-              className="p-1 text-red-600 hover:text-red-500 me-2"
-              onClick={deleteForm}
+              value={monthCourse}
+              onChange={(e) => setMonthCourse(e.target.value)}
             >
-              <DeleteForeverIcon />
-            </button>
-            {edit ? (
-              <button
-                onClick={handleUpdate}
-                className="p-1 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
-              >
-                <SaveAsIcon /> Update
-              </button>
-            ) : (
-              <button
-                onClick={handleAdd}
-                className="p-1 pe-2 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
-              >
-                <DoneIcon /> Done
-              </button>
-            )}
+              <option value="" disabled>
+                Month
+              </option>
+              {months.map((month) => (
+                <option key={month} value={month}>
+                  {month}
+                </option>
+              ))}
+            </select>
+            <select
+              id="yearCourse"
+              className="rounded-md w-full p-2 mt-1"
+              style={{ backgroundColor: COLORS.bg }}
+              value={yearCourse}
+              onChange={(e) => setYearCourse(e.target.value)}
+            >
+              <option value="" disabled>
+                Year
+              </option>
+              {years.map((year) => (
+                <option key={year} value={year}>
+                  {year}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
-      )}
+        <div>
+          <label
+            htmlFor="descriptionCourse"
+            className="ps-1 text-sm text-gray-500"
+          >
+            Description
+          </label>
+          <textarea
+            id="descriptionCourse"
+            placeholder="Description"
+            className="rounded-md w-full p-2 mt-1"
+            style={{ backgroundColor: COLORS.bg }}
+            value={descriptionCourse}
+            onChange={(e) => setDescriptionCourse(e.target.value)}
+          ></textarea>
+        </div>
+        <div className="flex flex-row justify-end">
+          <button
+            className="p-1 text-red-600 hover:text-red-500 me-2"
+            onClick={deleteForm}
+          >
+            <DeleteForeverIcon />
+          </button>
+          {edit ? (
+            <button
+              onClick={handleUpdate}
+              className="p-1 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
+            >
+              <SaveAsIcon /> Update
+            </button>
+          ) : (
+            <button
+              onClick={handleAdd}
+              className="p-1 pe-2 text-white bg-blue-950 hover:border-blue-950 bottom-2 border-2 rounded-lg hover:bg-white hover:text-blue-950"
+            >
+              <DoneIcon /> Done
+            </button>
+          )}
+        </div>
+      </div>
+      {/* )} */}
 
       {listCourses.length > 0 && (
         <div className="">

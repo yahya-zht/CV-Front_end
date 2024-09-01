@@ -7,8 +7,8 @@ export const FooterSlice = createSlice({
     FooterData: {},
   },
   reducers: {
-    toggleFormFooter: (state) => {
-      state.formFooter = !state.formFooter;
+    toggleFormFooter: (state, action) => {
+      state.formFooter = action.payload;
     },
     setFooterData: (state, action) => {
       state.FooterData = action.payload;

@@ -109,8 +109,6 @@ export const SectionSlice = createSlice({
     },
     setDelete: (state, action) => {
       const { index, type } = action.payload;
-      console.log("index", index);
-      console.log("type", type);
       switch (type) {
         case "Entries":
           state.EntriesTitle.splice(index, 1);
@@ -140,10 +138,70 @@ export const SectionSlice = createSlice({
           break;
       }
     },
+    setFormDescriptionSave: (state, action) => {
+      state.formDescription = action.payload;
+    },
+    setDataDescriptionSave: (state, action) => {
+      state.DataDescription = action.payload;
+    },
+    setDescriptionTitleSave: (state, action) => {
+      state.DescriptionTitle = action.payload;
+    },
+    setFormListSave: (state, action) => {
+      state.formList = action.payload;
+    },
+    setDataListSave: (state, action) => {
+      state.DataList = action.payload;
+    },
+    setListTitleSave: (state, action) => {
+      state.ListTitle = action.payload;
+    },
+    setListDataListSave: (state, action) => {
+      state.ListDataList = action.payload;
+    },
+    setFormSkillsSave: (state, action) => {
+      state.formSkills = action.payload;
+    },
+    setDataSkillSave: (state, action) => {
+      state.DataSkills = action.payload;
+    },
+    setSkillsTitleSave: (state, action) => {
+      state.SkillsTitle = action.payload;
+    },
+    setListDataSkillsSave: (state, action) => {
+      state.ListDataSkills = action.payload;
+    },
+    setformEntriesSave: (state, action) => {
+      state.formEntries = action.payload;
+    },
+    setDataEntriesSave: (state, action) => {
+      state.DataEntries = action.payload;
+    },
+    setEntriesTitleSave: (state, action) => {
+      state.EntriesTitle = action.payload;
+    },
+    setListDataEntriesSave: (state, action) => {
+      state.ListDataEntries = action.payload;
+    },
   },
 });
 
 export const {
+  setFormDescriptionSave,
+  setDescriptionTitleSave,
+  setDataDescriptionSave,
+  setFormListSave,
+  setDataListSave,
+  setListTitleSave,
+  setListDataListSave,
+  setSkillsTitleSave,
+  setDataSkillSave,
+  setFormSkillsSave,
+  setListDataSkillsSave,
+  setformEntriesSave,
+  setDataEntriesSave,
+  setEntriesTitleSave,
+  setListDataEntriesSave,
   setFormEntries,
   setEntriesTitle,
   setDataEntries,

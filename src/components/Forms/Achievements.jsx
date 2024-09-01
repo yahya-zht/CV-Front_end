@@ -1,7 +1,7 @@
 "use client";
 import { COLORS } from "@/constants/theme";
 import { setAchievementsData } from "@/store/AchievementsSlice";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 export default function Achievements() {
@@ -11,6 +11,17 @@ export default function Achievements() {
     descriptionAchievements,
   };
   dispatch(setAchievementsData(AchievementsData));
+  useEffect(() => {
+    const savedState = localStorage.getItem("appState");
+    if (savedState) {
+      const parsedState = JSON.parse(savedState);
+      if (parsedState.Achievements.AchievementsData.descriptionAchievements) {
+        setDescriptionAchievements(
+          parsedState.Achievements.AchievementsData.descriptionAchievements
+        );
+      }
+    }
+  }, []);
   return (
     <div className="">
       <div>

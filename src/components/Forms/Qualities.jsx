@@ -3,7 +3,7 @@ import { COLORS } from "@/constants/theme";
 import DoneIcon from "@mui/icons-material/Done";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import AddIcon from "@mui/icons-material/Add";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import {
   setQualitiesData,
@@ -100,6 +100,21 @@ export default function Qualities() {
     setId("");
     setQuality("");
   };
+  useEffect(() => {
+    const savedState = localStorage.getItem("appState");
+    if (savedState) {
+      const parsedState = JSON.parse(savedState);
+      if (parsedState.Qualities.QualitiesList) {
+        setListQualities(parsedState.Qualities.QualitiesList);
+      }
+      if (parsedState.Qualities.QualitiesData.quality) {
+        setQuality(parsedState.Qualities.QualitiesData.quality);
+      }
+      if (parsedState.Qualities.Edit) {
+        setEditItem(parsedState.Qualities.Edit);
+      }
+    }
+  }, []);
   return (
     <div>
       {formqualities && (
