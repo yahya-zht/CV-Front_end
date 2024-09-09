@@ -25,7 +25,10 @@ export default function Language(props) {
     <div>
       {(DataListLanguages.length > 0 || DataLanguage.language) && (
         <div className={props.StyleContainer}>
-          <p className={props.StyleTitle}>
+          <p
+            className={props.StyleTitle}
+            style={{ borderColor: props.BgColor }}
+          >
             {TitleLanguage.length > 0 ? TitleLanguage : `Languages`}
           </p>
           <div className="mt-1 ms-2">
@@ -38,7 +41,7 @@ export default function Language(props) {
                         <CircleIcon
                           sx={{ color: props.IconColorSkill, fontSize: 10 }}
                         />
-                      )}
+                      )}{" "}
                       {language.language}
                     </p>
 
@@ -47,6 +50,7 @@ export default function Language(props) {
                         name="size-small"
                         size="small"
                         value={language.value}
+                        sx={{ color: props.Color }}
                         readOnly
                       />
                     )}
@@ -58,7 +62,7 @@ export default function Language(props) {
                         precision={1}
                         icon={<CircleIcon fontSize="small" />}
                         emptyIcon={
-                          <CircleOutlinedIcon
+                          <whiteCircleOutlinedIcon
                             sx={{
                               color: language.value >= 1 ? props.Color : "",
                             }}
@@ -78,7 +82,7 @@ export default function Language(props) {
                       <CircleIcon
                         sx={{ color: props.IconColorSkill, fontSize: 10 }}
                       />
-                    )}
+                    )}{" "}
                     {DataLanguage.language}
                   </p>
                   {props.Rating && DataLanguage.value > 0 && (
@@ -86,6 +90,7 @@ export default function Language(props) {
                       name="size-small"
                       size="small"
                       value={DataLanguage.value}
+                      sx={{ color: props.Color }}
                       readOnly
                     />
                   )}

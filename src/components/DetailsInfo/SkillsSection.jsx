@@ -13,7 +13,6 @@ export default function SkillsSection(props) {
     (state) => state.Section.ListDataSkills[props.index]
   );
   const Edit = useSelector((state) => state.Section.EditSkills[props.index]);
-  console.log("Edit===>", Edit);
   const labels = {
     1: "Beginner",
     2: "Moderate",
@@ -33,7 +32,14 @@ export default function SkillsSection(props) {
     <div>
       <div className={props.StyleContainer}>
         <div className="flex">
-          <p className={props.StyleTitle}>
+          <p
+            className={props.StyleTitle}
+            style={
+              props.border
+                ? { borderColor: props.BgColor }
+                : { backgroundColor: props.BgColor }
+            }
+          >
             {Title.length > 0 ? Title : `Skills Section ${props.index + 1}`}
           </p>
         </div>
@@ -48,7 +54,7 @@ export default function SkillsSection(props) {
                         <CircleIcon
                           sx={{ color: props.IconColorSkill, fontSize: 10 }}
                         />
-                      )}
+                      )}{" "}
                       {skill.skill}
                     </p>
 
@@ -57,6 +63,7 @@ export default function SkillsSection(props) {
                         name="size-small"
                         size="small"
                         value={skill.value}
+                        sx={{ color: props.Color }}
                         readOnly
                       />
                     )}
@@ -89,7 +96,7 @@ export default function SkillsSection(props) {
                         <CircleIcon
                           sx={{ color: props.IconColorSkill, fontSize: 10 }}
                         />
-                      )}
+                      )}{" "}
                       {DataSkill.skill}
                     </p>
                     {props.Rating && DataSkill.value > 0 && (
@@ -97,6 +104,7 @@ export default function SkillsSection(props) {
                         name="size-small"
                         size="small"
                         value={DataSkill.value}
+                        sx={{ color: props.Color }}
                         readOnly
                       />
                     )}

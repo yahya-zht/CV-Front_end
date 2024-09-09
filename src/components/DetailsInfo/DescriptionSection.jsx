@@ -11,7 +11,14 @@ export default function Description(props) {
   return (
     <div className={props.styleContainer}>
       <div className={props.StyleContainerTitle}>
-        <p className={props.StyleTitle}>
+        <p
+          className={props.StyleTitle}
+          style={
+            props.border
+              ? { borderColor: props.BgColor }
+              : { backgroundColor: props.BgColor }
+          }
+        >
           {Title.length > 0 ? Title : `Description Section ${props.index + 1}`}
         </p>
       </div>

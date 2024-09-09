@@ -5,6 +5,9 @@ export const TemplatesSlice = createSlice({
   initialState: {
     Zoom: 0.55,
     TemplateSelected: 1,
+    Color: "",
+    FontSize: "",
+    FontFamily: "",
   },
   reducers: {
     setZoom: (state, action) => {
@@ -13,9 +16,23 @@ export const TemplatesSlice = createSlice({
     setTemplateSelected: (state, action) => {
       state.TemplateSelected = action.payload;
     },
+    setColor: (state, action) => {
+      state.Color = action.payload;
+    },
+    setFontSize: (state, action) => {
+      state.FontSize = action.payload;
+    },
+    setFontFamily: (state, action) => {
+      state.FontFamily = action.payload;
+    },
   },
 });
 
-export const { setZoom } = TemplatesSlice.actions;
-export const { setTemplateSelected } = TemplatesSlice.actions;
+export const {
+  setZoom,
+  setTemplateSelected,
+  setColor,
+  setFontSize,
+  setFontFamily,
+} = TemplatesSlice.actions;
 export default TemplatesSlice.reducer;

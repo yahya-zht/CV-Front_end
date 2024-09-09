@@ -9,7 +9,10 @@ export default function PersonalInfo(props) {
     (state) => state.PersonalDetailsStore.DataPersonalDetails
   );
   return (
-    <div className={props.styleContainer}>
+    <div
+      className={props.styleContainer}
+      style={{ backgroundColor: props.BgColor }}
+    >
       <div
         className={
           DataPersonalDetails.uploadedImage

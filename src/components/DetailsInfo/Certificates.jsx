@@ -20,16 +20,27 @@ export default function Certificates(props) {
       {formCertificates && (
         <div className="my-1">
           <div className={props.StyleTitleContainer}>
-            <p className={props.StyleTitle}>
+            <p
+              className={props.StyleTitle}
+              style={
+                props.border
+                  ? { borderColor: props.BgColor }
+                  : { backgroundColor: props.BgColor }
+              }
+            >
               {TitleCertificates.length > 0
                 ? TitleCertificates
                 : `Certificates`}
             </p>
           </div>
-          <div className="mt-1 mx-2">
+          <div className="mt-1">
             {CertificatesList.length > 0 &&
               CertificatesList.map((certificate, i) => (
-                <div key={i} className={props.styleContainerList}>
+                <div
+                  key={i}
+                  className={props.styleContainerList}
+                  style={props.border ? { borderColor: props.BgColor } : null}
+                >
                   <div className={props.styleList}>
                     <p className={props.StyleTitleList}>
                       <p className="text-md font-bold">
@@ -55,7 +66,10 @@ export default function Certificates(props) {
                 </div>
               ))}
             {CertificateData && EditCertificates == false && (
-              <div className={props.styleContainerList}>
+              <div
+                className={props.styleContainerList}
+                style={props.border ? { borderColor: props.BgColor } : null}
+              >
                 <div className={props.styleList}>
                   <p className={props.StyleTitleList}>
                     {props.Icon && (

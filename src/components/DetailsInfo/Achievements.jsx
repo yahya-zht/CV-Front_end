@@ -14,7 +14,14 @@ export default function Achievements(props) {
       {formAchievements && (
         <div className={props.styleContainer}>
           <div className={props.StyleContainerTitle}>
-            <p className={props.StyleTitle}>
+            <p
+              className={props.StyleTitle}
+              style={
+                props.border
+                  ? { borderColor: props.BgColor }
+                  : { backgroundColor: props.BgColor }
+              }
+            >
               {TitleAchievement.length > 0 ? TitleAchievement : `Achievements`}
             </p>
           </div>

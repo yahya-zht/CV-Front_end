@@ -29,7 +29,10 @@ export default function Skills(props) {
     <div>
       {(DataListSkills.length > 0 || DataSkill.skill) && (
         <div className={props.StyleContainer}>
-          <p className={props.StyleTitle}>
+          <p
+            className={props.StyleTitle}
+            style={{ borderColor: props.BgColor }}
+          >
             {TitleSkills.length > 0 ? TitleSkills : `Skills`}
           </p>
           <div className="mt-1 ms-2">
@@ -42,7 +45,7 @@ export default function Skills(props) {
                         <CircleIcon
                           sx={{ color: props.IconColorSkill, fontSize: 10 }}
                         />
-                      )}
+                      )}{" "}
                       {skill.skill}
                     </p>
 
@@ -51,6 +54,7 @@ export default function Skills(props) {
                         name="size-small"
                         size="small"
                         value={skill.value}
+                        sx={{ color: props.Color }}
                         readOnly
                       />
                     )}
@@ -82,7 +86,7 @@ export default function Skills(props) {
                       <CircleIcon
                         sx={{ color: props.IconColorSkill, fontSize: 10 }}
                       />
-                    )}
+                    )}{" "}
                     {DataSkill.skill}
                   </p>
                   {props.Rating && DataSkill.value > 0 && (
@@ -90,6 +94,7 @@ export default function Skills(props) {
                       name="size-small"
                       size="small"
                       value={DataSkill.value}
+                      sx={{ color: props.Color }}
                       readOnly
                     />
                   )}

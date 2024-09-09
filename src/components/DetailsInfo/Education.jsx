@@ -20,7 +20,14 @@ export default function Education(props) {
         DataEducation.description) && (
         <div className="mt-1">
           <div className={props.StyleTitleContainer}>
-            <p className={props.StyleTitle}>
+            <p
+              className={props.StyleTitle}
+              style={
+                props.border
+                  ? { borderColor: props.BgColor }
+                  : { backgroundColor: props.BgColor }
+              }
+            >
               {props.Icon && <CircleIcon sx={{ color: props.IconColor }} />}
               <span className="">
                 {TitleEducation.length > 0 ? TitleEducation : `Education`}

@@ -17,13 +17,19 @@ export default function ExtracurricularActivities(props) {
     (state) => state.ExtracurricularActivities.Title
   );
   const Edit = useSelector((state) => state.ExtracurricularActivities.Edit);
-
   return (
     <div>
       {formExtracurricularActivities && (
         <div className="my-1">
           <div className={props.StyleTitleContainer}>
-            <p className={props.StyleTitle}>
+            <p
+              className={props.StyleTitle}
+              style={
+                props.border
+                  ? { borderColor: props.BgColor }
+                  : { backgroundColor: props.BgColor }
+              }
+            >
               {props.Icon && <CircleIcon sx={{ color: props.IconColor }} />}
               <span className="">
                 {TitleExtracurricularActivities.length > 0
@@ -35,79 +41,65 @@ export default function ExtracurricularActivities(props) {
           <div className="mt-1">
             {ExtracurricularActivitiesList.length > 0 &&
               ExtracurricularActivitiesList.map((e, i) => (
-                <div key={i} className={props.styleContainerList}>
+                <div
+                  key={i}
+                  className={props.styleContainerList}
+                  style={props.border ? { borderColor: props.BgColor } : null}
+                >
                   <p className="">
                     <div className={props.styleList}>
                       <p className={props.StyleTitleList}>{e.position}</p>
-                      {(e.startYearExtracurricularActivities ||
-                        e.endYearExtracurricularActivities) && (
+                      {(e.startYear || e.endYear) && (
                         <p className={props.styleDate}>
-                          {e.startMonthExtracurricularActivities}{" "}
-                          {e.startYearExtracurricularActivities} -{" "}
-                          {e.endMonthExtracurricularActivities}{" "}
-                          {e.endYearExtracurricularActivities}
+                          {e.startMonth} {e.startYear} - {e.endMonth}{" "}
+                          {e.endYear}
                         </p>
                       )}
                     </div>
-                    {(e.employer || e.cityExtracurricularActivities) && (
+                    {(e.employer || e.city) && (
                       <p className={props.styleCity}>
                         {e.employer}
-                        <span>, {e.cityExtracurricularActivities}</span>
+                        <span>, {e.city}</span>
                       </p>
                     )}
-                    <p className={props.StyleDescription}>
-                      {e.descriptionExtracurricularActivities}
-                    </p>
+                    <p className={props.StyleDescription}>{e.description}</p>
                   </p>
                 </div>
               ))}
             {(ExtracurricularActivitiesData.position ||
-              ExtracurricularActivitiesData.startMonthExtracurricularActivities ||
-              ExtracurricularActivitiesData.startYearExtracurricularActivities ||
-              ExtracurricularActivitiesData.endMonthExtracurricularActivities ||
-              ExtracurricularActivitiesData.endYearExtracurricularActivities ||
-              ExtracurricularActivitiesData.descriptionExtracurricularActivities ||
+              ExtracurricularActivitiesData.startMonth ||
+              ExtracurricularActivitiesData.startYear ||
+              ExtracurricularActivitiesData.endMonth ||
+              ExtracurricularActivitiesData.endYear ||
+              ExtracurricularActivitiesData.description ||
               ExtracurricularActivitiesData.employer ||
-              ExtracurricularActivitiesData.cityExtracurricularActivities) &&
+              ExtracurricularActivitiesData.city) &&
               Edit == false && (
-                <div className={props.styleContainerList}>
+                <div
+                  className={props.styleContainerList}
+                  style={props.border ? { borderColor: props.BgColor } : null}
+                >
                   <p className="">
                     <div className={props.styleList}>
                       <p className={props.StyleTitleList}>
                         {ExtracurricularActivitiesData.position}
                       </p>
                       <p className={props.styleDate}>
-                        {
-                          ExtracurricularActivitiesData.startMonthExtracurricularActivities
-                        }{" "}
-                        {
-                          ExtracurricularActivitiesData.startYearExtracurricularActivities
-                        }{" "}
-                        -{" "}
-                        {
-                          ExtracurricularActivitiesData.endMonthExtracurricularActivities
-                        }{" "}
-                        {
-                          ExtracurricularActivitiesData.endYearExtracurricularActivities
-                        }
+                        {ExtracurricularActivitiesData.startMonth}{" "}
+                        {ExtracurricularActivitiesData.startYear} -{" "}
+                        {ExtracurricularActivitiesData.endMonth}{" "}
+                        {ExtracurricularActivitiesData.endYear}
                       </p>
                     </div>
                     {(ExtracurricularActivitiesData.employer ||
-                      ExtracurricularActivitiesData.cityExtracurricularActivities) && (
+                      ExtracurricularActivitiesData.city) && (
                       <p className={props.styleCity}>
                         {ExtracurricularActivitiesData.employer}
-                        <span>
-                          ,{" "}
-                          {
-                            ExtracurricularActivitiesData.cityExtracurricularActivities
-                          }
-                        </span>
+                        <span>, {ExtracurricularActivitiesData.city}</span>
                       </p>
                     )}
                     <p className={props.StyleDescription}>
-                      {
-                        ExtracurricularActivitiesData.descriptionExtracurricularActivities
-                      }
+                      {ExtracurricularActivitiesData.description}
                     </p>
                   </p>
                 </div>

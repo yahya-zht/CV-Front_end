@@ -10,7 +10,6 @@ export default function Employment(props) {
   );
   const TitleEmployment = useSelector((state) => state.Employment.Title);
   const EditEmployment = useSelector((state) => state.Employment.Edit);
-
   return (
     <div>
       {(DataListEmployment.length > 0 ||
@@ -24,7 +23,14 @@ export default function Employment(props) {
         DataEmployment.descriptionEmployment) && (
         <div className="my-1">
           <div className={props.StyleTitleContainer}>
-            <p className={props.StyleTitle}>
+            <p
+              className={props.StyleTitle}
+              style={
+                props.border
+                  ? { borderColor: props.BgColor }
+                  : { backgroundColor: props.BgColor }
+              }
+            >
               {props.Icon && <CircleIcon sx={{ color: props.IconColor }} />}
               <span className="">
                 {TitleEmployment.length > 0 ? TitleEmployment : `Employment`}
@@ -34,7 +40,11 @@ export default function Employment(props) {
           <div className="mt-1">
             {DataListEmployment.length > 0 &&
               DataListEmployment.map((employ, i) => (
-                <div key={i} className={props.styleContainerList}>
+                <div
+                  key={i}
+                  className={props.styleContainerList}
+                  style={props.border ? { borderColor: props.BgColor } : null}
+                >
                   <p className="">
                     <div className={props.styleList}>
                       <p className={props.StyleTitleList}>{employ.position}</p>
@@ -68,7 +78,10 @@ export default function Employment(props) {
               DataEmployment.employer ||
               DataEmployment.cityEmployment) &&
               EditEmployment == false && (
-                <div className={props.styleContainerList}>
+                <div
+                  className={props.styleContainerList}
+                  style={props.border ? { borderColor: props.BgColor } : null}
+                >
                   <p className="">
                     <div className={props.styleList}>
                       <p className={props.StyleTitleList}>

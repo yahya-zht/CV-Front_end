@@ -15,7 +15,14 @@ export default function EntriesSection(props) {
     <div>
       <div className="my-1">
         <div className={props.StyleTitleContainer}>
-          <p className={props.StyleTitle}>
+          <p
+            className={props.StyleTitle}
+            style={
+              props.border
+                ? { borderColor: props.BgColor }
+                : { backgroundColor: props.BgColor }
+            }
+          >
             {props.Icon && <CircleIcon sx={{ color: props.IconColor }} />}
             <span className="">
               {Title.length > 0 ? Title : `Entries Section ${props.index + 1}`}{" "}
@@ -34,7 +41,11 @@ export default function EntriesSection(props) {
           <div className="mt-1">
             {ListEntries.length > 0 &&
               ListEntries.map((entrie, i) => (
-                <div key={i} className={props.styleContainerList}>
+                <div
+                  key={i}
+                  className={props.styleContainerList}
+                  style={props.border ? { borderColor: props.BgColor } : null}
+                >
                   <p className="">
                     <div className={props.styleList}>
                       <p className={props.StyleTitleList}>{entrie.title}</p>
@@ -66,7 +77,10 @@ export default function EntriesSection(props) {
               Entries.summary ||
               Entries.city) &&
               (Edit == false || Edit == undefined) && (
-                <div className={props.styleContainerList}>
+                <div
+                  className={props.styleContainerList}
+                  style={props.border ? { borderColor: props.BgColor } : null}
+                >
                   <p className="">
                     <div className={props.styleList}>
                       <p className={props.StyleTitleList}>{Entries.title}</p>

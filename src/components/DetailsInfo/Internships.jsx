@@ -15,13 +15,20 @@ export default function Internships(props) {
   );
   const TitleInternships = useSelector((state) => state.Internships.Title);
   const EditInternships = useSelector((state) => state.Internships.Edit);
-
+  console.log("InternshipsData====>", InternshipsData);
   return (
     <div>
       {formInternships && (
         <div className="my-1">
           <div className={props.StyleTitleContainer}>
-            <p className={props.StyleTitle}>
+            <p
+              className={props.StyleTitle}
+              style={
+                props.border
+                  ? { borderColor: props.BgColor }
+                  : { backgroundColor: props.BgColor }
+              }
+            >
               {props.Icon && <CircleIcon sx={{ color: props.IconColor }} />}
               <span className="">
                 {TitleInternships.length > 0 ? TitleInternships : `Internships`}
@@ -31,65 +38,66 @@ export default function Internships(props) {
           <div className="mt-1">
             {InternshipsList.length > 0 &&
               InternshipsList.map((internship, i) => (
-                <div key={i} className={props.styleContainerList}>
+                <div
+                  key={i}
+                  className={props.styleContainerList}
+                  style={props.border ? { borderColor: props.BgColor } : null}
+                >
                   <p className="">
                     <div className={props.styleList}>
                       <p className={props.StyleTitleList}>
                         {internship.position}
                       </p>
-                      {(internship.startYearInternship ||
-                        internship.endYearInternship) && (
+                      {(internship.startYear || internship.endYear) && (
                         <p className={props.styleDate}>
-                          {internship.startMonthInternship}{" "}
-                          {internship.startYearInternship} -{" "}
-                          {internship.endMonthInternship}{" "}
-                          {internship.endYearInternship}
+                          {internship.startMonth} {internship.startYear} -{" "}
+                          {internship.endMonth} {internship.endYear}
                         </p>
                       )}
                     </div>
-                    {(internship.Internship || internship.cityInternship) && (
+                    {(internship.Internship || internship.city) && (
                       <p className={props.styleCity}>
                         {internship.Internship}
-                        <span>, {internship.cityInternship}</span>
+                        <span>, {internship.city}</span>
                       </p>
                     )}
                     <p className={props.StyleDescription}>
-                      {internship.descriptionInternship}
+                      {internship.description}
                     </p>
                   </p>
                 </div>
               ))}
             {(InternshipsData.position ||
-              InternshipsData.startMonthEmployment ||
-              InternshipsData.startYearEmployment ||
-              InternshipsData.endMonthEmployment ||
-              InternshipsData.endYearEmployment ||
-              InternshipsData.descriptionEmployment ||
+              InternshipsData.startMonth ||
+              InternshipsData.startYear ||
+              InternshipsData.endMonth ||
+              InternshipsData.endYear ||
+              InternshipsData.description ||
               InternshipsData.employer ||
-              InternshipsData.cityEmployment) &&
+              InternshipsData.city) &&
               EditInternships == false && (
-                <div className={props.styleContainerList}>
+                <div
+                  className={props.styleContainerList}
+                  style={props.border ? { borderColor: props.BgColor } : null}
+                >
                   <p className="">
                     <div className={props.styleList}>
                       <p className={props.StyleTitleList}>
                         {InternshipsData.position}
                       </p>
                       <p className={props.styleDate}>
-                        {InternshipsData.startMonthInternship}{" "}
-                        {InternshipsData.startYearInternship} -{" "}
-                        {InternshipsData.endMonthInternship}{" "}
-                        {InternshipsData.endYearInternship}
+                        {InternshipsData.startMonth} {InternshipsData.startYear}{" "}
+                        - {InternshipsData.endMonth} {InternshipsData.endYear}
                       </p>
                     </div>
-                    {(InternshipsData.Internship ||
-                      InternshipsData.cityInternship) && (
+                    {(InternshipsData.Internship || InternshipsData.city) && (
                       <p className={props.styleCity}>
                         {InternshipsData.Internship}
-                        <span>, {InternshipsData.cityInternship}</span>
+                        <span>, {InternshipsData.city}</span>
                       </p>
                     )}
                     <p className={props.StyleDescription}>
-                      {InternshipsData.descriptionInternship}
+                      {InternshipsData.description}
                     </p>
                   </p>
                 </div>

@@ -19,14 +19,25 @@ export default function References(props) {
       {formReferences && (
         <div className={props.styleContainer}>
           <div className={props.styleContainerTitle}>
-            <p className={props.styleTitle}>
+            <p
+              className={props.styleTitle}
+              style={
+                props.border
+                  ? { borderColor: props.BgColor }
+                  : { backgroundColor: props.BgColor }
+              }
+            >
               {TitleReferences.length > 0 ? TitleReferences : `Reference`}
             </p>
           </div>
-          <div className="mt-1 ms-2">
+          <div className="mt-1 ">
             {DataListReferences.length > 0 &&
               DataListReferences.map((reference, i) => (
-                <div key={i} className={props.styleContainerList}>
+                <div
+                  key={i}
+                  className={props.styleContainerList}
+                  style={props.border ? { borderColor: props.BgColor } : null}
+                >
                   <p className={props.styleTitleList}>{reference.name}</p>
                   {(reference.organization || reference.cityReferences) && (
                     <p className="text-xs">
@@ -47,7 +58,10 @@ export default function References(props) {
               ))}
 
             {formReferences && EditReferences == false && (
-              <div className={props.styleContainerList}>
+              <div
+                className={props.styleContainerList}
+                style={props.border ? { borderColor: props.BgColor } : null}
+              >
                 <p className={props.styleTitleList}>{DataReferences.name}</p>
                 {(DataReferences.organization ||
                   DataReferences.cityReferences) && (

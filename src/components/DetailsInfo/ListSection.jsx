@@ -9,7 +9,14 @@ export default function List(props) {
   return (
     <div className={props.StyleContainer}>
       <div className="flex">
-        <p className={props.StyleTitle}>
+        <p
+          className={props.StyleTitle}
+          style={
+            props.border
+              ? { borderColor: props.BgColor }
+              : { backgroundColor: props.BgColor }
+          }
+        >
           {Title.length > 0 ? Title : `List Section ${props.index + 1}`}
         </p>
       </div>

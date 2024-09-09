@@ -17,6 +17,7 @@ export default function UploadedImage(props) {
               layout="fill"
               objectFit="cover"
               className={props.styleImage}
+              style={{ borderColor: props.BgColor }}
             />
           </div>
         </div>

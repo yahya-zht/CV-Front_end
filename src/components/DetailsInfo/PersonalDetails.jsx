@@ -22,7 +22,10 @@ export default function PersonalDetails(props) {
         <div className="mb-4">
           {DataPersonalDetails.phoneNumber.length > 0 && (
             <p className="text-xs flex flex-row items-center mb-1">
-              <span className={props.styleZoonIcon}>
+              <span
+                className={props.styleZoonIcon}
+                style={{ backgroundColor: props.BgColor }}
+              >
                 <LocalPhoneIcon
                   fontSize="small"
                   sx={{ color: props.ColorIcon }}
@@ -35,7 +38,10 @@ export default function PersonalDetails(props) {
           )}
           {DataPersonalDetails.email.length > 0 && (
             <p className="text-xs flex flex-row items-center mb-1">
-              <span className={props.styleZoonIcon}>
+              <span
+                className={props.styleZoonIcon}
+                style={{ backgroundColor: props.BgColor }}
+              >
                 <MarkunreadIcon
                   fontSize="small"
                   sx={{ color: props.ColorIcon }}
@@ -49,7 +55,10 @@ export default function PersonalDetails(props) {
           {DataPersonalDetails.website.length > 0 &&
             !DataPersonalDetails.checkedWeb && (
               <p className="text-xs flex flex-row items-center mb-1">
-                <span className={props.styleZoonIcon}>
+                <span
+                  className={props.styleZoonIcon}
+                  style={{ backgroundColor: props.BgColor }}
+                >
                   <LanguageIcon
                     fontSize="small"
                     sx={{ color: props.ColorIcon }}
@@ -64,7 +73,10 @@ export default function PersonalDetails(props) {
             DataPersonalDetails.postCode.length > 0 ||
             DataPersonalDetails.city.length > 0) && (
             <p className="text-xs flex flex-row items-center mb-1">
-              <span className={props.styleZoonIcon}>
+              <span
+                className={props.styleZoonIcon}
+                style={{ backgroundColor: props.BgColor }}
+              >
                 <LocationOnIcon
                   fontSize="small"
                   sx={{ color: props.ColorIcon }}
@@ -79,7 +91,10 @@ export default function PersonalDetails(props) {
           {DataPersonalDetails.linkedIn.length > 0 &&
             !DataPersonalDetails.checkedLinkedIn && (
               <p className="text-xs flex flex-row items-center ">
-                <span className={props.styleZoonIcon}>
+                <span
+                  className={props.styleZoonIcon}
+                  style={{ backgroundColor: props.BgColor }}
+                >
                   <LinkedInIcon
                     fontSize="small"
                     sx={{ color: props.ColorIcon }}

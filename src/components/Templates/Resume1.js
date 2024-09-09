@@ -46,6 +46,11 @@ const Resume1 = forwardRef((props, ref) => {
   ];
   const [itemsLeft, setItemsLeft] = useState(initialItemsLeft);
   const [itemsRight, setItemsRight] = useState(initialItemsRight);
+  const [color, setColor] = useState("#1e3a8a");
+  const [textXs, setTextXs] = useState("text-xs"); //12
+  const [textSm, setTextSm] = useState("text-sm"); //14
+  const [textMd, setTextMd] = useState("text-base"); //16
+  const [textLg, setTextLg] = useState("text-lg"); //18
 
   useEffect(() => {
     localStorage.setItem("resumeLayout", JSON.stringify(itemsLeft));
@@ -59,27 +64,62 @@ const Resume1 = forwardRef((props, ref) => {
   const formDescription = useSelector((state) => state.Section.formDescription);
   const formList = useSelector((state) => state.Section.formList);
   const formSkills = useSelector((state) => state.Section.formSkills);
+  const FontSize = useSelector((state) => state.Templates.FontSize);
+  const ColorSave = useSelector((state) => state.Templates.Color);
+  useEffect(() => {
+    if (ColorSave) {
+      setColor(ColorSave);
+    }
+  }, [ColorSave]);
+  useEffect(() => {
+    switch (FontSize.name) {
+      case "S":
+        setTextXs("text-[10px]");
+        setTextSm("text-[12px]");
+        setTextMd("text-[14px]");
+        setTextLg("text-[16px]");
+        break;
+      case "M":
+        setTextXs("text-xs");
+        setTextSm("text-sm");
+        setTextMd("text-base");
+        setTextLg("text-lg");
+        break;
+      case "L":
+        setTextXs("text-[14px]");
+        setTextSm("text-[16px]");
+        setTextMd("text-[18px]");
+        setTextLg("text-[20px]");
+        break;
+      default:
+        setTextXs("text-xs");
+        setTextSm("text-sm");
+        setTextMd("text-base");
+        setTextLg("text-lg");
+        break;
+    }
+  }, [FontSize]);
 
   const componentLeft = {
     Language: (
       <Language
         StyleContainer={"mb-2"}
-        StyleTitle={
-          "text-lg font-light border-4 border-blue-900 text-white text-center font-mono rounded-full"
-        }
+        BgColor={color}
+        StyleTitle={`${textLg} border-4 text-white text-center font-semibold rounded-full`}
         styleContainerList={"mb-1 text-white"}
         styleList={"flex flex-row justify-between items-center"}
-        StyleTitleSkill={"text-sm text-start"}
+        StyleTitleSkill={`${textSm} text-start`}
         IconTitleSkill={true}
         IconColorSkill={"white"}
         Rating={false}
         StyledRating={true}
-        Color={"#1E3A8A"}
+        Color={color}
       />
     ),
     PersonalDetails: (
       <PersonalDetails
-        styleZoonIcon={"bg-blue-700 p-1 rounded-full"}
+        BgColor={color}
+        styleZoonIcon={"p-1 rounded-full"}
         ColorIcon={"white"}
         styleTitle={"ms-2 text-white"}
       />
@@ -87,62 +127,58 @@ const Resume1 = forwardRef((props, ref) => {
     Skills: (
       <Skills
         StyleContainer={"mb-2"}
-        StyleTitle={
-          "text-lg font-light border-4 border-blue-900 text-white text-center font-mono rounded-full"
-        }
+        BgColor={color}
+        StyleTitle={`${textLg} border-4 text-white text-center font-semibold rounded-full`}
         styleContainerList={"mb-1 text-white"}
         styleList={"flex flex-row justify-between items-center"}
-        StyleTitleSkill={"text-sm text-start"}
+        StyleTitleSkill={`${textSm} text-start`}
         IconTitleSkill={true}
         IconColorSkill={"white"}
         Rating={false}
         StyledRating={true}
-        Color={"#1E3A8A"}
+        Color={color}
       />
     ),
     Hobbies: (
       <Hobbies
         StyleContainer={"mb-2"}
-        StyleTitle={
-          "text-lg font-light border-4 border-blue-900 text-white text-center font-mono rounded-full"
-        }
+        BgColor={color}
+        StyleTitle={`${textLg} border-4 text-white text-center font-semibold rounded-full`}
         styleContainerList={"mb-1 text-white"}
         styleList={"flex flex-row justify-between items-center"}
-        StyleTitleSkill={"text-sm text-start"}
+        StyleTitleSkill={`${textSm} text-start`}
         IconTitleSkill={true}
         IconColorSkill={"white"}
         Rating={false}
         StyledRating={true}
-        Color={"#1E3A8A"}
+        Color={color}
       />
     ),
     Qualities: (
       <Qualities
         StyleContainer={"mb-2  text-white"}
-        StyleTitle={
-          "text-lg font-light border-4 border-blue-900 text-white text-center font-mono rounded-full"
-        }
+        BgColor={color}
+        StyleTitle={`${textLg} border-4 text-white text-center font-semibold rounded-full`}
         styleContainerList={"mb-1"}
         styleList={"flex flex-row justify-between items-center"}
-        StyleTitleList={"text-sm text-start"}
+        StyleTitleList={`${textSm} text-start`}
         Icon={true}
         IconColor={"white"}
-        Color={"#1E3A8A"}
+        Color={color}
       />
     ),
     Courses: (
       <Courses
         styleContainer={""}
-        StyleTitle={
-          "text-lg font-light border-4 border-blue-900 text-white text-center font-mono rounded-full focus:border-2 focus:border-green-600"
-        }
-        styleContainerList={"mb-1 text-white"}
+        BgColor={color}
+        StyleTitle={`${textLg} border-4 text-white text-center font-semibold rounded-full focus:border-2 focus:border-green-600`}
+        styleContainerList={"ms-2 mb-1 text-white"}
         styleList={"flex flex-row justify-between"}
-        StyleTitleList={"text-md font-bold"}
+        StyleTitleList={`${textSm} font-bold`}
         Icon={true}
         IconColor={"white"}
         styleDate={"hidden"}
-        StyleDescription={"text-xs ms-1"}
+        StyleDescription={`${textXs} ms-1`}
       />
     ),
   };
@@ -150,101 +186,95 @@ const Resume1 = forwardRef((props, ref) => {
     Education: (
       <Education
         StyleTitleContainer={"flex"}
-        StyleTitle={
-          "border-4 border-blue-900 rounded-full px-2 text-lg font-mono w-auto bg-blue-900 text-white text-center"
-        }
+        BgColor={color}
+        StyleTitle={` ${textLg} rounded-full px-2 font-semibold w-auto  text-white text-center`}
         Icon={false}
-        IconColor={"#1E3A8A"}
+        IconColor={color}
         styleContainerList={"pl-4 mb-2"}
         styleList={"flex flex-row justify-between items-center"}
-        StyleTitleList={"text-[16px] font-bold"}
-        styleCity={"text-sm font-semibold text-gray-600"}
-        styleDate={"text-xs text-gray-600"}
-        StyleDescription={"text-[12px] text-justify whitespace-pre-wrap"}
+        StyleTitleList={`${textSm} font-bold`}
+        styleCity={`${textSm} font-semibold text-gray-600`}
+        styleDate={`${textXs} text-gray-600`}
+        StyleDescription={`${textXs} text-justify whitespace-pre-wrap`}
       />
     ),
     Employment: (
       <Employment
         StyleTitleContainer={"flex"}
-        StyleTitle={
-          " border-4 border-blue-900 rounded-full px-2 text-lg font-mono w-auto bg-blue-900 text-white text-center  "
-        }
+        BgColor={color}
+        border={false}
+        StyleTitle={`rounded-full px-2 ${textLg} font-semibold w-auto text-white text-center`}
         Icon={false}
-        IconColor={"#1E3A8A"}
+        IconColor={color}
         styleContainerList={"pl-4 mb-2"}
         styleList={"flex flex-row justify-between items-center"}
-        StyleTitleList={"text-[16px] font-bold"}
-        styleCity={"text-sm font-semibold text-gray-600"}
-        styleDate={"text-xs text-gray-600"}
-        StyleDescription={"text-[12px] text-justify whitespace-pre-wrap"}
+        StyleTitleList={`${textSm} font-bold`}
+        styleCity={`${textSm} font-semibold text-gray-600`}
+        styleDate={`${textXs} text-gray-600`}
+        StyleDescription={`${textXs} text-justify whitespace-pre-wrap`}
       />
     ),
     Internships: (
       <Internships
         StyleTitleContainer={"flex"}
-        StyleTitle={
-          " border-4 border-blue-900 rounded-full px-2 text-lg font-mono w-auto bg-blue-900 text-white text-center  "
-        }
+        BgColor={color}
+        StyleTitle={` rounded-full px-2 ${textLg} font-semibold w-auto  text-white text-center`}
         Icon={false}
-        IconColor={"#1E3A8A"}
+        IconColor={color}
         styleContainerList={"pl-4 mb-2"}
         styleList={"flex flex-row justify-between items-center"}
-        StyleTitleList={"text-[16px] font-bold"}
-        styleCity={"text-sm font-semibold text-gray-600"}
-        styleDate={"text-xs text-gray-600"}
-        StyleDescription={"text-[12px] text-justify whitespace-pre-wrap"}
+        StyleTitleList={`${textSm} font-bold`}
+        styleCity={`${textSm} font-semibold text-gray-600`}
+        styleDate={`${textXs} text-gray-600`}
+        StyleDescription={`${textXs} text-justify whitespace-pre-wrap`}
       />
     ),
     Certificates: (
       <Certificates
         StyleTitleContainer={"flex"}
-        StyleTitle={
-          " border-4 border-blue-900 rounded-full px-2 text-lg font-mono w-auto bg-blue-900 text-white text-center"
-        }
-        styleContainerList={"mb-1"}
+        BgColor={color}
+        StyleTitle={` rounded-full px-2 ${textLg} font-semibold w-auto  text-white text-center`}
+        styleContainerList={" pl-4 mb-1"}
         styleList={"flex flex-row justify-between"}
-        StyleTitleList={"text-md font-bold"}
+        StyleTitleList={" font-bold"}
         Icon={false}
-        IconColor={"#1E3A8A"}
-        styleDate={"text-xs text-gray-600"}
-        StyleDescription={"text-xs ms-1 whitespace-pre-wrap"}
+        IconColor={color}
+        styleDate={`${textXs} text-gray-600`}
+        StyleDescription={`${textXs} ms-1 whitespace-pre-wrap`}
       />
     ),
     ExtracurricularActivities: (
       <ExtracurricularActivities
         StyleTitleContainer={"flex"}
-        StyleTitle={
-          " border-4 border-blue-900 rounded-full px-2 text-lg font-mono w-auto bg-blue-900 text-white text-center  "
-        }
+        BgColor={color}
+        StyleTitle={` rounded-full px-2 ${textLg} font-semibold w-auto  text-white text-center`}
         Icon={false}
-        IconColor={"#1E3A8A"}
+        IconColor={color}
         styleContainerList={"pl-4 mb-2"}
         styleList={"flex flex-row justify-between items-center"}
-        StyleTitleList={"text-[16px] font-bold"}
-        styleCity={"text-sm font-semibold text-gray-600"}
-        styleDate={"text-xs text-gray-600"}
-        StyleDescription={"text-[12px] text-justify whitespace-pre-wrap"}
+        StyleTitleList={`${textSm} font-bold`}
+        styleCity={`${textSm} font-semibold text-gray-600`}
+        styleDate={`${textXs} text-gray-600`}
+        StyleDescription={`${textXs} text-justify whitespace-pre-wrap`}
       />
     ),
     Achievements: (
       <Achievements
         styleContainer={"mt-2"}
+        BgColor={color}
         StyleContainerTitle={"flex"}
-        StyleTitle={
-          "border-4 border-blue-900 rounded-full px-2 text-lg font-mono w-auto bg-blue-900 text-white text-center"
-        }
-        styleDescription={"text-sm ms-4  whitespace-pre-wrap"}
+        StyleTitle={` ${textLg}  rounded-full px-2 font-semibold w-auto  text-white text-center`}
+        styleDescription={`${textSm} ms-4  whitespace-pre-wrap`}
       />
     ),
     References: (
       <References
         styleContainer={"mt-2"}
+        BgColor={color}
         styleContainerTitle={"flex "}
-        styleTitle={
-          "border-4 border-blue-900 rounded-full px-2 text-lg font-mono w-auto bg-blue-900 text-white text-center"
-        }
-        styleContainerList={"mb-2"}
-        styleTitleList={"text-md font-bold"}
+        styleTitle={` ${textLg}  rounded-full px-2 font-semibold w-auto  text-white text-center`}
+        styleContainerList={"mb-2 pl-4"}
+        styleTitleList={" font-bold"}
       />
     ),
     formEntries:
@@ -253,17 +283,16 @@ const Resume1 = forwardRef((props, ref) => {
         <EntriesSection
           index={index}
           StyleTitleContainer={"flex"}
-          StyleTitle={
-            " border-4 border-blue-900 rounded-full px-2 text-lg font-mono w-auto bg-blue-900 text-white text-center"
-          }
+          BgColor={color}
+          StyleTitle={` rounded-full px-2 ${textLg} font-semibold w-auto  text-white text-center`}
           Icon={false}
-          IconColor={"#1E3A8A"}
+          IconColor={color}
           styleContainerList={"pl-4 mb-2"}
           styleList={"flex flex-row justify-between items-center"}
-          StyleTitleList={"text-[16px] font-bold"}
-          styleCity={"text-sm font-semibold text-gray-600"}
-          styleDate={"text-xs text-gray-600"}
-          StyleDescription={"text-[12px] text-justify whitespace-pre-wrap"}
+          StyleTitleList={`${textSm} font-bold`}
+          styleCity={`${textSm} font-semibold text-gray-600`}
+          styleDate={`${textXs} text-gray-600`}
+          StyleDescription={`${textXs} text-justify whitespace-pre-wrap`}
         />
       )),
     formDescription:
@@ -272,11 +301,10 @@ const Resume1 = forwardRef((props, ref) => {
         <Description
           index={index}
           styleContainer={"mb-2"}
+          BgColor={color}
           StyleContainerTitle={"flex"}
-          StyleTitle={
-            "border-4 border-blue-900 rounded-full px-2 text-lg font-mono w-auto bg-blue-900 text-white text-center"
-          }
-          styleDescription={"text-sm ms-4  whitespace-pre-wrap"}
+          StyleTitle={` ${textLg}  rounded-full px-2 font-semibold w-auto  text-white text-center`}
+          styleDescription={`${textSm} ms-4  whitespace-pre-wrap`}
         />
       )),
     formList:
@@ -284,16 +312,15 @@ const Resume1 = forwardRef((props, ref) => {
       Array.from({ length: formList }).map((_, index) => (
         <List
           index={index}
+          BgColor={color}
           StyleContainer={"mb-2"}
-          StyleTitle={
-            "border-4 border-blue-900 rounded-full px-2 text-lg font-mono w-auto bg-blue-900 text-white text-center"
-          }
+          StyleTitle={` ${textLg}  rounded-full px-2 font-semibold w-auto  text-white text-center`}
           styleContainerList={"mb-1"}
           styleList={"flex flex-row justify-between items-center"}
-          StyleTitleList={"text-sm text-start"}
+          StyleTitleList={`${textSm} text-start`}
           Icon={true}
-          IconColor={"#1E3A8A"}
-          Color={"#1E3A8A"}
+          IconColor={color}
+          Color={color}
         />
       )),
     formSkills:
@@ -302,17 +329,16 @@ const Resume1 = forwardRef((props, ref) => {
         <SkillsSection
           index={index}
           StyleContainer={"mb-2"}
-          StyleTitle={
-            "border-4 border-blue-900 rounded-full px-2 text-lg font-mono w-auto bg-blue-900 text-white text-center"
-          }
+          BgColor={color}
+          StyleTitle={` ${textLg}  rounded-full px-2 font-semibold w-auto text-white text-center`}
           styleContainerList={"mb-1 "}
           styleList={"flex flex-row justify-between items-center"}
-          StyleTitleSkill={"text-sm text-start"}
+          StyleTitleSkill={`${textSm} text-start`}
           IconTitleSkill={true}
-          IconColorSkill={"#1E3A8A"}
+          IconColorSkill={color}
           Rating={false}
           StyledRating={true}
-          Color={"#1E3A8A"}
+          Color={color}
         />
       )),
   };
@@ -389,34 +415,31 @@ const Resume1 = forwardRef((props, ref) => {
   return (
     <div className="flex flex-row bg-white h-full relative">
       <PersonalInfo
-        styleContainer={
-          "absolute bg-blue-900 py-6 px-4 h-40 top-16 start-0 right-0 z-0 flex flex-row justify-between"
-        }
+        BgColor={color}
+        styleContainer={`absolute py-6 px-4 h-40 top-16 start-0 right-0 z-0 flex flex-row justify-between`}
         styleTrueImg={"ms-72"}
         styleFalseImg={"ms-44"}
         styleFirstName={"text-4xl font-bold text-white mb-1"}
         styleLastName={"text-4xl font-bold ps-8 text-white mb-1"}
-        styleHeadline={"text-lg text-white ps-16 mb-1"}
+        styleHeadline={`${textLg} text-white ps-16 mb-1`}
         styleQr={"flex flex-col items-center"}
         IconColor={"white"}
       />
       <div className="w-2/5 bg-gray-950 ms-10 p-6">
         <UploadedImage
+          BgColor={color}
           styleContainer={"flex flex-row  justify-center static z-20 mt-5"}
-          styleImage={"rounded-full border-4 border-blue-900"}
+          styleImage={"rounded-full border-4"}
         />
         {/* formProfile */}
         <Profile
           styleContainer={
             DataPersonalDetails.uploadedImage ? "mt-0 mb-3" : "mt-14 mb-3"
           }
-          styleTitle={
-            "text-lg font-light border-b-4 border-blue-900 text-white text-center font-mono"
-          }
-          Color={"#1e3a8a"}
-          ProfileStyleDescription={
-            "text-sm mx-2 font-sans text-white whitespace-pre-wrap text-center "
-          }
+          BgColor={color}
+          styleTitle={`${textLg} border-b-4 text-white text-center font-semibold`}
+          Color={color}
+          ProfileStyleDescription={`${textSm} mx-2 font-sans text-white whitespace-pre-wrap text-center`}
           IconTitle={false}
         />
         <div
@@ -450,7 +473,7 @@ const Resume1 = forwardRef((props, ref) => {
             {/* formFooter */}
             <Footer
               styleContainerFooter={"mt-2  bottom-0"}
-              styleDescription={"text-sm text-center whitespace-pre-wrap"}
+              styleDescription={`${textSm} text-center whitespace-pre-wrap`}
             />
           </div>
         </div>

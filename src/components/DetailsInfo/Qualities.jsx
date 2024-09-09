@@ -12,7 +12,10 @@ export default function Qualities(props) {
     <div>
       {formQualities && (
         <div className={props.StyleContainer}>
-          <p className={props.StyleTitle}>
+          <p
+            className={props.StyleTitle}
+            style={{ borderColor: props.BgColor }}
+          >
             {TitleQualities.length > 0 ? TitleQualities : `Qualities`}
           </p>
           <div className="mt-1 ms-2">

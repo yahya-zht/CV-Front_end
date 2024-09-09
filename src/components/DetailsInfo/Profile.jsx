@@ -12,7 +12,10 @@ export default function Profile(props) {
       {formProfile && (
         <div className={props.styleContainer}>
           <div className={props.StyleTitleContainer}>
-            <p className={props.styleTitle}>
+            <p
+              className={props.styleTitle}
+              style={{ borderColor: props.BgColor }}
+            >
               {props.IconTitle && (
                 <CircleIcon sx={{ color: props.Color, marginRight: 2 }} />
               )}
