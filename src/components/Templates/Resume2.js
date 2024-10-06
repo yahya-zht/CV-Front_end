@@ -99,6 +99,7 @@ const Resume2 = forwardRef((props, ref) => {
   const componentLeft = {
     PersonalDetails: (
       <PersonalDetails
+        container={"mb-4"}
         styleZoonIcon={""}
         ColorIcon={color}
         styleTitle={"ms-2 "}

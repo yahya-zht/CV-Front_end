@@ -19,7 +19,7 @@ export default function PersonalDetails(props) {
         DataPersonalDetails.city ||
         DataPersonalDetails.website ||
         DataPersonalDetails.linkedIn) && (
-        <div className="mb-4">
+        <div className={props.container}>
           {DataPersonalDetails.phoneNumber.length > 0 && (
             <p className="text-xs flex flex-row items-center mb-1">
               <span

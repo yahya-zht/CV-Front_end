@@ -1,10 +1,12 @@
 import React, { forwardRef, useEffect, useRef } from "react";
-import Resume2 from "./Resume2";
 import { useSelector } from "react-redux";
 import Resume1 from "./Resume1";
+import Resume2 from "./Resume2";
 import Resume3 from "./Resume3";
-import Resume4 from "../Templates/Resume1";
+import Resume4 from "./Resume4";
 import { useReactToPrint } from "react-to-print";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
 
 const Resume = forwardRef((props, ref) => {
   const componentRef = useRef();
@@ -12,6 +14,7 @@ const Resume = forwardRef((props, ref) => {
     content: () => componentRef.current,
     documentTitle: "resume",
   });
+  
   useEffect(() => {
     if (props.clk) {
       handlePrint();

@@ -118,6 +118,7 @@ const Resume1 = forwardRef((props, ref) => {
     ),
     PersonalDetails: (
       <PersonalDetails
+        container={"mb-4"}
         BgColor={color}
         styleZoonIcon={"p-1 rounded-full"}
         ColorIcon={"white"}

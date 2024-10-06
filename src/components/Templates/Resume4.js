@@ -55,7 +55,7 @@ const Resume3 = forwardRef(() => {
   ];
   const [itemsLeft, setItemsLeft] = useState(initialItemsLeft);
   const [itemsRight, setItemsRight] = useState(initialItemsRight);
-  const [color, setColor] = useState("#5C8E8F");
+  const [color, setColor] = useState("#406690");
   const [textXs, setTextXs] = useState("text-xs"); //12
   const [textSm, setTextSm] = useState("text-sm"); //14
   const [textMd, setTextMd] = useState("text-base"); //16
@@ -101,7 +101,7 @@ const Resume3 = forwardRef(() => {
   const componentLeft = {
     PersonalDetails: (
       <PersonalDetails
-        container={"mb-4 mt-2"}
+        container={"mb-4 mt-4"}
         BgColor={color}
         styleZoonIcon={"p-1 rounded-full"}
         ColorIcon={"white"}
@@ -113,7 +113,7 @@ const Resume3 = forwardRef(() => {
         StyleContainer={"mb-2"}
         BgColor={color}
         border={true}
-        StyleTitle={`${textLg} font-semibold border-b-4 text-center rounded-full`}
+        StyleTitle={`${textLg} text-start font-semibold border-b-4 text-[${color}] ps-2 pb-2`}
         styleContainerList={"mb-1"}
         styleList={"flex flex-row justify-between items-center"}
         StyleTitleSkill={`${textSm} text-start`}
@@ -129,7 +129,7 @@ const Resume3 = forwardRef(() => {
         StyleContainer={"mb-2"}
         BgColor={color}
         border={true}
-        StyleTitle={`${textLg} font-semibold border-b-4 text-center rounded-full`}
+        StyleTitle={`${textLg} font-semibold border-b-4 text-start text-[${color}] ps-2 pb-2`}
         styleContainerList={"mb-1"}
         styleList={"flex flex-row justify-between items-center"}
         StyleTitleSkill={`${textSm} text-start`}
@@ -145,7 +145,7 @@ const Resume3 = forwardRef(() => {
         StyleContainer={"mb-2"}
         BgColor={color}
         border={true}
-        StyleTitle={`${textLg} font-semibold border-b-4 text-center rounded-full`}
+        StyleTitle={`${textLg} font-semibold border-b-4 text-start text-[${color}] ps-2 pb-2`}
         styleContainerList={"mb-1"}
         styleList={"flex flex-row justify-between items-center"}
         StyleTitleSkill={`${textSm} text-start`}
@@ -159,7 +159,7 @@ const Resume3 = forwardRef(() => {
         StyleContainer={"mb-2"}
         BgColor={color}
         border={true}
-        StyleTitle={`${textLg} font-semibold border-b-4  text-center rounded-full`}
+        StyleTitle={`${textLg} font-semibold border-b-4  text-start text-[${color}] ps-2 pb-2`}
         styleContainerList={"mb-1"}
         styleList={"flex flex-row justify-between items-center"}
         StyleTitleList={`${textSm} text-start`}
@@ -175,7 +175,7 @@ const Resume3 = forwardRef(() => {
         StyleTitleContainer={"flex"}
         BgColor={color}
         border={true}
-        styleTitle={`${textLg} font-semibold border-b-4  text-center w-auto px-5 rounded-xl`}
+        styleTitle={`${textLg} font-semibold border-b-4 w-1/2 px-5 text-start text-[${color}] ps-2 `}
         IconTitle={false}
         Color={color}
         ProfileStyleDescription={`${textXs} mx-2 font-sans whitespace-pre-wrap text-justify px-2 py-1`}
@@ -186,10 +186,10 @@ const Resume3 = forwardRef(() => {
         StyleTitleContainer={"flex"}
         BgColor={color}
         border={true}
-        StyleTitle={`border-b-4  rounded-full px-5 ${textLg} font-semibold w-auto text-center`}
+        StyleTitle={`border-b-4 px-5 ${textLg} font-semibold w-1/2 text-start text-[${color}] ps-2 `}
         Icon={false}
         IconColor={color}
-        styleContainerList={"pl-4 mb-2"}
+        styleContainerList={"border-l-2 pl-4 mb-2"}
         styleList={"flex flex-row justify-between items-center"}
         StyleTitleList={`${textMd} font-bold`}
         styleCity={`${textSm} font-semibold text-gray-600`}
@@ -202,8 +202,8 @@ const Resume3 = forwardRef(() => {
         StyleTitleContainer={"flex"}
         BgColor={color}
         border={true}
-        StyleTitle={`border-b-4  rounded-full px-5 ${textLg} font-semibold w-auto text-center`}
-        styleContainerList={"pl-4 mb-1"}
+        StyleTitle={`border-b-4 px-5 ${textLg} font-semibold w-1/2 text-start text-[${color}] ps-2 `}
+        styleContainerList={"border-l-2 pl-4 mb-1"}
         styleList={"flex flex-row justify-between items-center"}
         StyleTitleList={`${textMd} font-bold`}
         Icon={false}
@@ -217,10 +217,10 @@ const Resume3 = forwardRef(() => {
         BgColor={color}
         border={true}
         StyleTitleContainer={"flex"}
-        StyleTitle={`border-b-4  rounded-full px-5 ${textLg} font-semibold w-auto text-center`}
+        StyleTitle={`border-b-4 px-5 ${textLg} font-semibold w-1/2 text-start text-[${color}] ps-2 `}
         Icon={false}
         IconColor={color}
-        styleContainerList={"pl-4 mb-2"}
+        styleContainerList={"border-l-2 pl-4 mb-2"}
         styleList={"flex flex-row justify-between items-center"}
         StyleTitleList={`${textMd} font-bold`}
         styleCity={`${textSm} font-semibold text-gray-600`}
@@ -233,10 +233,10 @@ const Resume3 = forwardRef(() => {
         StyleTitleContainer={"flex"}
         BgColor={color}
         border={true}
-        StyleTitle={`border-b-4  rounded-full px-5 ${textLg} font-semibold w-auto text-center`}
+        StyleTitle={`border-b-4 px-5 ${textLg} font-semibold w-1/2 text-start text-[${color}] ps-2 `}
         Icon={false}
         IconColor={color}
-        styleContainerList={"pl-4 mb-2"}
+        styleContainerList={"border-l-2 pl-4 mb-2"}
         styleList={"flex flex-row justify-between items-center"}
         StyleTitleList={`${textMd} font-bold`}
         styleCity={`${textSm} font-semibold text-gray-600`}
@@ -249,8 +249,8 @@ const Resume3 = forwardRef(() => {
         StyleTitleContainer={"flex"}
         BgColor={color}
         border={true}
-        StyleTitle={`border-b-4  rounded-full px-5 ${textLg} font-semibold w-auto text-center`}
-        styleContainerList={"pl-4 mb-1"}
+        StyleTitle={`border-b-4 px-5 ${textLg} font-semibold w-1/2 text-start text-[${color}] ps-2 `}
+        styleContainerList={"border-l-2 pl-4 mb-1"}
         styleList={"flex flex-row justify-between items-center"}
         StyleTitleList={`${textMd} font-bold`}
         Icon={false}
@@ -264,10 +264,10 @@ const Resume3 = forwardRef(() => {
         StyleTitleContainer={"flex"}
         BgColor={color}
         border={true}
-        StyleTitle={`border-b-4  rounded-full px-5 ${textLg} font-semibold w-auto text-center`}
+        StyleTitle={`border-b-4 px-5 ${textLg} font-semibold w-1/2 text-start text-[${color}] ps-2 `}
         Icon={false}
         IconColor={color}
-        styleContainerList={"pl-4 mb-2"}
+        styleContainerList={"border-l-2 pl-4 mb-2"}
         styleList={"flex flex-row justify-between items-center"}
         StyleTitleList={`${textMd} font-bold`}
         styleCity={`${textSm} font-semibold text-gray-600`}
@@ -281,7 +281,7 @@ const Resume3 = forwardRef(() => {
         BgColor={color}
         border={true}
         StyleContainerTitle={"flex"}
-        StyleTitle={`border-b-4  rounded-full px-5 ${textLg} font-semibold w-auto text-center`}
+        StyleTitle={`border-b-4 px-5 ${textLg} font-semibold w-1/2 text-start text-[${color}] ps-2 `}
         styleDescription={`${textSm} ms-4  whitespace-pre-wrap`}
       />
     ),
@@ -291,8 +291,8 @@ const Resume3 = forwardRef(() => {
         styleContainerTitle={"flex "}
         BgColor={color}
         border={true}
-        styleTitle={`border-b-4  rounded-full px-5 ${textLg} font-semibold w-auto text-center`}
-        styleContainerList={"pl-4 mb-2"}
+        styleTitle={`border-b-4 px-5 ${textLg} font-semibold w-1/2 text-start text-[${color}] ps-2 `}
+        styleContainerList={"border-l-2 pl-4 mb-2"}
         styleTitleList={`${textMd} font-bold`}
       />
     ),
@@ -304,7 +304,7 @@ const Resume3 = forwardRef(() => {
           StyleTitleContainer={"flex"}
           BgColor={color}
           border={true}
-          StyleTitle={`border-b-4  rounded-full px-5 ${textLg} font-semibold w-auto text-center`}
+          StyleTitle={`border-b-4 px-5 ${textLg} font-semibold w-1/2 text-start text-[${color}] ps-2 `}
           Icon={false}
           IconColor={color}
           styleContainerList={"pl-4 mb-2"}
@@ -324,7 +324,7 @@ const Resume3 = forwardRef(() => {
           border={true}
           styleContainer={"mt-2"}
           StyleContainerTitle={"flex"}
-          StyleTitle={`border-b-4  rounded-full px-5 ${textLg} font-semibold w-auto text-center`}
+          StyleTitle={`border-b-4 px-5 ${textLg} font-semibold w-1/2 text-start text-[${color}] ps-2 `}
           styleDescription={`${textSm} ms-4  whitespace-pre-wrap`}
         />
       )),
@@ -336,7 +336,7 @@ const Resume3 = forwardRef(() => {
           BgColor={color}
           border={true}
           StyleContainer={"mb-2"}
-          StyleTitle={`${textLg} font-semibold border-b-4  text-center rounded-full w-auto px-5`}
+          StyleTitle={`${textLg} font-semibold border-b-4  text-start text-[${color}] ps-2  w-1/2 px-5`}
           styleContainerList={"mb-1"}
           styleList={"flex flex-row justify-between items-center"}
           StyleTitleList={`${textSm} text-start`}
@@ -353,7 +353,7 @@ const Resume3 = forwardRef(() => {
           BgColor={color}
           border={true}
           StyleContainer={"mb-2"}
-          StyleTitle={`${textLg} font-semibold border-b-4  text-center rounded-full w-auto px-5`}
+          StyleTitle={`${textLg} font-semibold border-b-4  text-start text-[${color}] ps-2 w-1/2 `}
           styleContainerList={"mb-1"}
           styleList={"flex flex-row justify-between items-center"}
           StyleTitleSkill={`${textSm} text-start`}
@@ -434,60 +434,67 @@ const Resume3 = forwardRef(() => {
     }
   };
   return (
-    <div className="flex flex-row bg-white h-full relative">
-      <PersonalInfo
-        BgColor={color}
-        styleContainer={
-          "absolute  py-6 px-4 h-44 top-6 start-0 right-0 z-0 flex flex-row justify-between"
-        }
-        styleTrueImg={"ms-72"}
-        styleFalseImg={"ms-48"}
-        styleFirstName={"text-4xl font-bold text-white mb-1"}
-        styleLastName={"text-4xl font-bold text-white mb-1"}
-        styleHeadline={`${textLg} text-white mb-1`}
-        styleQr={"flex flex-col items-center"}
-        IconColor={"white"}
-      />
-      <div className="bg-[#D9D9D9] w-2/5 px-6 py-4">
-        <UploadedImage
-          styleContainer={"flex flex-row  justify-center static z-20 mt-0"}
-          styleImage={"rounded-xl border-4 border-white"}
+    <div className="flex flex-col bg-white h-full relative">
+      <div className="flex flex-row h-full relative z-10">
+        <PersonalInfo
           BgColor={color}
+          styleContainer={
+            "absolute py-10 px-4 h-52 start-0 right-0 z-0 flex flex-row justify-between"
+          }
+          styleTrueImg={"ms-72"}
+          styleFalseImg={"ms-48"}
+          styleFirstName={"text-4xl font-bold text-white mb-1 pt-6 inline-flex"}
+          styleLastName={
+            "text-4xl font-bold text-white mb-1 pt-6 inline-flex ms-3"
+          }
+          styleHeadline={`${textLg} text-white mb-1`}
+          styleQr={"flex flex-col items-center  pt-4"}
+          IconColor={"white"}
         />
-        <div className={DataPersonalDetails.uploadedImage ? "mt-0" : "mt-16"}>
-          <DndContext onDragEnd={handleDragEndLeft}>
-            {itemsLeft.map((item, i) => (
-              <DroppableContainer key={i} id={i}>
-                <DraggableItem id={item}>{componentLeft[item]}</DraggableItem>
-              </DroppableContainer>
-            ))}
-          </DndContext>
-        </div>
-      </div>
-      <div className="w-3/5 mt-52 mx-2">
-        <div className=" flex flex-col justify-between h-full">
-          <div>
-            {" "}
-            <DndContext onDragEnd={handleDragEndRight}>
-              {itemsRight.map((item, i) => (
+        <div className="w-2/5 px-6 py-2">
+          <UploadedImage
+            styleContainer={"flex flex-row justify-center static z-20 mt-0"}
+            styleImage={"rounded-full border-4 border-white "}
+            BgColor={color}
+          />
+          <div className={DataPersonalDetails.uploadedImage ? "mt-0" : "mt-16"}>
+            <DndContext onDragEnd={handleDragEndLeft}>
+              {itemsLeft.map((item, i) => (
                 <DroppableContainer key={i} id={i}>
-                  <DraggableItem id={item}>
-                    {componentRight[item]}
-                  </DraggableItem>
+                  <DraggableItem id={item}>{componentLeft[item]}</DraggableItem>
                 </DroppableContainer>
               ))}
             </DndContext>
           </div>
-          <div>
-            {/* formFooter */}
-            <Footer
-              styleContainerFooter={"mt-2  bottom-0"}
-              styleDescription={`${textSm} text-center whitespace-pre-wrap`}
-            />
+        </div>
+        <div className="w-3/5 mt-52 mx-2 bottom-20">
+          <div className=" flex flex-col justify-between h-full">
+            <div>
+              <DndContext onDragEnd={handleDragEndRight}>
+                {itemsRight.map((item, i) => (
+                  <DroppableContainer key={i} id={i}>
+                    <DraggableItem id={item}>
+                      {componentRight[item]}
+                    </DraggableItem>
+                  </DroppableContainer>
+                ))}
+              </DndContext>
+            </div>
+            <div>
+              {/* formFooter */}
+              <Footer
+                styleContainerFooter={"mt-2  bottom-0"}
+                styleDescription={`${textSm} text-center text-white whitespace-pre-wrap`}
+              />
+            </div>
           </div>
         </div>
       </div>
+      <div
+        className={`bg-[#406690] absolute py-4 px-4 start-0 right-0 z-0 bottom-0 flex flex-row justify-between `}
+      ></div>
     </div>
   );
 });
+
 export default Resume3;

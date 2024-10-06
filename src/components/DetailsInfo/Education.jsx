@@ -37,7 +37,11 @@ export default function Education(props) {
           <div className="mt-1">
             {DataListEducation.length > 0 &&
               DataListEducation.map((education, i) => (
-                <div key={i} className={props.styleContainerList}>
+                <div
+                  key={i}
+                  className={props.styleContainerList}
+                  style={props.border ? { borderColor: props.BgColor } : null}
+                >
                   <p className="">
                     <div className={props.styleList}>
                       <p className={props.StyleTitleList}>
