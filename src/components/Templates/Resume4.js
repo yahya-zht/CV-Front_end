@@ -23,7 +23,7 @@ import List from "../DetailsInfo/ListSection";
 import SkillsSection from "../DetailsInfo/SkillsSection";
 import { useDraggable, useDroppable, DndContext } from "@dnd-kit/core";
 
-const Resume3 = forwardRef(() => {
+const Resume4 = forwardRef(() => {
   const formEntries = useSelector((state) => state.Section.formEntries);
   const formDescription = useSelector((state) => state.Section.formDescription);
   const formList = useSelector((state) => state.Section.formList);
@@ -491,10 +491,11 @@ const Resume3 = forwardRef(() => {
         </div>
       </div>
       <div
-        className={`bg-[#406690] absolute py-4 px-4 start-0 right-0 z-0 bottom-0 flex flex-row justify-between `}
+        className={`absolute py-4 px-4 start-0 right-0 z-0 bottom-0 flex flex-row justify-between `}
+        style={{ backgroundColor: color }}
       ></div>
     </div>
   );
 });
 
-export default Resume3;
+export default Resume4;

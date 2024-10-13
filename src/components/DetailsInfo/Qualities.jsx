@@ -14,7 +14,10 @@ export default function Qualities(props) {
         <div className={props.StyleContainer}>
           <p
             className={props.StyleTitle}
-            style={{ borderColor: props.BgColor }}
+            style={{
+              borderColor: props.BgColor,
+              backgroundColor: props.bgText && props.BgColor,
+            }}
           >
             {TitleQualities.length > 0 ? TitleQualities : `Qualities`}
           </p>

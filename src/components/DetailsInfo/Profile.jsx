@@ -14,7 +14,10 @@ export default function Profile(props) {
           <div className={props.StyleTitleContainer}>
             <p
               className={props.styleTitle}
-              style={{ borderColor: props.BgColor }}
+              style={{
+                borderColor: props.BgColor,
+                backgroundColor: props.bgText && props.BgColor,
+              }}
             >
               {props.IconTitle && (
                 <CircleIcon sx={{ color: props.Color, marginRight: 2 }} />

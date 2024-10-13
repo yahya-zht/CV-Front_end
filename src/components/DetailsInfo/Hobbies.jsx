@@ -12,7 +12,10 @@ export default function Hobbies(props) {
         <div className={props.StyleContainer}>
           <p
             className={props.StyleTitle}
-            style={{ borderColor: props.BgColor }}
+            style={{
+              borderColor: props.BgColor,
+              backgroundColor: props.bgText && props.BgColor,
+            }}
           >
             {TitleHobby.length > 0 ? TitleHobby : `Hobbies`}
           </p>

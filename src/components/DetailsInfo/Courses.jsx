@@ -15,7 +15,10 @@ export default function Courses(props) {
           <div className={props.StyleTitleContainer}>
             <p
               className={props.StyleTitle}
-              style={{ borderColor: props.BgColor }}
+              style={{
+                borderColor: props.BgColor,
+                backgroundColor: props.bgText && props.BgColor,
+              }}
             >
               {props.IconTitle && (
                 <CircleIcon sx={{ color: props.IconColor }} />

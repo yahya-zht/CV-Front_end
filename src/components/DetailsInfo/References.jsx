@@ -21,11 +21,11 @@ export default function References(props) {
           <div className={props.styleContainerTitle}>
             <p
               className={props.styleTitle}
-              style={
-                props.border
-                  ? { borderColor: props.BgColor }
-                  : { backgroundColor: props.BgColor }
-              }
+              style={{
+                borderColor: props.border && props.BgColor,
+                backgroundColor:
+                  (!props.border || props.bgText) && props.BgColor,
+              }}
             >
               {TitleReferences.length > 0 ? TitleReferences : `Reference`}
             </p>

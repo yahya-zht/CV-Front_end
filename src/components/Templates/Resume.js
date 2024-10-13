@@ -4,10 +4,9 @@ import Resume1 from "./Resume1";
 import Resume2 from "./Resume2";
 import Resume3 from "./Resume3";
 import Resume4 from "./Resume4";
-import { useReactToPrint } from "react-to-print";
-import jsPDF from "jspdf";
-import html2canvas from "html2canvas";
 import Resume5 from "./Resume5";
+import Resume6 from "./Resume6";
+import { useReactToPrint } from "react-to-print";
 
 const Resume = forwardRef((props, ref) => {
   const componentRef = useRef();
@@ -38,6 +37,8 @@ const Resume = forwardRef((props, ref) => {
         return <Resume4 />;
       case 5:
         return <Resume5 />;
+      case 6:
+        return <Resume6 />;
       default:
         return <Resume2 />;
     }
