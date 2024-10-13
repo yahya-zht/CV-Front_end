@@ -7,6 +7,7 @@ import Resume4 from "./Resume4";
 import { useReactToPrint } from "react-to-print";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
+import Resume5 from "./Resume5";
 
 const Resume = forwardRef((props, ref) => {
   const componentRef = useRef();
@@ -14,7 +15,7 @@ const Resume = forwardRef((props, ref) => {
     content: () => componentRef.current,
     documentTitle: "resume",
   });
-  
+
   useEffect(() => {
     if (props.clk) {
       handlePrint();
@@ -35,6 +36,8 @@ const Resume = forwardRef((props, ref) => {
         return <Resume3 />;
       case 4:
         return <Resume4 />;
+      case 5:
+        return <Resume5 />;
       default:
         return <Resume2 />;
     }
