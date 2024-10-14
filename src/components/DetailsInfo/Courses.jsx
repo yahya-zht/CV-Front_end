@@ -18,6 +18,7 @@ export default function Courses(props) {
               style={{
                 borderColor: props.BgColor,
                 backgroundColor: props.bgText && props.BgColor,
+                color: props.colorText && props.colorTextTitle,
               }}
             >
               {props.IconTitle && (

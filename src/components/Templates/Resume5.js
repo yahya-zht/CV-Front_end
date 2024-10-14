@@ -22,6 +22,7 @@ import Description from "../DetailsInfo/DescriptionSection";
 import List from "../DetailsInfo/ListSection";
 import SkillsSection from "../DetailsInfo/SkillsSection";
 import { useDraggable, useDroppable, DndContext } from "@dnd-kit/core";
+let c = 0;
 const Resume5 = forwardRef((props, ref) => {
   const initialItemsLeft = [
     "PersonalDetails",
@@ -66,11 +67,14 @@ const Resume5 = forwardRef((props, ref) => {
   const formSkills = useSelector((state) => state.Section.formSkills);
   const FontSize = useSelector((state) => state.Templates.FontSize);
   const ColorSave = useSelector((state) => state.Templates.Color);
+
   useEffect(() => {
     if (ColorSave) {
       setColor(ColorSave);
+      c++;
     }
   }, [ColorSave]);
+  console.log("==========>", c);
   useEffect(() => {
     switch (FontSize.name) {
       case "S":
@@ -105,7 +109,9 @@ const Resume5 = forwardRef((props, ref) => {
       <Language
         StyleContainer={"mb-2"}
         BgColor={"white"}
-        StyleTitle={`${textLg} bg-white border-4 text-[#062D62] text-center font-semibold rounded-full`}
+        colorText={true}
+        colorTextTitle={color}
+        StyleTitle={`${textLg} bg-white border-4 text-center font-semibold rounded-full`}
         styleContainerList={"mb-1 text-white"}
         styleList={"flex flex-row justify-between items-center"}
         StyleTitleSkill={`${textSm} text-start`}
@@ -121,7 +127,7 @@ const Resume5 = forwardRef((props, ref) => {
         container={"mb-4"}
         BgColor={"white"}
         styleZoonIcon={"p-1 rounded-full"}
-        ColorIcon={"#062D62"}
+        ColorIcon={color}
         styleTitle={"ms-2 text-white"}
       />
     ),
@@ -129,7 +135,9 @@ const Resume5 = forwardRef((props, ref) => {
       <Skills
         StyleContainer={"mb-2"}
         BgColor={"white"}
-        StyleTitle={`${textLg}  bg-white border-4 text-[#062D62] text-center font-semibold rounded-full`}
+        colorText={true}
+        colorTextTitle={color}
+        StyleTitle={`${textLg}  bg-white border-4 text-center font-semibold rounded-full`}
         styleContainerList={"mb-1 text-white"}
         styleList={"flex flex-row justify-between items-center"}
         StyleTitleSkill={`${textSm} text-start`}
@@ -144,7 +152,9 @@ const Resume5 = forwardRef((props, ref) => {
       <Hobbies
         StyleContainer={"mb-2"}
         BgColor={"white"}
-        StyleTitle={`${textLg} bg-white border-4 text-[#062D62] text-center font-semibold rounded-full`}
+        colorText={true}
+        colorTextTitle={color}
+        StyleTitle={`${textLg} bg-white border-4 text-center font-semibold rounded-full`}
         styleContainerList={"mb-1 text-white"}
         styleList={"flex flex-row justify-between items-center"}
         StyleTitleSkill={`${textSm} text-start`}
@@ -157,10 +167,12 @@ const Resume5 = forwardRef((props, ref) => {
     ),
     Qualities: (
       <Qualities
-        StyleContainer={"mb-2  text-white"}
+        StyleContainer={"mb-2"}
         BgColor={"white"}
-        StyleTitle={`${textLg} bg-white border-4 text-[#062D62] text-white text-center font-semibold rounded-full`}
-        styleContainerList={"mb-1"}
+        colorText={true}
+        colorTextTitle={color}
+        StyleTitle={`${textLg} bg-white border-4 text-center font-semibold rounded-full`}
+        styleContainerList={"mb-1 text-white"}
         styleList={"flex flex-row justify-between items-center"}
         StyleTitleList={`${textSm} text-start`}
         Icon={true}
@@ -172,7 +184,9 @@ const Resume5 = forwardRef((props, ref) => {
       <Courses
         styleContainer={""}
         BgColor={"white"}
-        StyleTitle={`${textLg} bg-white border-4 text-[#062D62] text-white text-center font-semibold rounded-full focus:border-2 focus:border-green-600`}
+        colorText={true}
+        colorTextTitle={color}
+        StyleTitle={`${textLg} bg-white border-4 text-center font-semibold rounded-full focus:border-2 focus:border-green-600`}
         styleContainerList={"ms-2 mb-1 text-white"}
         styleList={"flex flex-row justify-between"}
         StyleTitleList={`${textSm} font-bold`}
@@ -416,8 +430,8 @@ const Resume5 = forwardRef((props, ref) => {
   return (
     <div className="flex flex-row bg-white h-full relative ">
       <PersonalInfo
-        BgColor={`#385781`}
-        styleContainer={`absolute py-6 px-4 h-40 top-16 start-0 right-0 z-0 flex flex-row justify-between`}
+        BgColor={c == 0 ? `#385781` : color}
+        styleContainer={`absolute py-6 px-4 h-40 top-16 start-0 right-0 z-0 flex flex-row justify-between bg-opacity-50 text-white`}
         styleTrueImg={"ms-80"}
         styleFalseImg={"ms-44"}
         styleFirstName={"text-4xl font-bold text-white mb-1 inline-flex pt-5"}

@@ -30,6 +30,7 @@ export default function Language(props) {
             style={{
               borderColor: props.BgColor,
               backgroundColor: props.bgText && props.BgColor,
+              color: props.colorText && props.colorTextTitle,
             }}
           >
             {TitleLanguage.length > 0 ? TitleLanguage : `Languages`}

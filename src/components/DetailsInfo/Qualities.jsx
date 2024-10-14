@@ -17,6 +17,7 @@ export default function Qualities(props) {
             style={{
               borderColor: props.BgColor,
               backgroundColor: props.bgText && props.BgColor,
+              color: props.colorText && props.colorTextTitle,
             }}
           >
             {TitleQualities.length > 0 ? TitleQualities : `Qualities`}

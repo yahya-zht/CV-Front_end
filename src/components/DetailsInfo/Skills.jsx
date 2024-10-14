@@ -34,6 +34,7 @@ export default function Skills(props) {
             style={{
               borderColor: props.BgColor,
               backgroundColor: props.bgText && props.BgColor,
+              color: props.colorText && props.colorTextTitle,
             }}
           >
             {TitleSkills.length > 0 ? TitleSkills : `Skills`}
