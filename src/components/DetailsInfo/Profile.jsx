@@ -13,16 +13,17 @@ export default function Profile(props) {
         <div className={props.styleContainer}>
           <div className={props.StyleTitleContainer}>
             <p
-              className={props.styleTitle}
+              className={props.styleContainerTitle}
               style={{
                 borderColor: props.BgColor,
                 backgroundColor: props.bgText && props.BgColor,
+                color: props.colorText && props.colorText,
               }}
             >
               {props.IconTitle && (
                 <CircleIcon sx={{ color: props.Color, marginRight: 2 }} />
               )}
-              <span className="">
+              <span className={props.styleTitle}>
                 {TitleProfile.length > 0 ? TitleProfile : `Profile`}
               </span>
             </p>

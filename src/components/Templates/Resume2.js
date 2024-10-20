@@ -182,7 +182,7 @@ const Resume2 = forwardRef((props, ref) => {
       <Profile
         styleContainer={"mt-2"}
         BgColor={color}
-        styleTitle={`${textLg} font-bold border-b-4 `}
+        styleContainerTitle={`${textLg} font-bold border-b-4 `}
         Color={color}
         ProfileStyleDescription={`${textSm} ms-4  whitespace-pre-wrap`}
         IconTitle={false}

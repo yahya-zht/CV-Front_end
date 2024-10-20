@@ -454,7 +454,7 @@ const Resume5 = forwardRef((props, ref) => {
             DataPersonalDetails.uploadedImage ? "mt-0 mb-3" : "mt-14 mb-3"
           }
           BgColor={"white"}
-          styleTitle={`${textLg} border-b-4 text-white text-center font-semibold`}
+          styleContainerTitle={`${textLg} border-b-4 text-white text-center font-semibold`}
           Color={color}
           ProfileStyleDescription={`${textSm} mx-2 font-sans text-white whitespace-pre-wrap text-center`}
           IconTitle={false}

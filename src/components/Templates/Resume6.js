@@ -180,7 +180,7 @@ const Resume6 = forwardRef(() => {
         BgColor={color}
         border={true}
         bgText={true}
-        styleTitle={`${textLg} font-semibold border-4 w-1/2 px-5 text-center rounded-full bg-[${color}] mt-1`}
+        styleContainerTitle={`${textLg} font-semibold border-4 w-1/2 px-5 text-center rounded-full bg-[${color}] mt-1`}
         IconTitle={false}
         Color={color}
         ProfileStyleDescription={`${textXs} mx-2 font-sans whitespace-pre-wrap text-justify px-2 py-1`}

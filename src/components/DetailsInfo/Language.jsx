@@ -35,7 +35,7 @@ export default function Language(props) {
           >
             {TitleLanguage.length > 0 ? TitleLanguage : `Languages`}
           </p>
-          <div className="mt-1 ms-2">
+          <div className="mt-1 ms-2 ">
             {DataListLanguages.length > 0 &&
               DataListLanguages.map((language, i) => (
                 <div className={props.styleContainerList}>

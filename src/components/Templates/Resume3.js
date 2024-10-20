@@ -175,7 +175,7 @@ const Resume3 = forwardRef(() => {
         StyleTitleContainer={"flex"}
         BgColor={color}
         border={true}
-        styleTitle={`${textLg} font-semibold border-b-4  text-center w-auto px-5 rounded-xl`}
+        styleContainerTitle={`${textLg} font-semibold border-b-4  text-center w-auto px-5 rounded-xl`}
         IconTitle={false}
         Color={color}
         ProfileStyleDescription={`${textXs} mx-2 font-sans whitespace-pre-wrap text-justify px-2 py-1`}
