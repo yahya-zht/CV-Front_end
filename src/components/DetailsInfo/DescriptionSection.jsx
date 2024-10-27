@@ -16,6 +16,7 @@ export default function Description(props) {
           style={{
             borderColor: props.border && props.BgColor,
             backgroundColor: (!props.border || props.bgText) && props.BgColor,
+            color: props.colorTitle && props.colorTitle,
           }}
         >
           {Title.length > 0 ? Title : `Description Section ${props.index + 1}`}

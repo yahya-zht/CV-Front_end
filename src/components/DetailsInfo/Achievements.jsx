@@ -20,6 +20,7 @@ export default function Achievements(props) {
                 borderColor: props.border && props.BgColor,
                 backgroundColor:
                   (!props.border || props.bgText) && props.BgColor,
+                color: props.colorTitle && props.colorTitle,
               }}
             >
               {TitleAchievement.length > 0 ? TitleAchievement : `Achievements`}

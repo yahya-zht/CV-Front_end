@@ -9,7 +9,7 @@ export default function UploadedImage(props) {
   return (
     <div className={props.styleContainer}>
       {DataPersonalDetails.uploadedImage ? (
-        <div className="w-36 h-48 ">
+        <div className={props.sizeImg ? props.sizeImg : "w-36 h-48"}>
           <div className="w-full h-full relative ">
             <Image
               src={DataPersonalDetails.uploadedImage}

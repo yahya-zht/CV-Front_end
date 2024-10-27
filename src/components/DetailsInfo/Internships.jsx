@@ -15,7 +15,7 @@ export default function Internships(props) {
   );
   const TitleInternships = useSelector((state) => state.Internships.Title);
   const EditInternships = useSelector((state) => state.Internships.Edit);
-  console.log("InternshipsData====>", InternshipsData);
+
   return (
     <div>
       {formInternships && (
@@ -27,6 +27,7 @@ export default function Internships(props) {
                 borderColor: props.border && props.BgColor,
                 backgroundColor:
                   (!props.border || props.bgText) && props.BgColor,
+                color: props.colorTitle && props.colorTitle,
               }}
             >
               {props.Icon && <CircleIcon sx={{ color: props.IconColor }} />}

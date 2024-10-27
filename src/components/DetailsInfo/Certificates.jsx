@@ -26,6 +26,7 @@ export default function Certificates(props) {
                 borderColor: props.border && props.BgColor,
                 backgroundColor:
                   (!props.border || props.bgText) && props.BgColor,
+                color: props.colorTitle && props.colorTitle,
               }}
             >
               {TitleCertificates.length > 0

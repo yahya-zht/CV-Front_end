@@ -20,6 +20,7 @@ export default function EntriesSection(props) {
             style={{
               borderColor: props.border && props.BgColor,
               backgroundColor: (!props.border || props.bgText) && props.BgColor,
+              color: props.colorTitle && props.colorTitle,
             }}
           >
             {props.Icon && <CircleIcon sx={{ color: props.IconColor }} />}

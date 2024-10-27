@@ -25,6 +25,7 @@ export default function References(props) {
                 borderColor: props.border && props.BgColor,
                 backgroundColor:
                   (!props.border || props.bgText) && props.BgColor,
+                color: props.colorTitle && props.colorTitle,
               }}
             >
               {TitleReferences.length > 0 ? TitleReferences : `Reference`}

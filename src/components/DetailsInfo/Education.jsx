@@ -26,6 +26,7 @@ export default function Education(props) {
                 borderColor: props.border && props.BgColor,
                 backgroundColor:
                   (!props.border || props.bgText) && props.BgColor,
+                color: props.colorTitle && props.colorTitle,
               }}
             >
               {props.Icon && <CircleIcon sx={{ color: props.IconColor }} />}

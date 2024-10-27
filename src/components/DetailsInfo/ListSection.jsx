@@ -14,6 +14,7 @@ export default function List(props) {
           style={{
             borderColor: props.border && props.BgColor,
             backgroundColor: (!props.border || props.bgText) && props.BgColor,
+            color: props.colorTitle && props.colorTitle,
           }}
         >
           {Title.length > 0 ? Title : `List Section ${props.index + 1}`}

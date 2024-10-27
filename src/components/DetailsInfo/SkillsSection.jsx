@@ -37,6 +37,7 @@ export default function SkillsSection(props) {
             style={{
               borderColor: props.border && props.BgColor,
               backgroundColor: (!props.border || props.bgText) && props.BgColor,
+              color: props.colorTitle && props.colorTitle,
             }}
           >
             {Title.length > 0 ? Title : `Skills Section ${props.index + 1}`}
