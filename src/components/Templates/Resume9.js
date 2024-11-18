@@ -22,7 +22,7 @@ import Description from "../DetailsInfo/DescriptionSection";
 import List from "../DetailsInfo/ListSection";
 import SkillsSection from "../DetailsInfo/SkillsSection";
 import { useDraggable, useDroppable, DndContext } from "@dnd-kit/core";
-const Resume8 = forwardRef((props, ref) => {
+const Resume9 = forwardRef((props, ref) => {
   const initialItemsLeft = [
     "PersonalDetails",
     "Language",
@@ -47,7 +47,8 @@ const Resume8 = forwardRef((props, ref) => {
   ];
   const [itemsLeft, setItemsLeft] = useState(initialItemsLeft);
   const [itemsRight, setItemsRight] = useState(initialItemsRight);
-  const [color, setColor] = useState("#343132");
+  const [color, setColor] = useState("#295560");
+  const [colorTitle, setColorTitle] = useState("#B27E28");
   const [textXs, setTextXs] = useState("text-xs"); //12
   const [textSm, setTextSm] = useState("text-sm"); //14
   const [textMd, setTextMd] = useState("text-base"); //16
@@ -106,15 +107,16 @@ const Resume8 = forwardRef((props, ref) => {
       <Language
         StyleContainer={"mb-2"}
         BgColor={color}
-        StyleTitle={`${textLg} border-4 text-white text-center font-semibold rounded-full`}
+        StyleTitle={`${textLg} border-4 text-center font-semibold rounded-full`}
         styleContainerList={"mb-1 text-white"}
         styleList={"flex flex-row justify-between items-center"}
         StyleTitleSkill={`${textSm} text-start`}
         IconTitleSkill={true}
-        IconColorSkill={"white"}
-        Rating={false}
+        colorText={true}
+        colorTextTitle={colorTitle}
+        IconColorSkill={colorTitle}
         StyledRating={true}
-        Color={color}
+        Color={colorTitle}
       />
     ),
     PersonalDetails: (
@@ -122,7 +124,7 @@ const Resume8 = forwardRef((props, ref) => {
         container={"mb-4"}
         BgColor={color}
         styleZoonIcon={"p-1 rounded-full"}
-        ColorIcon={"white"}
+        ColorIcon={colorTitle}
         styleTitle={"ms-2 text-white"}
       />
     ),
@@ -130,42 +132,46 @@ const Resume8 = forwardRef((props, ref) => {
       <Skills
         StyleContainer={"mb-2"}
         BgColor={color}
-        StyleTitle={`${textLg} border-4 text-white text-center font-semibold rounded-full`}
+        StyleTitle={`${textLg} border-4 text-center font-semibold rounded-full`}
         styleContainerList={"mb-1 text-white"}
         styleList={"flex flex-row justify-between items-center"}
         StyleTitleSkill={`${textSm} text-start`}
         IconTitleSkill={true}
-        IconColorSkill={"white"}
-        Rating={false}
+        IconColorSkill={colorTitle}
+        colorText={true}
+        colorTextTitle={colorTitle}
         StyledRating={true}
-        Color={color}
+        Color={colorTitle}
       />
     ),
     Hobbies: (
       <Hobbies
         StyleContainer={"mb-2"}
         BgColor={color}
-        StyleTitle={`${textLg} border-4 text-white text-center font-semibold rounded-full`}
+        StyleTitle={`${textLg} border-4 text-center font-semibold rounded-full`}
         styleContainerList={"mb-1 text-white"}
         styleList={"flex flex-row justify-between items-center"}
         StyleTitleSkill={`${textSm} text-start`}
         IconTitleSkill={true}
-        IconColorSkill={"white"}
-        Rating={false}
+        IconColorSkill={colorTitle}
+        colorText={true}
+        colorTextTitle={colorTitle}
         StyledRating={true}
-        Color={color}
+        Color={colorTitle}
       />
     ),
     Qualities: (
       <Qualities
         StyleContainer={"mb-2  text-white"}
         BgColor={color}
-        StyleTitle={`${textLg} border-4 text-white text-center font-semibold rounded-full`}
+        StyleTitle={`${textLg} border-4 text-center font-semibold rounded-full`}
         styleContainerList={"mb-1"}
         styleList={"flex flex-row justify-between items-center"}
         StyleTitleList={`${textSm} text-start`}
+        colorText={true}
+        colorTextTitle={colorTitle}
         Icon={true}
-        IconColor={"white"}
+        IconColor={colorTitle}
         Color={color}
       />
     ),
@@ -173,12 +179,14 @@ const Resume8 = forwardRef((props, ref) => {
       <Courses
         styleContainer={""}
         BgColor={color}
-        StyleTitle={`${textLg} border-4 text-white text-center font-semibold rounded-full focus:border-2 focus:border-green-600`}
+        StyleTitle={`${textLg} border-4 text-center font-semibold rounded-full focus:border-2 focus:border-green-600`}
         styleContainerList={"ms-2 mb-1 text-white"}
         styleList={"flex flex-row justify-between"}
         StyleTitleList={`${textSm} font-bold`}
+        colorText={true}
+        colorTextTitle={colorTitle}
         Icon={true}
-        IconColor={"white"}
+        IconColor={colorTitle}
         styleDate={"hidden"}
         StyleDescription={`${textXs} ms-1`}
       />
@@ -191,11 +199,11 @@ const Resume8 = forwardRef((props, ref) => {
         styleContainer={`py-6 px-4 h-40 flex flex-row justify-between`}
         styleTrueImg={""}
         styleFalseImg={""}
-        styleFirstName={"text-4xl font-bold text-black mb-1 inline-flex"}
-        styleLastName={"text-4xl font-bold text-black mb-1 inline-flex ms-3"}
+        styleFirstName={"text-4xl font-bold text-black mb-1"}
+        styleLastName={"text-4xl font-bold text-black mb-1"}
         styleHeadline={`${textLg} text-black mb-1`}
         styleQr={"flex flex-col items-center"}
-        IconColor={"black"}
+        IconColor={colorTitle}
       />
     ),
     Education: (
@@ -203,7 +211,7 @@ const Resume8 = forwardRef((props, ref) => {
         StyleTitleContainer={"flex"}
         BgColor={color}
         border={true}
-        colorTitle={color}
+        colorTitle={colorTitle}
         StyleTitle={`${textLg} rounded-full px-2 font-semibold w-auto text-center `}
         Icon={false}
         IconColor={color}
@@ -220,7 +228,7 @@ const Resume8 = forwardRef((props, ref) => {
         StyleTitleContainer={"flex"}
         BgColor={color}
         border={true}
-        colorTitle={color}
+        colorTitle={colorTitle}
         StyleTitle={`rounded-full px-2 ${textLg} font-semibold w-auto text-center`}
         Icon={false}
         IconColor={color}
@@ -237,7 +245,7 @@ const Resume8 = forwardRef((props, ref) => {
         StyleTitleContainer={"flex"}
         BgColor={color}
         border={true}
-        colorTitle={color}
+        colorTitle={colorTitle}
         StyleTitle={`rounded-full px-2 ${textLg} font-semibold w-auto text-center`}
         Icon={false}
         IconColor={color}
@@ -254,7 +262,7 @@ const Resume8 = forwardRef((props, ref) => {
         StyleTitleContainer={"flex"}
         BgColor={color}
         border={true}
-        colorTitle={color}
+        colorTitle={colorTitle}
         StyleTitle={`rounded-full px-2 ${textLg} font-semibold w-auto text-center`}
         styleContainerList={"border-l-4 pl-4 mb-1"}
         styleList={"flex flex-row justify-between"}
@@ -270,7 +278,7 @@ const Resume8 = forwardRef((props, ref) => {
         StyleTitleContainer={"flex"}
         BgColor={color}
         border={true}
-        colorTitle={color}
+        colorTitle={colorTitle}
         StyleTitle={`rounded-full px-2 ${textLg} font-semibold w-auto text-center`}
         Icon={false}
         IconColor={color}
@@ -287,7 +295,7 @@ const Resume8 = forwardRef((props, ref) => {
         styleContainer={"mt-2"}
         BgColor={color}
         border={true}
-        colorTitle={color}
+        colorTitle={colorTitle}
         StyleContainerTitle={"flex"}
         StyleTitle={` ${textLg}  rounded-full px-2 font-semibold w-auto text-center`}
         styleDescription={`${textSm} ms-4  whitespace-pre-wrap`}
@@ -299,7 +307,7 @@ const Resume8 = forwardRef((props, ref) => {
         BgColor={color}
         styleContainerTitle={"flex "}
         border={true}
-        colorTitle={color}
+        colorTitle={colorTitle}
         styleTitle={` ${textLg}  rounded-full px-2 font-semibold w-auto text-center`}
         styleContainerList={"border-l-4 mb-2 pl-4"}
         styleTitleList={" font-bold"}
@@ -313,7 +321,7 @@ const Resume8 = forwardRef((props, ref) => {
           StyleTitleContainer={"flex"}
           BgColor={color}
           border={true}
-          colorTitle={color}
+          colorTitle={colorTitle}
           StyleTitle={` rounded-full px-2 ${textLg} font-semibold w-auto text-center`}
           Icon={false}
           IconColor={color}
@@ -333,7 +341,7 @@ const Resume8 = forwardRef((props, ref) => {
           styleContainer={"mb-2"}
           BgColor={color}
           border={true}
-          colorTitle={color}
+          colorTitle={colorTitle}
           StyleContainerTitle={"flex"}
           StyleTitle={` ${textLg}  rounded-full px-2 font-semibold w-auto text-center`}
           styleDescription={`${textSm} ms-4  whitespace-pre-wrap`}
@@ -346,7 +354,7 @@ const Resume8 = forwardRef((props, ref) => {
           index={index}
           BgColor={color}
           border={true}
-          colorTitle={color}
+          colorTitle={colorTitle}
           StyleContainer={"mb-2"}
           StyleTitle={` ${textLg} rounded-full px-2 font-semibold w-auto text-center`}
           styleContainerList={"border-l-4 pl-4 mb-1"}
@@ -365,7 +373,7 @@ const Resume8 = forwardRef((props, ref) => {
           StyleContainer={"mb-2"}
           BgColor={color}
           border={true}
-          colorTitle={color}
+          colorTitle={colorTitle}
           StyleTitle={` ${textLg} rounded-full px-2 font-semibold w-auto text-center`}
           styleContainerList={"border-l-4 pl-4 mb-1 "}
           styleList={"flex flex-row justify-between items-center"}
@@ -450,22 +458,24 @@ const Resume8 = forwardRef((props, ref) => {
 
   return (
     <div className="flex flex-row bg-white h-full relative">
-      <div className=" ms-9 border-0" style={{ backgroundColor: color }}>
-        <div className="bg-white pt-10 rounded-b-full w-full px-4">
+      <div className="border-0" style={{ backgroundColor: color }}>
+        {DataPersonalDetails.uploadedImage && (
           <UploadedImage
             BgColor={color}
             sizeImg={"w-60 h-60"}
-            styleContainer={"flex flex-row justify-center static z-20 pb-2"}
-            styleImage={"rounded-full border-4"}
+            styleContainer={"flex flex-row justify-center static z-20 w-full"}
+            styleImage={""}
+            style={true}
+            color={color}
           />
-        </div>
+        )}
         <div className="h-auto px-4" style={{ backgroundColor: color }}>
           <Profile
             styleContainer={
-              DataPersonalDetails.uploadedImage ? "mt-0 mb-3" : "mt-14 mb-3"
+              DataPersonalDetails.uploadedImage ? "mt-0 mb-3" : "mt-6 mb-3"
             }
             BgColor={color}
-            styleContainerTitle={`${textLg} border-b-4 text-white text-center font-semibold`}
+            styleContainerTitle={`${textLg} border-b-4 text-yellow-600 text-center font-semibold`}
             Color={color}
             ProfileStyleDescription={`${textSm} mx-2 font-sans text-white whitespace-pre-wrap text-center`}
             IconTitle={false}
@@ -487,7 +497,7 @@ const Resume8 = forwardRef((props, ref) => {
           </div>
         </div>
       </div>
-      <div className="w-3/5 bg-white px-2 mt-16">
+      <div className="w-4/5 bg-white px-2">
         <div className="flex flex-col justify-between h-full">
           <div>
             <DndContext onDragEnd={handleDragEndRight}>
@@ -513,4 +523,4 @@ const Resume8 = forwardRef((props, ref) => {
   );
 });
 
-export default Resume8;
+export default Resume9;

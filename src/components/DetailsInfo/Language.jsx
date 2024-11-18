@@ -66,7 +66,7 @@ export default function Language(props) {
                         precision={1}
                         icon={<CircleIcon fontSize="small" />}
                         emptyIcon={
-                          <whiteCircleOutlinedIcon
+                          <CircleOutlinedIcon
                             sx={{
                               color: language.value >= 1 ? props.Color : "",
                             }}
