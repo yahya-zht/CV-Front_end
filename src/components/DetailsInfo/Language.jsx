@@ -40,7 +40,7 @@ export default function Language(props) {
               DataListLanguages.map((language, i) => (
                 <div className={props.styleContainerList}>
                   <div className={props.styleList}>
-                    <p className={props.StyleTitleSkill}>
+                    <p className={props.StyleTitleSkill} >
                       {props.IconTitleSkill && (
                         <CircleIcon
                           sx={{ color: props.IconColorSkill, fontSize: 10 }}
