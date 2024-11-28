@@ -10,6 +10,7 @@ import Resume7 from "./Resume7";
 import Resume8 from "./Resume8";
 import Resume9 from "./Resume9";
 import Resume10 from "./Resume10";
+import Resume11 from "./Resume11";
 import { useReactToPrint } from "react-to-print";
 
 const Resume = forwardRef((props, ref) => {
@@ -51,6 +52,8 @@ const Resume = forwardRef((props, ref) => {
         return <Resume9 />;
       case 10:
         return <Resume10 />;
+      case 11:
+        return <Resume11 />;
       default:
         return <Resume2 />;
     }
