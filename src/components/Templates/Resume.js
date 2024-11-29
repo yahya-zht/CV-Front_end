@@ -12,6 +12,7 @@ import Resume9 from "./Resume9";
 import Resume10 from "./Resume10";
 import Resume11 from "./Resume11";
 import { useReactToPrint } from "react-to-print";
+import Resume12 from "./Resume12";
 
 const Resume = forwardRef((props, ref) => {
   const componentRef = useRef();
@@ -54,6 +55,8 @@ const Resume = forwardRef((props, ref) => {
         return <Resume10 />;
       case 11:
         return <Resume11 />;
+      case 12:
+        return <Resume12 />;
       default:
         return <Resume2 />;
     }

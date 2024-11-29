@@ -20,9 +20,24 @@ export default function PersonalInfo(props) {
             : props.styleFalseImg
         }
       >
-        <p className={props.styleFirstName}>{DataPersonalDetails.firstName}</p>
-        <p className={props.styleLastName}>{DataPersonalDetails.lastName}</p>
-        <p className={props.styleHeadline}>{DataPersonalDetails.headline}</p>
+        <p
+          className={props.styleFirstName}
+          style={{ color: props.colorFirstName }}
+        >
+          {DataPersonalDetails.firstName}
+        </p>
+        <p
+          className={props.styleLastName}
+          style={{ color: props.colorLastName }}
+        >
+          {DataPersonalDetails.lastName}
+        </p>
+        <p
+          className={props.styleHeadline}
+          style={{ color: props.colorHeadline }}
+        >
+          {DataPersonalDetails.headline}
+        </p>
       </div>
       <div>
         {DataPersonalDetails.website && DataPersonalDetails.checkedWeb && (
