@@ -4,9 +4,10 @@ import { DataImages } from "@/constants/DataTemplates";
 
 export default function SlideImgHero() {
   return (
-    <div className="flex flex-wrap flex-row p-8">
+    <div className="flex flex-wrap justify-center gap-2 mt-4">
+      {/* <div className="flex flex-wrap flex-row p-8"> */}
       {DataImages.map((img, index) => (
-        <div key={index} className="w-1/5 ">
+        <div key={index} className="w-1/6 ">
           <Image
             src={img.image}
             alt={`template cv ${index + 1}`}
