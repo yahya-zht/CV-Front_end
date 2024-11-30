@@ -1,5 +1,6 @@
 import React, { forwardRef, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
+import { useReactToPrint } from "react-to-print";
 import Resume1 from "./Resume1";
 import Resume2 from "./Resume2";
 import Resume3 from "./Resume3";
@@ -11,8 +12,8 @@ import Resume8 from "./Resume8";
 import Resume9 from "./Resume9";
 import Resume10 from "./Resume10";
 import Resume11 from "./Resume11";
-import { useReactToPrint } from "react-to-print";
 import Resume12 from "./Resume12";
+import Resume13 from "./Resume13";
 
 const Resume = forwardRef((props, ref) => {
   const componentRef = useRef();
@@ -57,6 +58,8 @@ const Resume = forwardRef((props, ref) => {
         return <Resume11 />;
       case 12:
         return <Resume12 />;
+      case 13:
+        return <Resume13 />;
       default:
         return <Resume2 />;
     }
