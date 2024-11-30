@@ -1,9 +1,19 @@
+"use client";
 import { COLORS } from "@/constants/theme";
 import { Button } from "@mui/material";
 import React from "react";
 import SlideImgHero from "../Creation/SlideImgHero";
 import Link from "next/link";
+import { setTemplateSelected } from "@/store/TemplatesSlice";
+import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
 export default function Hero() {
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const handleTemplateClick = () => {
+    dispatch(setTemplateSelected(1));
+    router.push(`/create`);
+  };
   return (
     <div className="flex flex-row mx-10 my-12">
       <div className="w-1/2 p-10 flex flex-col justify-center">
@@ -22,8 +32,9 @@ export default function Hero() {
               color: COLORS.bg,
               backgroundColor: COLORS.primary,
             }}
+            onClick={() => handleTemplateClick()}
           >
-            <Link href={"/create"}>Create my CV</Link>
+            <p>Create my CV</p>
           </Button>
         </div>
       </div>

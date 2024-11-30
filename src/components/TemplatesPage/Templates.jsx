@@ -4,8 +4,17 @@ import React from "react";
 import Image from "next/image";
 import { DataImages } from "@/constants/DataTemplates";
 import { COLORS } from "@/constants/theme";
+import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { setTemplateSelected } from "@/store/TemplatesSlice";
 
 const TemplatesPage = () => {
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const handleTemplateClick = (templateId) => {
+    dispatch(setTemplateSelected(templateId));
+    router.push(`/create`);
+  };
   return (
     <div
       className="min-h-screen flex flex-col items-center"
@@ -33,7 +42,7 @@ const TemplatesPage = () => {
                 alt={`CV Template ${index + 1}`}
                 layout="responsive"
                 className="cursor-pointer duration-700 hover:translate-y-[-10px] hover:scale-105 drop-shadow-md rounded-md"
-                onClick={() => alert(`Selected Template ${index + 1}`)}
+                onClick={() => handleTemplateClick(img.id)}
               />
               <p
                 className="text-center text-teal font-semibold mt-2"
