@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { COLORS } from "@/constants/theme";
 
 const Pricing = () => {
   const plans = [
@@ -32,7 +33,10 @@ const Pricing = () => {
   ];
 
   return (
-    <div className="bg-[#eeeeee] min-h-screen flex flex-col items-center">
+    <div
+      className="min-h-screen flex flex-col items-center"
+      style={{ backgroundColor: COLORS.bg }}
+    >
       <div className="max-w-5xl w-full px-6 py-12">
         <h1 className="text-primary text-4xl font-extrabold text-center mb-8">
           Our Pricing Plans

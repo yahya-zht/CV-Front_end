@@ -8,17 +8,17 @@ export default function Navbar() {
         <div className="relative flex h-16 items-center justify-between">
           <div className="flex items-center ">
             <p className="text-gray-300 hover:text-white cursor-pointer">
-              <Link href="/">LOGO</Link>
+              <Link href="/">LOGO 1</Link>
             </p>
           </div>
           <div className="flex flex-1 items-center justify-center ">
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
                 <a
-                  href="#"
+                  href="templates"
                   className="rounded-md px-3 py-2 text-sm font-medium text-gray-300  hover:text-white"
                 >
-                  Templates CV
+                  Templates
                 </a>
                 <a
                   href="pricing"
@@ -36,14 +36,12 @@ export default function Navbar() {
             </div>
           </div>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-            <button
-              type="button"
+            <a
+              href="create"
               className="relative rounded-xl bg-white px-8 py-1 hover:bg-blue-950 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
             >
-              <span className="font-mono">
-                <Link href="/create">Create CV</Link>
-              </span>
-            </button>
+              Create CV
+            </a>
           </div>
         </div>
       </div>

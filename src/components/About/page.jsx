@@ -1,10 +1,14 @@
 import React from "react";
+import { COLORS } from "@/constants/theme";
 
 const AboutPage = () => {
   const nameProject = "Cv Smart 01";
   const emailProject = "zhtyahya@gmail.com";
   return (
-    <div className="bg-[#eeeeee] min-h-screen flex flex-col items-center">
+    <div
+      className="min-h-screen flex flex-col items-center"
+      style={{ backgroundColor: COLORS.bg }}
+    >
       <div className="max-w-4xl w-full px-6 py-12">
         <h1 className="text-primary text-4xl font-extrabold text-center mb-8">
           About Us
