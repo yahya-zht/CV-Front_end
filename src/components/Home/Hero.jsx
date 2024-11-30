@@ -1,7 +1,7 @@
 import { COLORS } from "@/constants/theme";
 import { Button } from "@mui/material";
 import React from "react";
-import SlideImgHero from "./SlideImgHero";
+import SlideImgHero from "../Creation/SlideImgHero";
 import Link from "next/link";
 export default function Hero() {
   return (

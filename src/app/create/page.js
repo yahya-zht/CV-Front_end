@@ -1,8 +1,8 @@
 "use client";
-import NavbarCreate from "@/components/NavbarCreate";
-import FormInfo from "@/components/FormInfo";
-import Template from "@/components/Template";
-import NavTemplates from "@/components/NavTemplates";
+import NavbarCreate from "@/components/Creation/NavbarCreate";
+import FormInfo from "@/components/Creation/FormInfo";
+import Template from "@/components/Creation/Template";
+import NavTemplates from "@/components/Creation/NavTemplates";
 import { useState } from "react";
 
 export default function Create() {

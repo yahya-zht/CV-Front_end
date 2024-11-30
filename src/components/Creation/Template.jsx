@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import Resume from "./Templates/Resume";
-import "../constants/style/Template.module.css";
+import Resume from "../Templates/Resume";
+import "../../constants/style/Template.module.css";
 export default function Template(props) {
   const [font, setFont] = useState("");
   const zoom = useSelector((state) => state.Templates.Zoom);

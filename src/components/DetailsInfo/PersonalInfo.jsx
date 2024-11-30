@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import LanguageIcon from "@mui/icons-material/Language";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import QRCodeComponent from "../QRCodeComponent";
+import QRCodeComponent from "../Creation/QRCodeComponent";
 
 export default function PersonalInfo(props) {
   const DataPersonalDetails = useSelector(

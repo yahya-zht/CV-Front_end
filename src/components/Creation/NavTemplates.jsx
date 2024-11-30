@@ -24,7 +24,7 @@ import FormatColorFillIcon from "@mui/icons-material/FormatColorFill";
 import FormatSizeIcon from "@mui/icons-material/FormatSize";
 import { SketchPicker } from "react-color";
 import FontDownloadIcon from "@mui/icons-material/FontDownload";
-import "../constants/style/Template.module.css";
+import "../../constants/style/Template.module.css";
 
 const StyledMenu = styled((props) => (
   <Menu

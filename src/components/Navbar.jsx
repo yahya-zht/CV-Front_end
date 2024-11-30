@@ -26,6 +26,12 @@ export default function Navbar() {
                 >
                   Pricing
                 </a>
+                <a
+                  href="about"
+                  className="rounded-md px-3 py-2 text-sm font-medium text-gray-300  hover:text-white"
+                >
+                  About
+                </a>
               </div>
             </div>
           </div>

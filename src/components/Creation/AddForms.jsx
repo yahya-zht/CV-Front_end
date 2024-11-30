@@ -1,6 +1,6 @@
 import React from "react";
 import AddIcon from "@mui/icons-material/Add";
-import { toggleFormCourse } from "../store/courseSlice";
+import { toggleFormCourse } from "../../store/courseSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleFormInternships } from "@/store/InternshipsSlice";
 import { toggleformCertificates } from "@/store/CertificatesSlice";

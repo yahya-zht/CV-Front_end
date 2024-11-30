@@ -69,10 +69,6 @@ const DataImages = [
     id: 14,
     image: cv14,
   },
-  {
-    id: 15,
-    image: cv14,
-  },
 ];
 
 export { DataImages };

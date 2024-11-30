@@ -4,19 +4,19 @@ import AccordionActions from "@mui/material/AccordionActions";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import PersonalDetails from "./Forms/PersonalDetails";
-import Education from "./Forms/Education";
-import Employment from "./Forms/Employment";
-import Skills from "./Forms/Skills";
-import Languages from "./Forms/Languages";
-import Hobbies from "./Forms/Hobbies";
+import PersonalDetails from "../Forms/PersonalDetails";
+import Education from "../Forms/Education";
+import Employment from "../Forms/Employment";
+import Skills from "../Forms/Skills";
+import Languages from "../Forms/Languages";
+import Hobbies from "../Forms/Hobbies";
 import AddForms from "./AddForms";
 import DeleteIcon from "@mui/icons-material/Delete";
-import Courses from "./Forms/Courses";
+import Courses from "../Forms/Courses";
 import { useSelector, useDispatch } from "react-redux";
-import { setCoursesTitle, toggleFormCourse } from "../store/courseSlice";
+import { setCoursesTitle, toggleFormCourse } from "../../store/courseSlice";
 import { Button } from "@mui/material";
-import Internships from "./Forms/Internships";
+import Internships from "../Forms/Internships";
 import {
   setInternshipsTitle,
   toggleFormInternships,
@@ -25,30 +25,30 @@ import {
   setCertificatesTitle,
   toggleformCertificates,
 } from "@/store/CertificatesSlice";
-import Certificates from "./Forms/Certificates";
+import Certificates from "../Forms/Certificates";
 import { setQualitiesTitle, toggleFormQualities } from "@/store/QualitiesSlice";
-import Qualities from "./Forms/Qualities";
+import Qualities from "../Forms/Qualities";
 import {
   setExtracurricularActivitiesTitle,
   toggleFormExtracurricularActivities,
 } from "@/store/ExtracurricularActivitiesSlice";
-import ExtracurricularActivities from "./Forms/ExtracurricularActivities";
+import ExtracurricularActivities from "../Forms/ExtracurricularActivities";
 import {
   setDataListReferences,
   setReferencesTitle,
   toggleFormReferences,
 } from "@/store/ReferencesSlice";
-import References from "./Forms/References";
-import Footer from "./Forms/Footer";
+import References from "../Forms/References";
+import Footer from "../Forms/Footer";
 import { toggleFormFooter } from "@/store/FooterSlice";
-import Profile from "./Forms/Profile";
+import Profile from "../Forms/Profile";
 import { setProfileTitle, toggleFormProfile } from "@/store/ProfileSlice";
-import Achievements from "./Forms/Achievements";
+import Achievements from "../Forms/Achievements";
 import {
   setAchievementsTitle,
   toggleFormAchievements,
 } from "@/store/AchievementsSlice";
-import Entries from "./Forms/EntriesSection";
+import Entries from "../Forms/EntriesSection";
 import { useEffect, useState } from "react";
 import {
   setDelete,
@@ -72,9 +72,9 @@ import {
   setSkillsTitleSave,
   setListDataSkillsSave,
 } from "@/store/SectionSlice";
-import Description from "./Forms/DescriptionSection";
-import List from "./Forms/ListSection";
-import SkillsSection from "./Forms/SkillsSection";
+import Description from "../Forms/DescriptionSection";
+import List from "../Forms/ListSection";
+import SkillsSection from "../Forms/SkillsSection";
 import { setEducationTitle } from "@/store/EducationSlice";
 import { setEmploymentTitle } from "@/store/EmploymentSlice";
 import { setSkillTitle } from "@/store/SkillsSlice";
