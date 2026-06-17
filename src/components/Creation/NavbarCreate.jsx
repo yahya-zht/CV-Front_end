@@ -2,7 +2,10 @@
 import { COLORS } from "@/constants/theme";
 import DownloadForOfflineIcon from "@mui/icons-material/DownloadForOffline";
 import Link from "next/link";
+import logo from "@/assets/images/logo/logo_cv.png";
+import Image from "next/image";
 import { useState } from "react";
+
 export default function NavbarCreate(props) {
   const download = () => {
     console.log("click");
@@ -13,9 +16,9 @@ export default function NavbarCreate(props) {
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
           <div className="flex items-center ">
-            <p className="text-gray-300 hover:text-white cursor-pointer">
-              <Link href="/">LOGO</Link>
-            </p>
+              <Link href="/">
+                <Image src={logo} alt="CV Logo" width={45} height={45} className="rounded-full"/>
+              </Link>
           </div>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
             <button
