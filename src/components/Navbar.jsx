@@ -1,15 +1,18 @@
 import { COLORS } from "@/constants/theme";
 import Link from "next/link";
 import React from "react";
+import Image from "next/image";
+import logo from "@/assets/images/logo/logo_cv.png";
+
 export default function Navbar() {
   return (
     <nav style={{ backgroundColor: COLORS.primary }}>
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
           <div className="flex items-center ">
-            <p className="text-gray-300 hover:text-white cursor-pointer">
-              <Link href="/">LOGO 1</Link>
-            </p>
+            <Link href="/">
+              <Image src={logo} alt="CV Logo" width={45} height={45} className="rounded-full"/>
+            </Link>
           </div>
           <div className="flex flex-1 items-center justify-center ">
             <div className="hidden sm:ml-6 sm:block">
