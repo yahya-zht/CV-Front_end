@@ -3,7 +3,7 @@ import { COLORS } from "@/constants/theme";
 
 const AboutPage = () => {
   const nameProject = "Cv Smart 01";
-  const emailProject = "zhtyahya@gmail.com";
+  const emailProject = "contact@cvsmart.online";
   return (
     <div
       className="min-h-screen flex flex-col items-center"
