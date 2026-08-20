@@ -2,7 +2,7 @@ import React from "react";
 import { COLORS } from "@/constants/theme";
 
 const AboutPage = () => {
-  const nameProject = "Cv Smart 01";
+  const nameProject = "Cv Smart dot online";  
   const emailProject = "contact@cvsmart.online";
   return (
     <div
