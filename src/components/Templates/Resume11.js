@@ -470,19 +470,22 @@ const Resume11 = forwardRef((props, ref) => {
             formProfile || DataPersonalDetails.uploadedImage ? "mt-0" : "mt-14"
           }
         >
-          <DndContext onDragEnd={handleDragEndLeft}>
+          {/* <DndContext onDragEnd={handleDragEndLeft}>
             {itemsLeft.map((item, i) => (
               <DroppableContainer key={i} id={i}>
                 <DraggableItem id={item}>{componentLeft[item]}</DraggableItem>
               </DroppableContainer>
             ))}
-          </DndContext>
+          </DndContext> */}
+          {itemsLeft.map((item, i) => (
+            <div key={i}>{componentLeft[item]}</div>
+          ))}
         </div>
       </div>
       <div className="w-3/5 bg-slate-100 px-2 mt-56">
         <div className="flex flex-col justify-between h-full">
           <div>
-            <DndContext onDragEnd={handleDragEndRight}>
+            {/* <DndContext onDragEnd={handleDragEndRight}>
               {itemsRight.map((item, i) => (
                 <DroppableContainer key={i} id={i}>
                   <DraggableItem id={item}>
@@ -490,7 +493,10 @@ const Resume11 = forwardRef((props, ref) => {
                   </DraggableItem>
                 </DroppableContainer>
               ))}
-            </DndContext>
+            </DndContext> */}
+            {itemsRight.map((item, i) => (
+              <div key={i}>{componentRight[item]}</div>
+            ))}
           </div>
           <div>
             {/* formFooter */}

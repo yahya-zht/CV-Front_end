@@ -74,6 +74,11 @@ const AboutPage = () => {
               <span>
                 <strong>Privacy & Security</strong>: Your data is secure with
                 us. We place a high priority on protecting user privacy.
+                <span className="block mt-2 text-xs sm:text-sm italic text-gray-600 border-l-2 border-green-600 pl-3">
+                  Currently, no personal data is stored anywhere. Personal data
+                  is collected and stored in the local browser you used to
+                  visit the site.
+                </span>
               </span>
             </li>
           </ul>

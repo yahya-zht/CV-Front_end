@@ -503,20 +503,23 @@ const Resume14 = forwardRef((props, ref) => {
                 : "mt-14"
             }
           >
-            <DndContext onDragEnd={handleDragEndLeft}>
+            {/* <DndContext onDragEnd={handleDragEndLeft}>
               {itemsLeft.map((item, i) => (
                 <DroppableContainer key={i} id={i}>
                   <DraggableItem id={item}>{componentLeft[item]}</DraggableItem>
                 </DroppableContainer>
               ))}
-            </DndContext>
+            </DndContext> */}
+            {itemsLeft.map((item, i) => (
+              <div key={i}>{componentLeft[item]}</div>
+            ))}
           </div>
         </div>
       </div>
       <div className="w-4/5 bg-white px-2 pt-6">
         <div className="flex flex-col justify-between h-full border-s-2">
           <div>
-            <DndContext onDragEnd={handleDragEndRight}>
+            {/* <DndContext onDragEnd={handleDragEndRight}>
               {itemsRight.map((item, i) => (
                 <DroppableContainer key={i} id={i}>
                   <DraggableItem id={item}>
@@ -524,7 +527,10 @@ const Resume14 = forwardRef((props, ref) => {
                   </DraggableItem>
                 </DroppableContainer>
               ))}
-            </DndContext>
+            </DndContext> */}
+            {itemsRight.map((item, i) => (
+              <div key={i}>{componentRight[item]}</div>
+            ))}
           </div>
           <div>
             {/* formFooter */}
