@@ -15,12 +15,13 @@ export default function Hero() {
     router.push(`/create`);
   };
   return (
-    <div className="flex flex-row mx-10 my-12">
-      <div className="w-1/2 p-10 flex flex-col justify-center">
-        <h1 className="font-bold text-5xl text-center ">
+    <div className="flex flex-col lg:flex-row mx-4 sm:mx-6 lg:mx-10 my-8 lg:my-12">
+      {/* Text Section */}
+      <div className="w-full lg:w-1/2 p-4 sm:p-6 lg:p-10 flex flex-col justify-center">
+        <h1 className="font-bold text-3xl sm:text-4xl lg:text-5xl text-center">
           Create your professional CV
         </h1>
-        <p className="font-semibold text-xl text-center my-10">
+        <p className="font-semibold text-base sm:text-lg lg:text-xl text-center my-6 lg:my-10">
           Fill out the form, choose a template, and download your CV in a few
           minutes.
         </p>
@@ -38,7 +39,8 @@ export default function Hero() {
           </Button>
         </div>
       </div>
-      <div className="w-1/2">
+      {/* Image Section */}
+      <div className="w-full lg:w-1/2 mt-8 lg:mt-0">
         <SlideImgHero />
       </div>
     </div>

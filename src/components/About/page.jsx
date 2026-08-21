@@ -2,59 +2,119 @@ import React from "react";
 import { COLORS } from "@/constants/theme";
 
 const AboutPage = () => {
-  const nameProject = "Cv Smart dot online";  
+  const nameProject = "CV Smart Dot Online";
   const emailProject = "contact@cvsmart.online";
+
   return (
     <div
       className="min-h-screen flex flex-col items-center"
       style={{ backgroundColor: COLORS.bg }}
     >
-      <div className="max-w-4xl w-full px-6 py-12">
-        <h1 className="text-primary text-4xl font-extrabold text-center mb-8">
+      <div className="max-w-4xl w-full px-4 sm:px-6 py-8 sm:py-12">
+
+        {/* Title */}
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-center mb-6 sm:mb-8">
           About Us
         </h1>
-        <p className="text-secondary text-lg leading-relaxed mb-6">
+
+        {/* Introduction */}
+        <p className="text-base sm:text-lg leading-relaxed mb-8 sm:mb-10">
           Welcome to <strong>{nameProject}</strong> – the ultimate solution for
           creating professional CVs with ease. Our mission is to empower job
-          seekers and professionals with a simple platform to craft standout CVs
-          that showcase their unique skills and experiences.
+          seekers and professionals with a simple platform to craft standout
+          CVs that showcase their unique skills and experiences.
         </p>
 
-        <h2 className="text-teal text-2xl font-bold mb-4">Why Choose Us?</h2>
-        <ul className="list-disc list-inside text-black mb-8">
-          <li className="mb-2">
-            <strong>User-Friendly Interface</strong>: Our platform is intuitive
-            and easy to use, making it suitable for everyone.
-          </li>
-          <li className="mb-2">
-            <strong>Customizable Templates</strong>: We offer a variety of
-            templates designed for different industries and career levels.
-          </li>
-          <li className="mb-2">
-            <strong>Instant PDF Export</strong>: Generate high-quality PDF files
-            with one click, ensuring you’re always ready for new opportunities.
-          </li>
-          <li>
-            <strong>Privacy & Security</strong>: Your data is secure with us. We
-            place a high priority on protecting user privacy.
-          </li>
-        </ul>
+        {/* Why Choose Us */}
+        <section className="mb-8 sm:mb-10">
+          <h2 className="text-xl sm:text-2xl font-bold mb-4">
+            Why Choose Us?
+          </h2>
 
-        <h2 className="text-teal text-2xl font-bold mb-4">Our Vision</h2>
-        <p className="text-black text-lg leading-relaxed mb-8">
-          At <strong>{nameProject}</strong>, we believe that a well-crafted CV
-          can open doors to new opportunities. Our goal is to make the CV
-          creation process seamless, fast, and effective for everyone, from
-          fresh graduates to seasoned professionals.
-        </p>
+          <ul className="space-y-4 text-sm sm:text-base">
+            <li className="flex items-start">
+              <span className="mr-3 mt-1 font-bold text-green-600">
+                ✓
+              </span>
 
-        <h2 className="text-teal text-2xl font-bold mb-4">Get in Touch</h2>
-        <p className="text-secondary text-lg">
-          We’d love to hear from you! If you have any questions or feedback,
-          feel free to reach out to us at <strong>{emailProject}</strong>.
-        </p>
+              <span>
+                <strong>User-Friendly Interface</strong>: Our platform is
+                intuitive and easy to use, making it suitable for everyone.
+              </span>
+            </li>
+
+            <li className="flex items-start">
+              <span className="mr-3 mt-1 font-bold text-green-600">
+                ✓
+              </span>
+
+              <span>
+                <strong>Customizable Templates</strong>: We offer a variety of
+                templates designed for different industries and career levels.
+              </span>
+            </li>
+
+            <li className="flex items-start">
+              <span className="mr-3 mt-1 font-bold text-green-600">
+                ✓
+              </span>
+
+              <span>
+                <strong>Instant PDF Export</strong>: Generate high-quality PDF
+                files with one click, ensuring you’re always ready for new
+                opportunities.
+              </span>
+            </li>
+
+            <li className="flex items-start">
+              <span className="mr-3 mt-1 font-bold text-green-600">
+                ✓
+              </span>
+
+              <span>
+                <strong>Privacy & Security</strong>: Your data is secure with
+                us. We place a high priority on protecting user privacy.
+              </span>
+            </li>
+          </ul>
+        </section>
+
+        {/* Our Vision */}
+        <section className="mb-8 sm:mb-10">
+          <h2 className="text-xl sm:text-2xl font-bold mb-4">
+            Our Vision
+          </h2>
+
+          <p className="text-base sm:text-lg leading-relaxed">
+            At <strong>{nameProject}</strong>, we believe that a well-crafted
+            CV can open doors to new opportunities. Our goal is to make the CV
+            creation process seamless, fast, and effective for everyone, from
+            fresh graduates to seasoned professionals.
+          </p>
+        </section>
+
+        {/* Contact */}
+        <section>
+          <h2 className="text-xl sm:text-2xl font-bold mb-4">
+            Get in Touch
+          </h2>
+
+          <p className="text-base sm:text-lg leading-relaxed">
+            We’d love to hear from you! If you have any questions or feedback,
+            feel free to reach out to us at{" "}
+            <a
+              href={`mailto:${emailProject}`}
+              className="font-semibold break-all hover:underline"
+            >
+              {emailProject}
+            </a>
+            .
+          </p>
+        </section>
+
       </div>
     </div>
   );
 };
+
 export default AboutPage;

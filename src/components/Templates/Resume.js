@@ -71,7 +71,7 @@ const Resume = forwardRef((props, ref) => {
     <div
       id="resume"
       ref={componentRef}
-      className="bg-white shadow-lg fixed"
+      className="bg-white shadow-lg"
       style={{ width: "210mm", height: "297mm" }}
     >
       {Template()}
