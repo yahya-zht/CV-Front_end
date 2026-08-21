@@ -453,19 +453,20 @@ export default function FormInfo() {
     }
   };
   return (
-    <div className="p-6 pt-20 h-full">
-      <div className="h-full flex flex-col justify-between">
-        <div>
+    <div className="p-3 sm:p-4 md:p-6 pt-4 sm:pt-8 h-full">
+    <div className="h-full flex flex-col justify-between">
+
+      <div className="space-y-2 sm:space-y-3">
           <Accordion defaultExpanded>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1-content"
               id="panel1-header"
-              className="text-xl font-bold"
+              className="text-base sm:text-lg md:text-xl font-bold"
             >
               Personal Details
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails className="px-2 sm:px-4">
               <PersonalDetails />
             </AccordionDetails>
           </Accordion>
@@ -474,7 +475,7 @@ export default function FormInfo() {
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel2-content"
               id="panel2-header"
-              className="text-xl font-bold"
+              className="text-base sm:text-lg md:text-xl font-bold"
             >
               <input
                 type="text"
@@ -485,7 +486,7 @@ export default function FormInfo() {
                 onChange={(e) => handleTitleEducation(e.target.value)}
               />
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails className="px-2 sm:px-4">
               <Education />
             </AccordionDetails>
           </Accordion>
@@ -494,7 +495,7 @@ export default function FormInfo() {
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel3-content"
               id="panel3-header"
-              className="text-xl font-bold"
+              className="text-base sm:text-lg md:text-xl font-bold"
             >
               <input
                 type="text"
@@ -505,7 +506,7 @@ export default function FormInfo() {
                 onChange={(e) => handleTitleEmployment(e.target.value)}
               />
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails className="px-2 sm:px-4">
               <Employment />
             </AccordionDetails>
           </Accordion>
@@ -514,7 +515,7 @@ export default function FormInfo() {
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel3-content"
               id="panel3-header"
-              className="text-xl font-bold"
+              className="text-base sm:text-lg md:text-xl font-bold"
             >
               <input
                 type="text"
@@ -525,7 +526,7 @@ export default function FormInfo() {
                 onChange={(e) => handleTitleSkill(e.target.value)}
               />
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails className="px-2 sm:px-4">
               <Skills />
             </AccordionDetails>
           </Accordion>
@@ -534,7 +535,7 @@ export default function FormInfo() {
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel3-content"
               id="panel3-header"
-              className="text-xl font-bold"
+              className="text-base sm:text-lg md:text-xl font-bold"
             >
               <input
                 type="text"
@@ -545,7 +546,7 @@ export default function FormInfo() {
                 onChange={(e) => handleTitleLanguages(e.target.value)}
               />
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails className="px-2 sm:px-4">
               <Languages />
             </AccordionDetails>
           </Accordion>
@@ -554,7 +555,7 @@ export default function FormInfo() {
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel3-content"
               id="panel3-header"
-              className="text-xl font-bold"
+              className="text-base sm:text-lg md:text-xl font-bold"
             >
               <input
                 type="text"
@@ -565,7 +566,7 @@ export default function FormInfo() {
                 onChange={(e) => handleTitleHobbies(e.target.value)}
               />
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails className="px-2 sm:px-4">
               <Hobbies />
             </AccordionDetails>
           </Accordion>
@@ -575,7 +576,7 @@ export default function FormInfo() {
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel3-content"
                 id="panel3-header"
-                className="text-xl font-bold"
+                className="text-base sm:text-lg md:text-xl font-bold"
               >
                 <input
                   type="text"
@@ -586,7 +587,7 @@ export default function FormInfo() {
                   onChange={(e) => handleTitleProfile(e.target.value)}
                 />
               </AccordionSummary>
-              <AccordionDetails>
+              <AccordionDetails className="px-2 sm:px-4">
                 <Profile />
               </AccordionDetails>
               <AccordionActions>
@@ -607,7 +608,7 @@ export default function FormInfo() {
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel3-content"
                 id="panel3-header"
-                className="text-xl font-bold"
+                className="text-base sm:text-lg md:text-xl font-bold"
               >
                 <input
                   type="text"
@@ -618,7 +619,7 @@ export default function FormInfo() {
                   onChange={(e) => handleTitleCourse(e.target.value)}
                 />
               </AccordionSummary>
-              <AccordionDetails>
+              <AccordionDetails className="px-2 sm:px-4">
                 <Courses />
               </AccordionDetails>
               <AccordionActions>
@@ -639,7 +640,7 @@ export default function FormInfo() {
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel3-content"
                 id="panel3-header"
-                className="text-xl font-bold"
+                className="text-base sm:text-lg md:text-xl font-bold"
               >
                 <input
                   type="text"
@@ -650,7 +651,7 @@ export default function FormInfo() {
                   onChange={(e) => handleTitleInternships(e.target.value)}
                 />
               </AccordionSummary>
-              <AccordionDetails>
+              <AccordionDetails className="px-2 sm:px-4">
                 <Internships />
               </AccordionDetails>
               <AccordionActions>
@@ -671,7 +672,7 @@ export default function FormInfo() {
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel3-content"
                 id="panel3-header"
-                className="text-xl font-bold"
+                className="text-base sm:text-lg md:text-xl font-bold"
               >
                 <input
                   type="text"
@@ -682,7 +683,7 @@ export default function FormInfo() {
                   onChange={(e) => handleTitleCertificate(e.target.value)}
                 />
               </AccordionSummary>
-              <AccordionDetails>
+              <AccordionDetails className="px-2 sm:px-4">
                 <Certificates />
               </AccordionDetails>
               <AccordionActions>
@@ -703,7 +704,7 @@ export default function FormInfo() {
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel3-content"
                 id="panel3-header"
-                className="text-xl font-bold"
+                className="text-base sm:text-lg md:text-xl font-bold"
               >
                 <span> </span>
                 <input
@@ -715,7 +716,7 @@ export default function FormInfo() {
                   onChange={(e) => handleTitleQualities(e.target.value)}
                 />
               </AccordionSummary>
-              <AccordionDetails>
+              <AccordionDetails className="px-2 sm:px-4">
                 <Qualities />
               </AccordionDetails>
               <AccordionActions>
@@ -736,7 +737,7 @@ export default function FormInfo() {
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel3-content"
                 id="panel3-header"
-                className="text-xl font-bold"
+                className="text-base sm:text-lg md:text-xl font-bold"
               >
                 <span> </span>
                 <input
@@ -750,7 +751,7 @@ export default function FormInfo() {
                   }
                 />
               </AccordionSummary>
-              <AccordionDetails>
+              <AccordionDetails className="px-2 sm:px-4">
                 <ExtracurricularActivities />
               </AccordionDetails>
               <AccordionActions>
@@ -771,7 +772,7 @@ export default function FormInfo() {
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel3-content"
                 id="panel3-header"
-                className="text-xl font-bold"
+                className="text-base sm:text-lg md:text-xl font-bold"
               >
                 <input
                   type="text"
@@ -782,7 +783,7 @@ export default function FormInfo() {
                   onChange={(e) => handleTitleReferences(e.target.value)}
                 />
               </AccordionSummary>
-              <AccordionDetails>
+              <AccordionDetails className="px-2 sm:px-4">
                 <References />
               </AccordionDetails>
               <AccordionActions>
@@ -803,7 +804,7 @@ export default function FormInfo() {
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel3-content"
                 id="panel3-header"
-                className="text-xl font-bold"
+                className="text-base sm:text-lg md:text-xl font-bold"
               >
                 <span> </span>
                 <input
@@ -815,7 +816,7 @@ export default function FormInfo() {
                   onChange={(e) => handleTitleAchievement(e.target.value)}
                 />
               </AccordionSummary>
-              <AccordionDetails>
+              <AccordionDetails className="px-2 sm:px-4">
                 <Achievements />
               </AccordionDetails>
               <AccordionActions>
@@ -836,11 +837,11 @@ export default function FormInfo() {
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel3-content"
                 id="panel3-header"
-                className="text-xl font-bold"
+                className="text-base sm:text-lg md:text-xl font-bold"
               >
                 <span> Footer </span>
               </AccordionSummary>
-              <AccordionDetails>
+              <AccordionDetails className="px-2 sm:px-4">
                 <Footer />
               </AccordionDetails>
               <AccordionActions>
@@ -862,7 +863,7 @@ export default function FormInfo() {
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls={`panel${index + 3}-content`}
                   id={`panel${index + 3}-header`}
-                  className="text-xl font-bold"
+                  className="text-base sm:text-lg md:text-xl font-bold"
                 >
                   <span>
                     <input
@@ -875,7 +876,7 @@ export default function FormInfo() {
                     />
                   </span>
                 </AccordionSummary>
-                <AccordionDetails>
+                <AccordionDetails className="px-2 sm:px-4">
                   <Entries index={index} />
                 </AccordionDetails>
                 <AccordionActions>
@@ -896,7 +897,7 @@ export default function FormInfo() {
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls={`panel${index + 3}-content`}
                   id={`panel${index + 3}-header`}
-                  className="text-xl font-bold"
+                  className="text-base sm:text-lg md:text-xl font-bold"
                 >
                   <span>
                     <input
@@ -911,7 +912,7 @@ export default function FormInfo() {
                     />
                   </span>
                 </AccordionSummary>
-                <AccordionDetails>
+                <AccordionDetails className="px-2 sm:px-4">
                   <Description index={index} />
                 </AccordionDetails>
                 <AccordionActions>
@@ -932,7 +933,7 @@ export default function FormInfo() {
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls={`panel${index + 3}-content`}
                   id={`panel${index + 3}-header`}
-                  className="text-xl font-bold"
+                  className="text-base sm:text-lg md:text-xl font-bold"
                 >
                   <span>
                     <input
@@ -947,7 +948,7 @@ export default function FormInfo() {
                     />
                   </span>
                 </AccordionSummary>
-                <AccordionDetails>
+                <AccordionDetails className="px-2 sm:px-4">
                   <List index={index} />
                 </AccordionDetails>
                 <AccordionActions>
@@ -968,7 +969,7 @@ export default function FormInfo() {
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls={`panel${index + 3}-content`}
                   id={`panel${index + 3}-header`}
-                  className="text-xl font-bold"
+                  className="text-base sm:text-lg md:text-xl font-bold"
                 >
                   <span>
                     <input
@@ -983,7 +984,7 @@ export default function FormInfo() {
                     />
                   </span>
                 </AccordionSummary>
-                <AccordionDetails>
+                <AccordionDetails className="px-2 sm:px-4">
                   <SkillsSection index={index} />
                 </AccordionDetails>
                 <AccordionActions>

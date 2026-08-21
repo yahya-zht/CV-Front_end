@@ -230,9 +230,44 @@ export default function NavTemplates() {
     }
   };
   return (
-    <div className=" px-6 py-2 bg-gray-50 rounded-lg absolute bottom-7 left-10 right-10 z-20 shadow-xl  border-2 border-gray-200 flex flex-row justify-between">
+    <div
+      className="
+        px-2
+        sm:px-4
+        lg:px-6
+        py-1.5
+        sm:py-2
+        bg-gray-50
+        rounded-lg
+        shadow-xl
+        border
+        border-gray-200 
+
+        bottom-2
+        sm:bottom-4
+        lg:bottom-7
+
+        left-2
+        right-2
+        sm:left-6
+        sm:right-6
+        lg:left-10
+        lg:right-10
+
+        z-50
+
+        flex
+        flex-row
+        items-center
+        justify-between
+
+        gap-1
+        sm:gap-2
+      "
+    >
       <div>
         <Button
+          size="small"
           id="demo-customized-button"
           aria-controls={open ? "demo-customized-menu" : undefined}
           aria-haspopup="true"
@@ -244,6 +279,7 @@ export default function NavTemplates() {
             anchorEl == null ? <KeyboardArrowDownIcon /> : <KeyboardArrowUp />
           }
           sx={{
+            padding: "2px",
             backgroundColor: "#EEEEEE",
             color: "#201E43",
             "&:hover": {
@@ -277,6 +313,7 @@ export default function NavTemplates() {
       {/* Font Button */}
       <div>
         <Button
+          size="small"
           id="demo-customized-button"
           aria-controls={openFont ? "demo-customized-menu" : undefined}
           aria-haspopup="true"
@@ -292,6 +329,7 @@ export default function NavTemplates() {
             )
           }
           sx={{
+            padding: "2px",
             backgroundColor: "#EEEEEE",
             color: "#201E43",
             "&:hover": {
@@ -325,6 +363,7 @@ export default function NavTemplates() {
       {/* FontSize Button */}
       <div>
         <Button
+          size="small"
           id="demo-customized-button"
           aria-controls={openFontSize ? "demo-customized-menu" : undefined}
           aria-haspopup="true"
@@ -340,6 +379,7 @@ export default function NavTemplates() {
             )
           }
           sx={{
+            padding: "2px",
             backgroundColor: "#EEEEEE",
             color: "#201E43",
             "&:hover": {
@@ -379,6 +419,7 @@ export default function NavTemplates() {
       {/* Color Picker Button */}
       <div>
         <Button
+          size="small"
           onClick={handleColorClick}
           id="demo-customized-button"
           aria-controls={openColor ? "demo-customized-menu" : undefined}
@@ -419,6 +460,7 @@ export default function NavTemplates() {
       </div>
 
       <Button
+        size="small"
         onClick={handleZoom}
         sx={{
           backgroundColor: "#EEEEEE",
