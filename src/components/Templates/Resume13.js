@@ -454,10 +454,10 @@ const Resume13 = forwardRef((props, ref) => {
         styleTrueImg={"ms-80"}
         styleFalseImg={"ms-80"}
         styleFirstName={
-          "text-4xl font-bold text-black mb-1 inline-flex pt-5 ms-3"
+          "text-4xl font-bold text-black mb-1 inline-flex pt-1 ms-3"
         }
         styleLastName={
-          "text-4xl font-bold ps-3 text-black mb-1 inline-flex pt-5"
+          "text-4xl font-bold ps-3 text-black mb-1 inline-flex pt-1"
         }
         styleHeadline={`${textLg} text-black ps-0 mb-1 ms-3`}
         styleQr={"flex flex-col items-center"}

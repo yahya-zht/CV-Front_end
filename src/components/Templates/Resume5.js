@@ -434,9 +434,9 @@ const Resume5 = forwardRef((props, ref) => {
         styleContainer={`absolute py-6 px-4 h-40 top-16 start-0 right-0 z-0 flex flex-row justify-between bg-opacity-50 text-white`}
         styleTrueImg={"ms-80"}
         styleFalseImg={"ms-44"}
-        styleFirstName={"text-4xl font-bold text-white mb-1 inline-flex pt-5"}
+        styleFirstName={"text-4xl font-bold text-white mb-1 inline-flex pt-1"}
         styleLastName={
-          "text-4xl font-bold ps-3 text-white mb-1 inline-flex pt-5"
+          "text-4xl font-bold ps-3 text-white mb-1 inline-flex pt-1"
         }
         styleHeadline={`${textLg} text-white ps-0 mb-1`}
         styleQr={"flex flex-col items-center"}

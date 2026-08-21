@@ -450,9 +450,9 @@ const Resume7 = forwardRef((props, ref) => {
         styleContainer={`absolute py-6 px-4 h-40 top-9 start-0 right-0 z-0 flex flex-row justify-between`}
         styleTrueImg={"ms-80"}
         styleFalseImg={"ms-44"}
-        styleFirstName={"text-4xl font-bold text-black mb-1 inline-flex pt-5"}
+        styleFirstName={"text-4xl font-bold text-black mb-1 inline-flex pt-1"}
         styleLastName={
-          "text-4xl font-bold ps-3 text-black mb-1 inline-flex pt-5"
+          "text-4xl font-bold ps-3 text-black mb-1 inline-flex pt-1"
         }
         styleHeadline={`${textLg} text-black ps-0 mb-1`}
         styleQr={"flex flex-col items-center"}
