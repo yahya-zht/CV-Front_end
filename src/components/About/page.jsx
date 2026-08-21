@@ -104,7 +104,7 @@ const AboutPage = () => {
             feel free to reach out to us at{" "}
             <a
               href={`mailto:${emailProject}`}
-              className="font-semibold break-all hover:underline"
+              className="font-semibold hover:underline inline-block"
             >
               {emailProject}
             </a>
