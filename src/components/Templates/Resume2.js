@@ -444,19 +444,22 @@ const Resume2 = forwardRef((props, ref) => {
             styleContainer={"flex flex-row  justify-center static z-20 mb-6"}
             styleImage={"rounded-lg border-4 border-white"}
           />
-          <DndContext onDragEnd={handleDragEndLeft}>
+          {/* <DndContext onDragEnd={handleDragEndLeft}>
             {itemsLeft.map((item, i) => (
               <DroppableContainer key={i} id={i}>
                 <DraggableItem id={item}>{componentLeft[item]}</DraggableItem>
               </DroppableContainer>
             ))}
-          </DndContext>
+          </DndContext> */}
+          {itemsLeft.map((item, i) => (
+            <div key={i}>{componentLeft[item]}</div>
+          ))}
         </div>
       </div>
       <div className="col-span-2 p-3 mt-36 grid ">
         <div className=" flex flex-col justify-between">
           <div className="mt-6">
-            <DndContext onDragEnd={handleDragEndRight}>
+            {/* <DndContext onDragEnd={handleDragEndRight}>
               {itemsRight.map((item, i) => (
                 <DroppableContainer key={i} id={i}>
                   <DraggableItem id={item}>
@@ -464,7 +467,10 @@ const Resume2 = forwardRef((props, ref) => {
                   </DraggableItem>
                 </DroppableContainer>
               ))}
-            </DndContext>
+            </DndContext> */}
+            {itemsRight.map((item, i) => (
+              <div key={i}>{componentRight[item]}</div>
+            ))}
           </div>
           <div>
             <Footer

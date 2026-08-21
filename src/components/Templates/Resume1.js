@@ -22,6 +22,9 @@ import Description from "../DetailsInfo/DescriptionSection";
 import List from "../DetailsInfo/ListSection";
 import SkillsSection from "../DetailsInfo/SkillsSection";
 import { useDraggable, useDroppable, DndContext } from "@dnd-kit/core";
+
+const isDragEnabled = false; // set to true to re-enable section dragging
+
 const Resume1 = forwardRef((props, ref) => {
   const initialItemsLeft = [
     "PersonalDetails",
@@ -344,9 +347,10 @@ const Resume1 = forwardRef((props, ref) => {
       )),
   };
 
-  const DraggableItem = ({ id, children }) => {
+  const DraggableItem = ({ id, disabled, children }) => {
     const { attributes, listeners, setNodeRef, transform } = useDraggable({
       id,
+      disabled,
     });
 
     const style = {
@@ -448,27 +452,33 @@ const Resume1 = forwardRef((props, ref) => {
             formProfile || DataPersonalDetails.uploadedImage ? "mt-0" : "mt-14"
           }
         >
-          <DndContext onDragEnd={handleDragEndLeft}>
+          {/* <DndContext onDragEnd={handleDragEndLeft}>
             {itemsLeft.map((item, i) => (
               <DroppableContainer key={i} id={i}>
-                <DraggableItem id={item}>{componentLeft[item]}</DraggableItem>
+                <DraggableItem id={item} disabled={!isDragEnabled}>{componentLeft[item]}</DraggableItem>
               </DroppableContainer>
             ))}
-          </DndContext>
+          </DndContext> */}
+          {itemsLeft.map((item, i) => (
+            <div key={i}>{componentLeft[item]}</div>
+          ))}
         </div>
       </div>
       <div className="w-3/5 bg-slate-100 px-2 mt-56">
         <div className="flex flex-col justify-between h-full">
           <div>
-            <DndContext onDragEnd={handleDragEndRight}>
+            {/* <DndContext onDragEnd={handleDragEndRight}>
               {itemsRight.map((item, i) => (
                 <DroppableContainer key={i} id={i}>
-                  <DraggableItem id={item}>
+                  <DraggableItem id={item} disabled={!isDragEnabled}>
                     {componentRight[item]}
                   </DraggableItem>
                 </DroppableContainer>
               ))}
-            </DndContext>
+            </DndContext> */}
+            {itemsRight.map((item, i) => (
+              <div key={i}>{componentRight[item]}</div>
+            ))}
           </div>
           <div>
             {/* formFooter */}
